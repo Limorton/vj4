@@ -327,10 +327,7 @@ LEVELS = collections.OrderedDict([(10, 1),
                                   (2, 95),
                                   (1, 100)])
 
-FOOTER_EXTRA_HTMLS = [version.get(),'''
-<script src="https://oj.masnn.io:38443/socket.io/socket.io.js"></script>
-<script type="module" src="https://oj.masnn.io:38443/extra/scripts/index.js"></script>
-''']
+FOOTER_EXTRA_HTMLS = [version.get(),'''good good study, day day up!''']
 
 PROBLEM_CATEGORIES = collections.OrderedDict([
     ('动态规划', [
@@ -486,8 +483,8 @@ DEFAULT_VNODES = collections.OrderedDict([
     {'pic': 'share', 'name': '分享'},
     {'pic': 'solution', 'name': '题解'}
   ]),
-  ('Vijos', [
-    {'pic': 'vijos', 'name': 'Vijos'},
+  ('topoj', [
+    {'pic': 'topoj', 'name': 'topoj'},
     {'pic': None, 'name': '团队'},
     {'pic': None, 'name': '月赛'},
     {'pic': 'advice', 'name': '建议'}
@@ -526,12 +523,9 @@ DEFAULT_VNODES = collections.OrderedDict([
     {'pic': None, 'name': '数据库'},
     {'pic': None, 'name': 'C'},
     {'pic': None, 'name': 'C++'},
-    {'pic': None, 'name': 'Pascal'},
-    {'pic': None, 'name': 'Java'},
-    {'pic': None, 'name': 'PHP'},
     {'pic': None, 'name': 'Python'},
     {'pic': None, 'name': '游戏'},
     {'pic': None, 'name': '保送'},
-    {'pic': None, 'name': 'ACM'}
+    {'pic': None, 'name': 'NOIP'}
   ])
 ])
