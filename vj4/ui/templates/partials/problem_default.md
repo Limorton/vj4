@@ -1,99 +1,65 @@
-# Background
-Special for beginners, ^_^
+# **题目背景**
 
-# Description
-Given two integers x and y, print the sum.
+如果没有就删除。
 
-# Format
+# **题目描述**
 
-## Input
-Two integers x and y, satisfying 0 <= x, y <= 32767.
+这里写题目的正文。
+公式的显示，公式都以 “\$”括起来 ，常用公式书写方法如下：
+上标：
+$x^2$，$x^{100}$，$a^{2+2} $
 
-## Output
-One integer, the sum of x and y.
+下标：
+$a_i$,  $a_{i,j}$ ， $a^2_2$
+分式：
+$\frac{1}{1}+\frac{1}{2}+\frac{1}{3}+...+\frac{1}{n}$
+加减乘除开根号：
+$+ - \times \div \pm \sqrt{2}  \sqrt[3]{8}$
+不等号：
+$a \le b$,
+$a \leq b$,
+$a \gt b$,
+$a\ge b$
 
-# Sample 1
+# **输入输出格式** 
 
-## Input
+## **输入**
+
+输入格式，如果题目简单，数据范围也可以在这里描述，$ 0 \leq x, y \leq 32767$。
+
+## **输出**
+
+输出格式要求。
+
+# **样例**
+
+## **输入**
+
 ```
 123 500
 ```
 
-## Output
+## **输出**
+
 ```
 623
 ```
 
-# Limitation
-1s, 1024KiB for each test case.
+如果有多个样例，上面部分可以重复
 
-# Hint
+# **时间及空间限制**
 
-## Free Pascal Code
+1s, 256MB.
+对于 $100\%$ 的测试数据， $1 \leq n \leq 100$。
 
-```pascal
-var a,b:longint;
-begin
-    readln(a,b);
-    writeln(a+b);
-end.
-```
+# **提示**
 
-## C Code
+看出题人的意图，如果没有，可以删除。
 
-```c
-#include <stdio.h>
-int main(void)
-{
-    int a, b;
-    scanf("%d%d", &a, &b);
-    printf("%d\n", a + b);
-    return 0;
-}
-```
+## **思考**
 
-## C++ Code
+（没有可以删除）对于题目的引申思考，比如：这题你能用两种以上方法解决吗？这题数据范围 n 如果达到 $10^{12}$，你的代码还能 AC 吗？
 
-```cpp
-#include <iostream>
-using namespace std;
-int main()
-{
-    int a, b;
-    cin >> a >> b;
-    cout << a + b << endl;
-    return 0;
-}
-```
+# **题目来源**
 
-## Python Code
-
-```python
-a, b = [int(i) for i in raw_input().split()]
-print(a + b)
-```
-
-## Java Code
-
-```java
-import java.io.*;
-import java.util.Scanner;
-
-public class Main {
-
-    /**
-     * @param args
-     * @throws IOException 
-     */
-    public static void main(String[] args) throws IOException {
-        Scanner sc = new Scanner(System.in);
-        int a = sc.nextInt();
-        int b = sc.nextInt();
-        System.out.println(a + b);
-    }
-}
-```
-
-# Source
-
-**Vijos Original**
+（没有可以删除）真题？时间？课本？
