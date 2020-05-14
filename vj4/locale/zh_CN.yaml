@@ -76,11 +76,11 @@ Forgot password or username?: 忘记密码或者用户名？
 Gender: 性别
 Gender Visibility: 性别可见性
 Gravatar Email: Gravatar Email 地址
-'Hello! You can click following link to sign up your Vijos account:': 您好！您可以点击以下链接来注册您的 TopsOj 账户：
+'Hello! You can click following link to sign up your Vijos account:': 您好！您可以点击以下链接来注册您的 Vijos 账户：
 'Hello, {0}! You can click following link to reset the password of your Vijos account:': 您好，{0}！您可以点击以下链接来重置您
-  TopsOj 账户的密码：
+  Vijos 账户的密码：
 'Hello, {0}! You can click following link to active your new email of your Vijos account:': 您好，{0}！您可以点击以下链接来激活您
-  TopsOj 账户的新电子邮件地址：
+  Vijos 账户的新电子邮件地址：
 Confirmation mail has been sent to your new email.: 确认邮件已经发送到您的新电子邮箱。
 Help: 帮助
 Hide all tags: 隐藏所有标签
@@ -227,7 +227,7 @@ home_account: 账户设置
 home_preference: 偏好设置
 home_messages: 站内消息
 home_security: 安全设置
-home_domain: 我的团队
+home_domain: 我的域
 homework_main: 作业
 homework_create: 创建作业
 homework_edit: 编辑作业
@@ -305,8 +305,8 @@ My Domains: 我的域
 What is domain?: 什么是域?
 View: 查看
 Manage: 管理
-home_domain_create: 创建团队
-Create Domain: 创建团队
+home_domain_create: 创建域
+Create Domain: 创建域
 Properties: 属性
 Access Control: 访问控制
 domain_main: 首页
