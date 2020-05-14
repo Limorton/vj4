@@ -327,12 +327,12 @@ LEVELS = collections.OrderedDict([(10, 1),
                                   (2, 95),
                                   (1, 100)])
 
-FOOTER_EXTRA_HTMLS = ['<a href="https://vijos.org/">fork from Vijos.org</a>']
+FOOTER_EXTRA_HTMLS = ['地址：万科金域国际高楼507 电话：0551-65552991 <a href="https://vijos.org/">fork from Vijos.org</a>', version.get()]
 
 PROBLEM_CATEGORIES = collections.OrderedDict([
     ('顺序结构', [
         '输入输出',
-        '算术运算',
+        '数学运算',
         '变量',
         '问题计算'
     ]),
@@ -388,16 +388,13 @@ PROBLEM_CATEGORIES = collections.OrderedDict([
         'Polya定理'
     ]),
     ('高精度', [
-        '进制转换',
         '加减',
         '乘除',
         'FFT'
     ]),
     ('搜索', [
         '枚举',
-        'DFS',
-        'BFS',
-        '回溯和剪枝',
+        '搜索与剪枝',
         '启发式搜索',
         'DLX',
         '双向搜索',
@@ -415,7 +412,6 @@ PROBLEM_CATEGORIES = collections.OrderedDict([
         '状态压缩DP'
     ]),
     ('数据结构', [
-        '结构体',
         '栈',
         '队列',
         '链表',
@@ -516,57 +512,57 @@ for category, sub_categories in PROBLEM_CATEGORIES.items():
 
 VNODE_MISSING = {'title': '(missing)'}
 DEFAULT_VNODES = collections.OrderedDict([
-  ('OJ平台', [
-    {'pic': 'vijos', 'name': '公告'},
-    {'pic': None, 'name': '月赛'},
-    {'pic': None, 'name': '团队'},
-    {'pic': 'advice', 'name': '建议'}
-  ]),
   ('探索', [
     {'pic': 'qa', 'name': '问答'},
     {'pic': 'share', 'name': '分享'},
     {'pic': 'solution', 'name': '题解'}
   ]),
-  ('语法', [
-    {'pic': 'qa', 'name': '问答'},
-    {'pic': 'share', 'name': '分享'},
+  ('Vijos', [
+    {'pic': 'vijos', 'name': 'Vijos'},
+    {'pic': None, 'name': '团队'},
+    {'pic': None, 'name': '月赛'},
+    {'pic': 'advice', 'name': '建议'}
   ]),
   ('数据结构', [
-    {'pic': None, 'name': '结构体'},
-    {'pic': None, 'name': '栈和队列'},
-    {'pic': None, 'name': 'STL'},
-    {'pic': None, 'name': '图'},
     {'pic': None, 'name': '散列表'},
     {'pic': None, 'name': '搜索树'},
+    {'pic': None, 'name': '栈和队列'},
+    {'pic': None, 'name': '图'},
     {'pic': None, 'name': '堆'}
   ]),
   ('算法', [
-    {'pic': None, 'name': '排序'},
-    {'pic': None, 'name': '贪心'},
-    {'pic': None, 'name': '搜索'},
-    {'pic': None, 'name': '背包'},
-    {'pic': None, 'name': '动态规划'},
-    {'pic': None, 'name': '图论'},
     {'pic': None, 'name': '数论'},
-    {'pic': None, 'name': '博弈论'}
     {'pic': None, 'name': '几何'},
+    {'pic': None, 'name': '图论'},
     {'pic': None, 'name': '网络流'},
+    {'pic': None, 'name': '动态规划'},
+    {'pic': None, 'name': '背包'},
+    {'pic': None, 'name': '排序'},
+    {'pic': None, 'name': '搜索'},
     {'pic': None, 'name': '并查集'},
+    {'pic': None, 'name': '贪心'},
+    {'pic': None, 'name': '博弈论'}
   ]),
   ('在线题库', [
-    {'pic': None, 'name': '洛谷'}
-    {'pic': None, 'name': 'OpenJudge'}
+    {'pic': None, 'name': 'CodeForces'},
     {'pic': None, 'name': 'TopCoder'},
     {'pic': None, 'name': 'POJ'},
+    {'pic': None, 'name': 'BZOJ'},
     {'pic': None, 'name': 'USACO'},
-    {'pic': None, 'name': 'CodeForces'},
+    {'pic': None, 'name': 'RQNOJ'}
   ]),
   ('泛', [
     {'pic': None, 'name': '数学'},
     {'pic': None, 'name': '编程'},
-    {'pic': None, 'name': '物理'},
-    {'pic': None, 'name': '历史'},
+    {'pic': None, 'name': '数据库'},
+    {'pic': None, 'name': 'C'},
+    {'pic': None, 'name': 'C++'},
+    {'pic': None, 'name': 'Pascal'},
+    {'pic': None, 'name': 'Java'},
+    {'pic': None, 'name': 'PHP'},
+    {'pic': None, 'name': 'Python'},
     {'pic': None, 'name': '游戏'},
-    {'pic': None, 'name': '其他'}
+    {'pic': None, 'name': '保送'},
+    {'pic': None, 'name': 'ACM'}
   ])
 ])
