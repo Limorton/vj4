@@ -478,54 +478,73 @@ for category, sub_categories in PROBLEM_CATEGORIES.items():
 
 VNODE_MISSING = {'title': '(missing)'}
 DEFAULT_VNODES = collections.OrderedDict([
-  ('探索', [
-    {'pic': 'qa', 'name': '问答'},
-    {'pic': 'share', 'name': '分享'},
-    {'pic': 'solution', 'name': '题解'}
-  ]),
-  ('topoj', [
-    {'pic': 'topoj', 'name': 'topoj'},
+  ('TopsOJ', [
+    {'pic': 'TopsOJ', 'name': 'TopsOJ'},
     {'pic': None, 'name': '团队'},
     {'pic': None, 'name': '月赛'},
     {'pic': 'advice', 'name': '建议'}
   ]),
-  ('数据结构', [
+  ('探索', [
+    {'pic': 'Q&A', 'name': '问答'},
+    {'pic': 'share', 'name': '分享'},
+    {'pic': 'solution', 'name': '题解'}
+    {'pic': None, 'name': 'OI Wiki[OI百科]'}
+  ]),
+  ('基本语法和数据结构', [
+    {'pic': None, 'name': '程序结构'},
+    {'pic': None, 'name': '变量和数组'},
+    {'pic': None, 'name': '字符和字符串'},
+    {'pic': None, 'name': '结构体'},
+    {'pic': None, 'name': '函数'}
+  ]),
+  ('基础算法', [
+    {'pic': None, 'name': '排序'},
+    {'pic': None, 'name': '枚(遍)举(历)'},
+    {'pic': None, 'name': '递推'},
+    {'pic': None, 'name': '递归'},
+    {'pic': None, 'name': '模拟'},
+    {'pic': None, 'name': '入门贪心'},
+    {'pic': None, 'name': '入门搜索'},
+    {'pic': None, 'name': '入门动态规划'},
+    {'pic': None, 'name': '背包问题'},
+  ]),
+  ('高阶数据结构', [
     {'pic': None, 'name': '散列表'},
     {'pic': None, 'name': '搜索树'},
     {'pic': None, 'name': '栈和队列'},
     {'pic': None, 'name': '图'},
     {'pic': None, 'name': '堆'}
   ]),
-  ('算法', [
-    {'pic': None, 'name': '数论'},
-    {'pic': None, 'name': '几何'},
-    {'pic': None, 'name': '图论'},
-    {'pic': None, 'name': '网络流'},
-    {'pic': None, 'name': '动态规划'},
-    {'pic': None, 'name': '背包'},
+  ('高阶算法', [
     {'pic': None, 'name': '排序'},
     {'pic': None, 'name': '搜索'},
+    {'pic': None, 'name': '动态规划'},
+    {'pic': None, 'name': '背包'},
+    {'pic': None, 'name': '图论'},
+    {'pic': None, 'name': '网络流'},
     {'pic': None, 'name': '并查集'},
-    {'pic': None, 'name': '贪心'},
+    {'pic': None, 'name': '数论'},
     {'pic': None, 'name': '博弈论'}
+    {'pic': None, 'name': '几何'},
+    {'pic': None, 'name': '贪心'},
   ]),
   ('在线题库', [
+    {'pic': None, 'name': '洛谷'}
     {'pic': None, 'name': 'CodeForces'},
-    {'pic': None, 'name': 'TopCoder'},
     {'pic': None, 'name': 'POJ'},
-    {'pic': None, 'name': 'BZOJ'},
     {'pic': None, 'name': 'USACO'},
-    {'pic': None, 'name': 'RQNOJ'}
+    {'pic': None, 'name': 'OpenJudge'},
+    {'pic': None, 'name': 'BZOJ'},
   ]),
-  ('泛', [
+  ('展开', [
+    {'pic': None, 'name': '校园生活'},
+    {'pic': None, 'name': '艺术与科学'},
     {'pic': None, 'name': '数学'},
     {'pic': None, 'name': '编程'},
-    {'pic': None, 'name': '数据库'},
-    {'pic': None, 'name': 'C'},
     {'pic': None, 'name': 'C++'},
     {'pic': None, 'name': 'Python'},
     {'pic': None, 'name': '游戏'},
-    {'pic': None, 'name': '保送'},
-    {'pic': None, 'name': 'NOIP'}
+    {'pic': None, 'name': '自招和保送'},
+    {'pic': None, 'name': 'NOIP&NOI'}
   ])
 ])
