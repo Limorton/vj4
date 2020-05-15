@@ -417,8 +417,7 @@ PROBLEM_CATEGORIES = collections.OrderedDict([
         '归并树',
         'k-d树',
         '块状链表',
-        'Hashing',
-        '函数式编程'
+        'Hashing'
     ]),
     ('博弈论', []),
     ('字符串', [
