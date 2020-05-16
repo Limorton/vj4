@@ -351,7 +351,7 @@ PROBLEM_CATEGORIES = collections.OrderedDict([
         '一维数组',
         '二维数组'
     ]),
-    ('字符数组和字符串', [
+    ('字符数组(串)', [
         '一维字符数组',
         '二维字符数组'
     ]),
