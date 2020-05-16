@@ -327,7 +327,7 @@ LEVELS = collections.OrderedDict([(10, 1),
                                   (2, 95),
                                   (1, 100)])
 
-FOOTER_EXTRA_HTMLS = [version.get(),'''good good study, day day up!''']
+FOOTER_EXTRA_HTMLS = ["版本号:", version.get()]
 
 PROBLEM_CATEGORIES = collections.OrderedDict([
     ('动态规划', [
@@ -459,7 +459,6 @@ PROBLEM_CATEGORIES = collections.OrderedDict([
         '分治',
         '分块',
         'RMQ',
-        '快速幂',
         '数学',
         '排序',
         '构造'
@@ -478,16 +477,16 @@ for category, sub_categories in PROBLEM_CATEGORIES.items():
 
 VNODE_MISSING = {'title': '(missing)'}
 DEFAULT_VNODES = collections.OrderedDict([
+  ('TopOJ', [
+    {'pic': None, 'name': '公告'},
+    {'pic': None, 'name': '月赛'},
+    {'pic': None, 'name': '团队'},
+    {'pic': 'advice', 'name': '建议'}
+  ]),
   ('探索', [
     {'pic': 'qa', 'name': '问答'},
     {'pic': 'share', 'name': '分享'},
     {'pic': 'solution', 'name': '题解'}
-  ]),
-  ('topoj', [
-    {'pic': 'topoj', 'name': 'topoj'},
-    {'pic': None, 'name': '团队'},
-    {'pic': None, 'name': '月赛'},
-    {'pic': 'advice', 'name': '建议'}
   ]),
   ('数据结构', [
     {'pic': None, 'name': '散列表'},
@@ -510,18 +509,16 @@ DEFAULT_VNODES = collections.OrderedDict([
     {'pic': None, 'name': '博弈论'}
   ]),
   ('在线题库', [
+    {'pic': None, 'name': '洛谷'}
     {'pic': None, 'name': 'CodeForces'},
     {'pic': None, 'name': 'TopCoder'},
     {'pic': None, 'name': 'POJ'},
     {'pic': None, 'name': 'BZOJ'},
     {'pic': None, 'name': 'USACO'},
-    {'pic': None, 'name': 'RQNOJ'}
   ]),
   ('泛', [
     {'pic': None, 'name': '数学'},
     {'pic': None, 'name': '编程'},
-    {'pic': None, 'name': '数据库'},
-    {'pic': None, 'name': 'C'},
     {'pic': None, 'name': 'C++'},
     {'pic': None, 'name': 'Python'},
     {'pic': None, 'name': '游戏'},
