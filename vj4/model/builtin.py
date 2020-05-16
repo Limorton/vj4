@@ -549,7 +549,7 @@ DEFAULT_VNODES = collections.OrderedDict([
     {'pic': None, 'name': '散列表'}
   ]),
   ('算法', [
-    {'pic': None, 'name': '枚(遍)举(历)'},
+    {'pic': None, 'name': '枚举'},
     {'pic': None, 'name': '排序'},
     {'pic': None, 'name': '模拟'},
     {'pic': None, 'name': '递推和递归'},
