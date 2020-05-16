@@ -509,12 +509,12 @@ DEFAULT_VNODES = collections.OrderedDict([
     {'pic': None, 'name': '博弈论'}
   ]),
   ('在线题库', [
-    {'pic': None, 'name': '洛谷'}
+    {'pic': None, 'name': '洛谷'},
     {'pic': None, 'name': 'CodeForces'},
     {'pic': None, 'name': 'TopCoder'},
     {'pic': None, 'name': 'POJ'},
     {'pic': None, 'name': 'BZOJ'},
-    {'pic': None, 'name': 'USACO'},
+    {'pic': None, 'name': 'USACO'}
   ]),
   ('泛', [
     {'pic': None, 'name': '数学'},
