@@ -18,7 +18,7 @@
       </div>
       <div class="section__body typo">
         {{ _('no_translation_warn')|safe }}
-        <p>Vijos使用<a href="https://github.com/vijos/jd4">jd4</a>进行评测，以docker镜像的形式安装至评测机。所使用的编译器均为创建镜像时<a href="https://wiki.debian.org/DebianTesting">debian testing</a>分支的最新版。编译参数如下：</p>
+        <p>Vijos使用<a href="https://github.com/hydro-dev/HydroJudger">HydroJudger</a>进行评测，以docker镜像的形式安装至评测机。所使用的编译器均为创建镜像时<a href="https://wiki.debian.org/DebianTesting">debian testing</a>分支的最新版。编译参数如下：</p>
         <blockquote><ul>
           <li>Free Pascal <pre>fpc -O2 -o/out/foo /in/foo.pas</pre></li>
           <li>C <pre>gcc -O2 -Wall -std=c99 -o /out/foo /in/foo.c -lm</pre></li>
@@ -47,7 +47,8 @@
       </div>
       <div class="section__body typo">
         {{ _('no_translation_warn')|safe }}
-        <p>Vijos 支持且仅支持标准输入输出（控制台输入输出，屏幕输入输出，STD I/O），不支持文件输入输出。</p>
+        <p>Vijos 支持且仅支持标准输入输出（控制台输入输出，屏幕输入输出，STD I/O），暂时不支持文件输入输出。</p>
+        <p>文件输入输出功能还在开发中......</p>
       </div>
     </div>
     <div class="section" data-heading-extract-to="#menu-item-wiki_help">
@@ -166,23 +167,16 @@
       </div>
       <div class="section__body typo">
         {{ _('no_translation_warn')|safe }}
-        <p>我们只接受后缀名为zip的数据包上传，必须包含以下内容：
-        </p><blockquote><ul>
-        <li>- Config.ini: 题目配置文件</li>
-        <li>+ Input (目录): 放置所有标准测试输入文件</li>
-        <li>|- input0.txt</li>
-        <li>|- input1.txt</li>
-        <li>|- ...</li>
-        <li>+ Output (目录): 放置所有标准测试输出文件</li>
-        <li>|- output0.txt</li>
-        <li>|- output1.txt</li>
-        <li>|- ...</li>
-        </ul></blockquote>
-        <blockquote class="note"><p>Config.ini格式</p>
-        <p>第一行包含一个整数n，表示总共有n组数据(即Input目录中文件总数等于Output目录中文件总数等于n)；</p>
-        <p>接下来n行，第k行代表第k个测试点，格式为：<pre>[输入文件名]|[输出文件名]|[时限(单位为秒)]|[得分]|[内存限制(单位为KiB)]</pre><br>
-        其中，输入和输出文件名为 Input 或者 Output 目录中的文件名（不包含Input或者Output目录），且所有数据点得分之和必须为100，如：<br>
-        <pre>input0.txt|output0.txt|1|10|</pre></blockquote>
+        <p>可以把各测试点直接压缩为zip的数据包上传，评测机会自动检测文件配置，其他自定义配置规范具体可参见：<a href="https://github.com/Limorton/HydroJudger/blob/master/docs/zh/Testdata.md">HydroJudger测试数据包格式规范。</a></p>
+      </div>
+    </div>
+    <div class="section" data-heading-extract-to="#menu-item-wiki_help">
+      <div class="section__header">
+        <h1 class="section__title" id="file" data-heading>{{ _('My Files') }}</h1>
+      </div>
+      <div class="section__body typo">
+        {{ _('no_translation_warn')|safe }}
+        <p>可以上传图片、文本、测试数据集压缩包文件，其他类型文件不建议上传。</p>
       </div>
     </div>
     <div class="section" data-heading-extract-to="#menu-item-wiki_help">
