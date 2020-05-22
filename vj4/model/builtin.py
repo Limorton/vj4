@@ -198,6 +198,7 @@ BASIC_PERMISSIONS = (
     PERM_VIEW_HOMEWORK_SCOREBOARD |
     PERM_VIEW_TRAINING
 )
+# default and member users permission in system
 DEFAULT_PERMISSIONS = (
     PERM_VIEW |
     PERM_VIEW_PROBLEM |
@@ -229,7 +230,6 @@ DEFAULT_PERMISSIONS = (
     PERM_ATTEND_HOMEWORK |
     PERM_EDIT_HOMEWORK_SELF |
     PERM_VIEW_TRAINING |
-    PERM_CREATE_TRAINING |
     PERM_EDIT_TRAINING_SELF
 )
 ADMIN_PERMISSIONS = PERM_ALL
@@ -260,7 +260,7 @@ DOMAIN_SYSTEM = {
               ROLE_MEMBER: DEFAULT_PERMISSIONS,
               ROLE_ADMIN: ADMIN_PERMISSIONS},
     'gravatar': '',
-    'name': 'Vijos',
+    'name': 'TopsOJ',
     'bulletin': ''
 }
 DOMAINS = [DOMAIN_SYSTEM]

@@ -4,7 +4,7 @@
 API: API
 about: 关于
 About: 关于
-About Vijos: 关于 Vijos
+About TopsOJ: 关于 TopsOJ
 Accepted: 已通过
 Accepted Ratio: 通过率
 Active Sessions: 活动会话
@@ -21,9 +21,9 @@ Bio Visibility: 个人简介可见性
 Blog: 博客
 Boom!: 炸了！
 Browser: 浏览器
-? By signing up a Vijos universal account, you can submit code and join discussions in all online
+? By signing up a TopsOJ universal account, you can submit code and join discussions in all online
   judging services provided by us.
-: 注册一个 Vijos 通用账户，您就可以在我们提供的所有在线评测服务上提交代码、参与讨论。
+: 注册一个 TopsOJ 通用账户，您就可以在我们提供的所有在线评测服务上提交代码、参与讨论。
 CLOSE: 关闭
 Cancel: 取消
 Ok: 确定
@@ -76,11 +76,11 @@ Forgot password or username?: 忘记密码或者用户名？
 Gender: 性别
 Gender Visibility: 性别可见性
 Gravatar Email: Gravatar Email 地址
-'Hello! You can click following link to sign up your Vijos account:': 您好！您可以点击以下链接来注册您的 Vijos 账户：
-'Hello, {0}! You can click following link to reset the password of your Vijos account:': 您好，{0}！您可以点击以下链接来重置您
-  Vijos 账户的密码：
-'Hello, {0}! You can click following link to active your new email of your Vijos account:': 您好，{0}！您可以点击以下链接来激活您
-  Vijos 账户的新电子邮件地址：
+'Hello! You can click following link to sign up your TopsOJ account:': 您好！您可以点击以下链接来注册您的 TopsOJ 账户：
+'Hello, {0}! You can click following link to reset the password of your TopsOJ account:': 您好，{0}！您可以点击以下链接来重置您
+  TopsOJ 账户的密码：
+'Hello, {0}! You can click following link to active your new email of your TopsOJ account:': 您好，{0}！您可以点击以下链接来激活您
+  TopsOJ 账户的新电子邮件地址：
 Confirmation mail has been sent to your new email.: 确认邮件已经发送到您的新电子邮箱。
 Help: 帮助
 Hide all tags: 隐藏所有标签
@@ -211,7 +211,7 @@ Uploaded By: 上传者
 Upload Problem: 上传题目
 User: 用户
 Username: 用户名
-Using your Vijos universal account: 使用您的 Vijos 通用账户
+Using your TopsOJ universal account: 使用您的 TopsOJ 通用账户
 View Problem: 查看题目
 View or create discussion: 查看与发表讨论
 View or submit solution: 查看与发表题解
@@ -233,7 +233,7 @@ home_account: 账户设置
 home_preference: 偏好设置
 home_messages: 站内消息
 home_security: 安全设置
-home_domain: 我的域
+home_domain: 我的班级
 homework_main: 作业
 homework_create: 创建作业
 homework_edit: 编辑作业
@@ -307,8 +307,8 @@ End at: 结束于
 Action: 动作
 Rejudge: 重测
 Oops, there are no results.: 呀，没有结果。
-My Domains: 我的域
-What is domain?: 什么是域?
+My Domains: 我的班级
+What is domain?: 什么是班级?
 View: 查看
 Manage: 管理
 home_domain_create: 创建域
@@ -316,7 +316,7 @@ Create Domain: 创建域
 Properties: 属性
 Access Control: 访问控制
 domain_main: 首页
-domain_manage: 管理域
+domain_manage: 管理班级
 domain_manage_dashboard: 概况
 domain_manage_discussion: 讨论节点
 domain_manage_edit: 编辑域资料
@@ -324,7 +324,7 @@ domain_manage_join_applications: 加域申请
 domain_manage_role: 管理角色
 domain_manage_user: 管理用户
 domain_manage_permission: 管理权限
-domain_join: 加入域
+domain_join: 加入班级
 'Join {0}': '加入 {0}'
 You are not allowed to join the domain. The link is either invalid or expired.: 您无法加入该域，链接无效或已过期。
 Failed to join the domain. You are already a member.: 加入域失败，您已是该域的成员。
@@ -357,8 +357,8 @@ Discussion node {1} already exists.: 讨论节点 {1} 已经存在。
 Discussion node {1} not found.: 讨论节点 {1} 不存在。
 Discussion {1} not found.: 讨论 {1} 不存在。
 Message {0} not found.: 消息 {0} 不存在。
-Domain {0} not found.: 域 {0} 不存在。
-Domain {0} already exists.: 域 {0} 已经存在。
+Domain {0} not found.: 班级 {0} 不存在。
+Domain {0} already exists.: 班级 {0} 已经存在。
 You've already attended this contest.: 您已经参加本次比赛。
 You haven't attended this contest yet.: 您还没有参加本次比赛。
 Contest scoreboard is not visible.: 当前比赛成绩表隐藏，暂不可显示。
@@ -527,7 +527,7 @@ Confirm deleting the selected roles?: 您确定删除所选角色吗？
 Users with those roles will be removed from the domain.: 拥有这些角色的用户将从此域中移除。
 Selected roles have been deleted.: 所选角色已删除。
 Please select at least one role to perform this operation.: 请选择至少一个角色来进行操作。
-'Role {1} already exists in domain {0}.': '域 {0} 中已存在角色 {1}。'
+'Role {1} already exists in domain {0}.': '班级 {0} 中已存在角色 {1}。'
 Domain {0} is bulit-in and cannot be modified.: 域 {0} 为内置，不可修改。
 perm_general: 一般
 perm_problem: 题库
@@ -566,7 +566,7 @@ Ops: 运维
 Feedback: 反馈
 'Discussion: Terms Of Service': 讨论区服务条款
 no_translation_warn: ''
-Domain: 域
+Domain: 班级
 Compilers' Version and Parameters: 编译器版本及参数
 Limitations: 限制
 IO: 输入输出
@@ -793,7 +793,7 @@ Problem ID List: 题目 ID 列表
 Copy: 复制
 Info: 信息
 Destination Domain: 目标域
-Domain ID: 域 ID
+Domain ID: 班级 ID
 Test data comes from: 测试数据来自
 Current dataset comes from: 当前数据集来自
 Copy Problem To: 将题目复制到
