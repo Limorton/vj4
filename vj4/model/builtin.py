@@ -267,7 +267,7 @@ DOMAINS = [DOMAIN_SYSTEM]
 
 # Users.
 UID_SYSTEM = 0
-UNAME_SYSTEM = 'Vijos'
+UNAME_SYSTEM = 'TopsOJ'
 USER_SYSTEM = {
     '_id': UID_SYSTEM,
     'uname': UNAME_SYSTEM,
