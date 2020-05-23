@@ -213,15 +213,15 @@ class HandlerBase(setting.SettingMixin):
       page_title = self.translate(self.TITLE)
     if self.domain_id != builtin.DOMAIN_ID_SYSTEM:
       page_title += ' - {}'.format(self.domain['name'])
-    page_title += ' - Vijos'
+    page_title += ' - TopsOJ'
     return page_title
 
   async def send_mail(self, mail, title, template_name, **kwargs):
     content = self.render_html(template_name, url_prefix=options.url_prefix, **kwargs)
     translate = self.translate
     if '_' in kwargs:
+    await mailer.send_mail(mail, '{0} - TopsOJ'.format(translate(title)), content)
       translate = kwargs['_']
-    await mailer.send_mail(mail, '{0} - Vijos'.format(translate(title)), content)
 
 
 class Handler(web.View, HandlerBase):
