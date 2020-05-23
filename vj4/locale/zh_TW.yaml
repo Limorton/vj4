@@ -19,9 +19,9 @@ Bio Visibility: 個人簡介可見性
 Blog: 部落格
 Boom!: 炸了！
 Browser: 瀏覽器
-? By signing up a TopsOJ universal account, you can submit code and join discussions in all online
+? By signing up a Vijos universal account, you can submit code and join discussions in all online
   judging services provided by us.
-: 註冊一個 TopsOJ 通用賬戶，您就可以在我們提供的所有線上評測服務上提交程式碼、參與討論。
+: 註冊一個 Vijos 通用賬戶，您就可以在我們提供的所有線上評測服務上提交程式碼、參與討論。
 CLOSE: 關閉
 Cancel: 取消
 Ok: 確定
@@ -75,11 +75,11 @@ Forgot password or username?: 忘記密碼或者使用者名？
 Gender: 性別
 Gender Visibility: 性別可見性
 Gravatar Email: Gravatar Email 地址
-'Hello! You can click following link to sign up your TopsOJ account:': 您好！您可以點選以下連結來註冊您的 TopsOJ 賬戶：
-'Hello, {0}! You can click following link to reset the password of your TopsOJ account:': 您好，{0}！您可以點選以下連結來重置您
-  TopsOJ 賬戶的密碼：
-'Hello, {0}! You can click following link to active your new email of your TopsOJ account:': 您好，{0}！您可以點選以下連結來啟用您
-  TopsOJ 賬戶的新電子郵件地址：
+'Hello! You can click following link to sign up your Vijos account:': 您好！您可以點選以下連結來註冊您的 Vijos 賬戶：
+'Hello, {0}! You can click following link to reset the password of your Vijos account:': 您好，{0}！您可以點選以下連結來重置您
+  Vijos 賬戶的密碼：
+'Hello, {0}! You can click following link to active your new email of your Vijos account:': 您好，{0}！您可以點選以下連結來啟用您
+  Vijos 賬戶的新電子郵件地址：
 Confirmation mail has been sent to your new email.: 確認郵件已經發送到您的新電子郵箱。
 Help: 幫助
 Hide all tags: 隱藏所有標籤
@@ -206,7 +206,7 @@ Uploaded By: 上傳者
 Upload Problem: 上傳題目
 User: 使用者
 Username: 使用者名
-Using your TopsOJ universal account: 使用您的 TopsOJ 通用賬戶
+Using your Vijos universal account: 使用您的 Vijos 通用賬戶
 View Problem: 檢視題目
 View or create discussion: 檢視與發表討論
 View or submit solution: 檢視與發表題解
@@ -229,7 +229,7 @@ home_domain_account: 當前域的設定
 home_preference: 偏好設定
 home_messages: 站內訊息
 home_security: 安全設定
-home_domain: 我的班级
+home_domain: 我的域
 Homework: 功課
 Homework Introduction: 功課介紹
 homework_main: 功課
@@ -300,8 +300,8 @@ End at: 結束於
 Action: 動作
 Rejudge: 重測
 Oops, there are no results.: 呀，沒有結果。
-My Domains: 我的班级
-What is domain?: 什麼是班级?
+My Domains: 我的域
+What is domain?: 什麼是域?
 View: 檢視
 Manage: 管理
 home_domain_create: 創建域
@@ -309,7 +309,7 @@ Create Domain: 創建域
 Properties: 屬性
 Access Control: 訪問控制
 domain_main: 首頁
-domain_manage: 管理班级
+domain_manage: 管理域
 domain_manage_dashboard: 概況
 domain_manage_edit: 編輯域資料
 domain_manage_join_applications: 加域申請
@@ -344,8 +344,8 @@ Discussion node {1} already exists.: 討論節點 {1} 已經存在。
 Discussion node {1} not found.: 討論節點 {1} 不存在。
 Discussion {1} not found.: 討論 {1} 不存在。
 Message {0} not found.: 訊息 {0} 不存在。
-Domain {0} not found.: 班级 {0} 不存在。
-Domain {0} already exists.: 班级 {0} 已經存在。
+Domain {0} not found.: 域 {0} 不存在。
+Domain {0} already exists.: 域 {0} 已經存在。
 You've already attended this contest.: 您已經參加本次比賽。
 You haven't attended this contest yet.: 您還沒有參加本次比賽。
 Contest scoreboard is not visible.: 當前比賽成績表隱藏，暫不可顯示。
