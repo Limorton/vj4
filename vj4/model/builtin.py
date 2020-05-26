@@ -328,6 +328,7 @@ LEVELS = collections.OrderedDict([(10, 1),
                                   (1, 100)])
 
 FOOTER_EXTRA_HTMLS = ["版本号:", version.get()]
+FOOTER_EXTRA_HTMLS = ["版本号:", "1.0"]
 
 PROBLEM_CATEGORIES = collections.OrderedDict([
     ('顺序结构', [
