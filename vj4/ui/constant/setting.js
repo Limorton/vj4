@@ -30,13 +30,13 @@ export const BACKGROUND_RANGE = {
   11: 'Bg11',
   12: 'Bg12',
   13: 'Bg13',
-  14: 'Bg14',
-  15: 'Bg15',
-  16: 'Bg16',
-  17: 'Bg17',
-  18: 'Bg18',
-  19: 'Bg19',
-  20: 'Bg20',
-  21: 'Bg21',
+  14: 'Bg14'
+  // 15: 'Bg15',
+  // 16: 'Bg16',
+  // 17: 'Bg17',
+  // 18: 'Bg18',
+  // 19: 'Bg19',
+  // 20: 'Bg20',
+  // 21: 'Bg21',
 };
 attachObjectMeta(BACKGROUND_RANGE, 'intKey', true);
