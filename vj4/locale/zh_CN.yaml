@@ -39,7 +39,7 @@ contest_main: 比赛
 contest_create: 创建比赛
 contest_edit: 编辑比赛
 contest_scoreboard: 比赛成绩表
-contest_detail_problem_submit: 递交比赛题目
+contest_detail_problem_submit: 提交比赛题目
 Create: 创建
 Create Contest: 创建比赛
 Create Discussion: 创建讨论
@@ -181,17 +181,17 @@ Unstar: 取消收藏
 Star Topic: 收藏讨论
 Unstar Topic: 取消收藏
 Status is hidden: 状态已隐藏
-Submission Statistics: 递交统计
-Submission: 递交
-Submissions: 递交
-Submit: 递交
-'# Submissions': '递交数'
-'# My Submissions': '我的递交数'
-Login to Submit: 登录后递交
-No Permission to Submit: 您没有权限递交
-Submit At: 递交时间
-Submit By: 递交者
-Submit Time: 递交时间
+Submission Statistics: 提交统计
+Submission: 提交
+Submissions: 提交
+Submit: 提交
+'# Submissions': '提交数'
+'# My Submissions': '我的提交数'
+Login to Submit: 登录后提交
+No Permission to Submit: 您没有权限提交
+Submit At: 提交时间
+Submit By: 提交者
+Submit Time: 提交时间
 Support: 支持
 Technical Information: 技术信息
 Temporary session: 临时会话
@@ -238,7 +238,7 @@ homework_main: 作业
 homework_create: 创建作业
 homework_edit: 编辑作业
 homework_scoreboard: 作业成绩表
-homework_detail_problem_submit: 递交作业题目
+homework_detail_problem_submit: 提交作业题目
 judge_playground: 评测游乐场
 last active at: 最后活动于
 last login at: 最后登录于
@@ -251,7 +251,7 @@ problem_create: 创建题目
 problem_edit: 编辑题目
 problem_main: 题库
 problem_solution: 题解
-problem_submit: 递交代码
+problem_submit: 提交代码
 problem_settings: 题目设置
 problem_statistics: 题目统计
 record_detail: 记录详情
@@ -289,12 +289,12 @@ Report: 举报
 Run Pretest: 运行自测
 Pretest Your Code: 使用自定义数据测试
 Submit Solution: 提交评测
-Submit Your Code: 递交代码进行正式评测
+Submit Your Code: 提交代码进行正式评测
 Toggle Pretest Panel: 切换自测面板
 Toggle Records Panel: 切换评测记录面板
 Recent {0} Records: 最近 {0} 条记录
-You have not submitted any solutions for this problem: 您在该题下没有递交过任何解答
-Submit to Judge: 递交以评测
+You have not submitted any solutions for this problem: 您在该题下没有提交过任何解答
+Submit to Judge: 提交以评测
 Code language: 代码语言
 'Yes': 是
 'No': 否
@@ -373,7 +373,7 @@ Not wrapped with space: 两侧不含空格
 Not started with a number: 不以数字开头
 Only A-Z, a-z, 0-9 and _ are accepted: 只接受 A-Z, a-z, 0-9 和 _
 Username / UID: 用户名或 UID
-Last Submit At: 最后递交于
+Last Submit At: 最后提交于
 Start at: 开始于
 Duration: 持续时间
 hour(s): 小时
@@ -383,7 +383,7 @@ Ready (☆▽☆): 马上开始 (☆▽☆)
 View Details: 查看详情
 All Contests: 所有比赛
 Edit Contest: 编辑比赛
-No Submissions: 没有递交
+No Submissions: 没有提交
 Do not discuss solutions otherwise you will be regarded as cheating and then lose qualifications.: 请勿讨论解法，否则以作弊论处并且将失去参赛资格。
 Please attend contest to see the problems.: 请参加比赛来查看题目。
 This contest is not live.: 比赛没有开始。
@@ -432,7 +432,7 @@ Create problems: 创建题目
 Edit problems: 修改题目
 Edit own problems: 修改自己的题目
 View problems: 查看题目
-Submit problem: 递交题目
+Submit problem: 提交题目
 Read data of problem: 读取题目数据
 Read data of own problems: 读取自己题目的数据
 Read record codes: 读取记录的代码
@@ -466,13 +466,13 @@ Delete own discussion replies: 删除讨论中自己的回复
 Delete discussion replies of own discussion: 删除自己讨论中的回复
 View contests: 查看比赛
 View contest scoreboard: 查看比赛成绩表
-View hidden contest submission status and scoreboard: 查看隐藏的比赛递交状态和成绩表
+View hidden contest submission status and scoreboard: 查看隐藏的比赛提交状态和成绩表
 Create contests: 创建比赛
 Attend contests: 参加比赛
 View training plans: 查看训练计划
 Have ALL PERMISSIONS in this domain: 在此班级中拥有全部权限
 Select User: 选择用户
-Submitted: 已递交
+Submitted: 已提交
 timeago_locale: zh_CN
 Live: 正在进行
 Ready: 即将开始
@@ -628,7 +628,7 @@ By Contest: 由比赛
 Reset: 重置
 Data of problem {1} not found.: 题目 {1} 的数据未找到。
 Data of record {0} not found.: 记录 {0} 的数据未找到。
-All Submissions: 所有递交
+All Submissions: 所有提交
 My Files: 我的文件
 home_file: 我的文件
 "What's file?": 什么是文件？
@@ -640,7 +640,7 @@ Hash: 散列
 This type of files are not allowed to be uploaded.: 不允许上传这种文件。
 Usage exceeded.: 用量超限。
 The uploaded file is too long.: 上传的文件太长。
-Congratulations! Your submission is accepted.: 恭喜！您的递交已评测通过。
+Congratulations! Your submission is accepted.: 恭喜！您的提交已评测通过。
 Search: 搜索
 Mark Yellow: 标黄
 Mark Green: 标绿
@@ -689,8 +689,8 @@ Introduce must not exceed 500 characters and it will be shown in the list view.:
 Hint: 提示
 An example of dataset: 测试数据集的一个例子
 Open in Problem Set: 在题库中打开
-You cannot submit for this problem because the contest is ended. You can click "Open in Problem Set" to view this problem in normal mode.: 该比赛已结束，您无法在比赛模式下递交该题目。您可以点击“在题库中打开”以普通模式查看和递交本题。
-Recent Submissions: 最近递交
+You cannot submit for this problem because the contest is ended. You can click "Open in Problem Set" to view this problem in normal mode.: 该比赛已结束，您无法在比赛模式下提交该题目。您可以点击“在题库中打开”以普通模式查看和提交本题。
+Recent Submissions: 最近提交
 Oh, the user hasn't submitted yet!: 这个用户还没有交过题 _(:зゝ∠)_
 Oh, the user hasn't created any discussions yet!: 这个用户还没有发布过讨论
 Recently Created Discussions: 最近创建的讨论
@@ -718,13 +718,13 @@ Not Claimed: 未认领
 Create Homework: 创建作业
 Calendar View: 日历视图
 List View: 列表视图
-My Recent Submissions: 我的最近递交记录
-The homework's deadline is due but in extension. You can still submit for this problem but your score will be penalized.: 作业已超过截止时间，但仍在延期时间内。您递交题目将无法获得全部分数。
-You cannot submit for this problem because the homework's deadline is due.: 作业已超过截止时间，您无法递交本题目。
+My Recent Submissions: 我的最近提交记录
+The homework's deadline is due but in extension. You can still submit for this problem but your score will be penalized.: 作业已超过截止时间，但仍在延期时间内。您提交题目将无法获得全部分数。
+You cannot submit for this problem because the homework's deadline is due.: 作业已超过截止时间，您无法提交本题目。
 End Date: 结束日期
 End Time: 结束时间
 Extension (days): 最长延期 (日)
-Extension Score Penalty: 延期递交扣分规则
+Extension Score Penalty: 延期提交扣分规则
 Edit Homework: 编辑作业
 This homework is not open and you cannot view problems.: 该作业还未到开放时间，您无法查看作业题目。
 homework_status: 作业成绩表
@@ -734,7 +734,7 @@ Scoreboard: 成绩表
 Scoreboard (Hidden): 成绩表 (隐藏)
 View homework: 查看作业
 View homework scoreboard: 查看作业成绩表
-View hidden homework submission status and scoreboard: 查看隐藏的作业递交状态和成绩表
+View hidden homework submission status and scoreboard: 查看隐藏的作业提交状态和成绩表
 Create homework: 创建作业
 Claim homework: 认领作业
 Edit any homework: 修改任意的作业
@@ -745,7 +745,7 @@ Hard Deadline: 最终截止时间
 Deadline: 截止时间
 There is no homework so far ╰(*°▽°*)╯: 目前还没有作业 ╰(*°▽°*)╯
 Homework scoreboard is not visible.: 目前无法查看作业成绩表。
-This homework is not open.: 该作业还未开放递交。
+This homework is not open.: 该作业还未开放提交。
 You've already claimed this homework.: 您已认领过该作业。
 You haven't claimed this homework yet.: 您还未认领过该作业。
 Contributions: 贡献
