@@ -57,6 +57,7 @@ domain_manage_join_applications: Join Applications
 domain_manage_role: Domain Role
 domain_manage_user: Domain User
 domain_manage_permission: Domain Permission
+domain_ranking: Domain Ranking
 timeago_locale: en
 perm_general: General
 perm_problem: Problems
