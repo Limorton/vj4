@@ -142,6 +142,19 @@ export default class ScratchpadToolbarContainer extends React.PureComponent {
           {' '}
           {i18n('Records')}
         </ToolbarButton>
+        <ToolbarButton
+          disabled={this.props.isPosting}
+          className="scratchpad__toolbar__submit"
+          onClick={() => this.props.handleClickRefresh()}
+          data-global-hotkey="f8"
+          data-tooltip={`${i18n('Refresh Records')} (F8)`}
+        >
+          <Icon name="refresh" />
+          {' '}
+          {i18n('Refresh')}
+          {' '}
+(F10)
+        </ToolbarButton>
       </Toolbar>
     );
   }
