@@ -30,6 +30,12 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  loadSubmissions() {
+    dispatch({
+      type: 'SCRATCHPAD_RECORDS_LOAD_SUBMISSIONS',
+      payload: request.get(Context.getSubmissionsUrl),
+    });
+  },
   togglePanel(uiElement) {
     dispatch({
       type: 'SCRATCHPAD_UI_TOGGLE_VISIBILITY',
@@ -71,6 +77,9 @@ const mapDispatchToProps = dispatch => ({
       type: 'SCRATCHPAD_POST_SUBMIT',
       payload: req,
     });
+  },
+  handleClickRefresh() {
+    this.loadSubmissions();
   },
 });
 
@@ -153,7 +162,7 @@ export default class ScratchpadToolbarContainer extends React.PureComponent {
           {' '}
           {i18n('Refresh')}
           {' '}
-(F10)
+(F8)
         </ToolbarButton>
       </Toolbar>
     );
