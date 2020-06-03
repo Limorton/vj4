@@ -160,7 +160,7 @@ export default class ScratchpadToolbarContainer extends React.PureComponent {
         >
           <Icon name="refresh" />
           {' '}
-          {i18n('Refresh')}
+          {i18n('Refresh Results')}
           {' '}
 (F8)
         </ToolbarButton>
