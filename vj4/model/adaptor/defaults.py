@@ -8,6 +8,9 @@ int main()
 }
 """,
   'cc': r"""
+/*
+Ë¼Â·£º
+*/
 #include <iostream>
 
 using namespace std;
@@ -15,6 +18,7 @@ using namespace std;
 int main()
 {
     cout << "hello, world" << endl;
+    return 0;
 }
 """,
   'pas': r"""
