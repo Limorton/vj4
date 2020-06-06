@@ -299,7 +299,7 @@ DOMAIN_SYSTEM = {
     'owner_uid': 0,
     'roles': {ROLE_GUEST: BASIC_PERMISSIONS,
               ROLE_DEFAULT: DEFAULT_PERMISSIONS,
-              ROLE_MEMBER: DEFAULT_PERMISSIONS,
+              ROLE_MEMBER: STU_MANAGER_PERMISSIONS,
               ROLE_ADMIN: ADMIN_PERMISSIONS},
     'gravatar': '',
     'name': 'Tops',
