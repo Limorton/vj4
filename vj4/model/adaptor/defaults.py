@@ -9,7 +9,8 @@ int main()
 """,
   'cc': r"""
 /*
-Ë¼Â·£º
+ pid:
+ idea:
 */
 #include <iostream>
 
