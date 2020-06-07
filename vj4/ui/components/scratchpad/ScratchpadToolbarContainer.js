@@ -108,7 +108,7 @@ export default class ScratchpadToolbarContainer extends React.PureComponent {
         <ToolbarButton
           disabled={this.props.isPosting}
           className="scratchpad__toolbar__submit"
-          onClick={() => this.props.postSubmit(this.context)}
+          onClick={() => this.props.postSubmit(this.context); this.disabled = true; var me = this; setTimeout(function() { me.disabled = false; }, 5000);}
           data-global-hotkey="f10"
           data-tooltip={`${i18n('Submit Your Code')} (F10)`}
         >
