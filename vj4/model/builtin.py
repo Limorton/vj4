@@ -449,7 +449,7 @@ PROBLEM_CATEGORIES = collections.OrderedDict([
         '康托展开',
         '大整数质因数分解',
         '生成函数',
-        '积性函数',
+        '积性函数'
     ]),
     ('高精度', [
         '加法',
@@ -515,7 +515,7 @@ PROBLEM_CATEGORIES = collections.OrderedDict([
         'Voronoi图',
         '平面图的对偶图',
         '三角剖分',
-        '梯形剖分',
+        '梯形剖分'
     ]),
     ('树结构', [
         '最近公共祖先',
