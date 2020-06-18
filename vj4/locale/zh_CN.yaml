@@ -643,6 +643,8 @@ Usage exceeded.: 用量超限。
 The uploaded file is too long.: 上传的文件太长。
 Congratulations! Your submission is accepted.: 恭喜！您的提交已评测通过。
 Search: 搜索
+Search PID: 搜索题号
+Search Title or Context: 搜索标题或内容
 Mark Yellow: 标黄
 Mark Green: 标绿
 Clear Marks: 清除标记
