@@ -590,6 +590,11 @@ DEFAULT_VNODES = collections.OrderedDict([
     {'pic': 'share', 'name': '分享'},
     {'pic': 'solution', 'name': '题解'}
   ]),
+  ('语法', [
+    {'pic': None, 'name': '顺序结构'},
+    {'pic': None, 'name': '选择结构'},
+    {'pic': None, 'name': '循环结构'}
+  ]),
   ('数据结构', [
     {'pic': None, 'name': '变量和数组'},
     {'pic': None, 'name': '字符和字符串'},
