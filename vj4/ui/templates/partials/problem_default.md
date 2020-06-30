@@ -1,3 +1,5 @@
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 时间限制:1000ms &emsp;空间限制:256MB
+
 # **题目描述**
 在这里输入题目正文描述。
 
@@ -20,18 +22,5 @@
 ```
 
 # **数据范围/约定**
-时间空间限制：$1s, 256MB.$
-
-
 
 对于 100% 的测试数据满足：$N\leq 10$。
-
-## **提示**
-看出题人的意图，如果没有，可以删除。
-
-
-
-### **题目来源**
-
-如果没有可以删除
-
