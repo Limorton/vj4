@@ -4,7 +4,7 @@
 API: API
 about: 关于
 About: 关于
-About Vijos: 关于 Vijos
+About TopsOJ: 关于 TopsOJ
 Accepted: 已通过
 Accepted Ratio: 通过率
 Active Sessions: 活动会话
@@ -21,9 +21,9 @@ Bio Visibility: 个人简介可见性
 Blog: 博客
 Boom!: 炸了！
 Browser: 浏览器
-? By signing up a Vijos universal account, you can submit code and join discussions in all online
+? By signing up a TopsOJ universal account, you can submit code and join discussions in all online
   judging services provided by us.
-: 注册一个 Vijos 通用账户，您就可以在我们提供的所有在线评测服务上提交代码、参与讨论。
+: 注册一个 TopsOJ 通用账户，您就可以在我们提供的所有在线评测服务上提交代码、参与讨论。
 CLOSE: 关闭
 Cancel: 取消
 Ok: 确定
@@ -39,7 +39,7 @@ contest_main: 比赛
 contest_create: 创建比赛
 contest_edit: 编辑比赛
 contest_scoreboard: 比赛成绩表
-contest_detail_problem_submit: 递交比赛题目
+contest_detail_problem_submit: 提交比赛题目
 Create: 创建
 Create Contest: 创建比赛
 Create Discussion: 创建讨论
@@ -76,11 +76,11 @@ Forgot password or username?: 忘记密码或者用户名？
 Gender: 性别
 Gender Visibility: 性别可见性
 Gravatar Email: Gravatar Email 地址
-'Hello! You can click following link to sign up your Vijos account:': 您好！您可以点击以下链接来注册您的 Vijos 账户：
-'Hello, {0}! You can click following link to reset the password of your Vijos account:': 您好，{0}！您可以点击以下链接来重置您
-  Vijos 账户的密码：
-'Hello, {0}! You can click following link to active your new email of your Vijos account:': 您好，{0}！您可以点击以下链接来激活您
-  Vijos 账户的新电子邮件地址：
+'Hello! You can click following link to sign up your TopsOJ account:': 您好！您可以点击以下链接来注册您的 TopsOJ 账户：
+'Hello, {0}! You can click following link to reset the password of your TopsOJ account:': 您好，{0}！您可以点击以下链接来重置您
+  TopsOJ 账户的密码：
+'Hello, {0}! You can click following link to active your new email of your TopsOJ account:': 您好，{0}！您可以点击以下链接来激活您
+  TopsOJ 账户的新电子邮件地址：
 Confirmation mail has been sent to your new email.: 确认邮件已经发送到您的新电子邮箱。
 Help: 帮助
 Hide all tags: 隐藏所有标签
@@ -113,6 +113,12 @@ Oh, there is no task that matches the filter!: 喔，目前没有符合过滤条
 Oops!: Oops!
 Open Scratchpad: 进入在线编程模式
 Open Source: 开源
+TopsCoding: 拓尔思编程官网
+NOI: NOI官网
+OI Wiki: OI Wiki
+Students Group: 学生QQ群(1026118189)
+Parents Group: 家长QQ群(1095737984)
+Community: 社区
 Operating System: 操作系统
 Password: 密码
 Password reset mail has been sent to your email.: 密码重置邮件已发送到您的电子邮箱。
@@ -164,6 +170,7 @@ Sign Up Now: 现在注册
 Sign up mail has been sent to your email.: 注册邮件已经发送到您的电子邮箱。
 Solutions: 题解
 'Solved {0} problems, RP: {1} (No. {2})': '解决了 {0} 道题目，RP: {1} (No. {2})'
+'Solved {0} problems, RP: {1}': '解决了 {0} 道题目，RP: {1}'
 Sorry: 对不起
 Sorry, there is no problem in the problem set: 题库中没有题目
 Solutions Liked: 题解被赞
@@ -174,17 +181,17 @@ Unstar: 取消收藏
 Star Topic: 收藏讨论
 Unstar Topic: 取消收藏
 Status is hidden: 状态已隐藏
-Submission Statistics: 递交统计
-Submission: 递交
-Submissions: 递交
-Submit: 递交
-'# Submissions': '递交数'
-'# My Submissions': '我的递交数'
-Login to Submit: 登录后递交
-No Permission to Submit: 您没有权限递交
-Submit At: 递交时间
-Submit By: 递交者
-Submit Time: 递交时间
+Submission Statistics: 提交统计
+Submission: 提交
+Submissions: 提交
+Submit: 提交
+'# Submissions': '提交数'
+'# My Submissions': '我的提交数'
+Login to Submit: 登录后提交
+No Permission to Submit: 您没有权限提交
+Submit At: 提交时间
+Submit By: 提交者
+Submit Time: 提交时间
 Support: 支持
 Technical Information: 技术信息
 Temporary session: 临时会话
@@ -204,7 +211,7 @@ Uploaded By: 上传者
 Upload Problem: 上传题目
 User: 用户
 Username: 用户名
-Using your Vijos universal account: 使用您的 Vijos 通用账户
+Using your TopsOJ universal account: 使用您的 TopsOJ 通用账户
 View Problem: 查看题目
 View or create discussion: 查看与发表讨论
 View or submit solution: 查看与发表题解
@@ -216,7 +223,7 @@ Write Your Comment: 发表您的评论
 Write Your Solution: 发表您的题解
 author: 作者
 content: 内容
-current domain: 当前域
+current domain: 当前班级
 currently offline: 目前离线
 discussion_create: 创建讨论
 discussion_main: 讨论
@@ -226,12 +233,12 @@ home_account: 账户设置
 home_preference: 偏好设置
 home_messages: 站内消息
 home_security: 安全设置
-home_domain: 我的域
+home_domain: 我的班级
 homework_main: 作业
 homework_create: 创建作业
 homework_edit: 编辑作业
 homework_scoreboard: 作业成绩表
-homework_detail_problem_submit: 递交作业题目
+homework_detail_problem_submit: 提交作业题目
 judge_playground: 评测游乐场
 last active at: 最后活动于
 last login at: 最后登录于
@@ -244,7 +251,7 @@ problem_create: 创建题目
 problem_edit: 编辑题目
 problem_main: 题库
 problem_solution: 题解
-problem_submit: 递交代码
+problem_submit: 提交代码
 problem_settings: 题目设置
 problem_statistics: 题目统计
 record_detail: 记录详情
@@ -279,16 +286,17 @@ Sample Output: 输出数据
 Records: 评测记录
 Refresh Records: 刷新评测记录
 Refresh: 刷新
+Refresh Results: 刷新结果
 Report: 举报
 Run Pretest: 运行自测
 Pretest Your Code: 使用自定义数据测试
-Submit Solution: 递交评测
-Submit Your Code: 递交代码进行正式评测
+Submit Solution: 提交评测
+Submit Your Code: 提交代码进行正式评测
 Toggle Pretest Panel: 切换自测面板
 Toggle Records Panel: 切换评测记录面板
 Recent {0} Records: 最近 {0} 条记录
-You have not submitted any solutions for this problem: 您在该题下没有递交过任何解答
-Submit to Judge: 递交以评测
+You have not submitted any solutions for this problem: 您在该题下没有提交过任何解答
+Submit to Judge: 提交以评测
 Code language: 代码语言
 'Yes': 是
 'No': 否
@@ -301,34 +309,34 @@ End at: 结束于
 Action: 动作
 Rejudge: 重测
 Oops, there are no results.: 呀，没有结果。
-My Domains: 我的域
-What is domain?: 什么是域?
+My Domains: 我的班级
+What is domain?: 什么是班级?
 View: 查看
 Manage: 管理
-home_domain_create: 创建域
-Create Domain: 创建域
+home_domain_create: 创建班级
+Create Domain: 创建班级
 Properties: 属性
 Access Control: 访问控制
 domain_main: 首页
-domain_manage: 管理域
+domain_manage: 管理班级
 domain_manage_dashboard: 概况
 domain_manage_discussion: 讨论节点
-domain_manage_edit: 编辑域资料
-domain_manage_join_applications: 加域申请
+domain_manage_edit: 编辑班级资料
+domain_manage_join_applications: 加班级申请
 domain_manage_role: 管理角色
 domain_manage_user: 管理用户
 domain_manage_permission: 管理权限
-domain_join: 加入域
+domain_join: 加入班级
 'Join {0}': '加入 {0}'
-You are not allowed to join the domain. The link is either invalid or expired.: 您无法加入该域，链接无效或已过期。
-Failed to join the domain. You are already a member.: 加入域失败，您已是该域的成员。
+You are not allowed to join the domain. The link is either invalid or expired.: 您无法加入该班级，链接无效或已过期。
+Failed to join the domain. You are already a member.: 加入班级失败，您已是该班级的成员。
 The invitation code you provided is invalid.: 您提供的邀请码无效。
 Update Permission: 更新权限
 Roles: 角色
 Your role: 您的角色
 Your permission: 您的权限
-Edit Domain: 编辑域
-You don't own any domain and don't have privilege to create domain.: 您不拥有任何域也没有创建域的特权。
+Edit Domain: 编辑班级
+You don't own any domain and don't have privilege to create domain.: 您不拥有任何班级也没有创建班级的特权。
 An error has occurred.: 发生了一个错误。
 Path {0} not found.: 路径 {0} 不存在。
 Field {0} or {1} validation failed.: 字段 {0} 或 {1} 验证失败。
@@ -341,7 +349,7 @@ Document {2} not found.: 文档 {2} 不存在。
 Data of Problem {0} not found.: 题目 {0} 的数据缺失。
 You're not logged in.: 您没有登录。
 You don't have the required privilege.: 您没有相应的特权。
-You don't have the required permission ({0}) in this domain.: 您在该域中无相应权限 ({0})。
+You don't have the required permission ({0}) in this domain.: 您在该班级中无相应权限 ({0})。
 You've already voted.: 您已经投过票。
 User {0} not found.: 用户 {0} 不存在。
 Current password doesn't match.: 当前密码输入错误。
@@ -351,8 +359,8 @@ Discussion node {1} already exists.: 讨论节点 {1} 已经存在。
 Discussion node {1} not found.: 讨论节点 {1} 不存在。
 Discussion {1} not found.: 讨论 {1} 不存在。
 Message {0} not found.: 消息 {0} 不存在。
-Domain {0} not found.: 域 {0} 不存在。
-Domain {0} already exists.: 域 {0} 已经存在。
+Domain {0} not found.: 班级 {0} 不存在。
+Domain {0} already exists.: 班级 {0} 已经存在。
 You've already attended this contest.: 您已经参加本次比赛。
 You haven't attended this contest yet.: 您还没有参加本次比赛。
 Contest scoreboard is not visible.: 当前比赛成绩表隐藏，暂不可显示。
@@ -367,7 +375,7 @@ Not wrapped with space: 两侧不含空格
 Not started with a number: 不以数字开头
 Only A-Z, a-z, 0-9 and _ are accepted: 只接受 A-Z, a-z, 0-9 和 _
 Username / UID: 用户名或 UID
-Last Submit At: 最后递交于
+Last Submit At: 最后提交于
 Start at: 开始于
 Duration: 持续时间
 hour(s): 小时
@@ -377,7 +385,7 @@ Ready (☆▽☆): 马上开始 (☆▽☆)
 View Details: 查看详情
 All Contests: 所有比赛
 Edit Contest: 编辑比赛
-No Submissions: 没有递交
+No Submissions: 没有提交
 Do not discuss solutions otherwise you will be regarded as cheating and then lose qualifications.: 请勿讨论解法，否则以作弊论处并且将失去参赛资格。
 Please attend contest to see the problems.: 请参加比赛来查看题目。
 This contest is not live.: 比赛没有开始。
@@ -387,46 +395,46 @@ Solve: 解决
 Time: 时间
 required: 必填
 Name: 名称
-Will be used as the domain icon.: 将被用作域图标。
+Will be used as the domain icon.: 将被用作班级图标。
 My Role: 我的角色
-What's domain?: 什么是域？
+What's domain?: 什么是班级？
 Visit: 查看
 delete: 删除
 User ID: 用户 ID
 '{0}: Users': '{0}: 用户'
 '{0}: Roles': '{0}: 角色'
 '{0}: Permissions': '{0}: 权限'
-You have uncompleted domain creation operation. You can click "Continue" to finish the creation.: 您有未完成的创建域操作。您可以点击“继续”来完成创建。
+You have uncompleted domain creation operation. You can click "Continue" to finish the creation.: 您有未完成的创建班级操作。您可以点击“继续”来完成创建。
 Uncompleted: 未完成
 Continue: 继续
 Role: 角色
 Select a role: 选择一个角色
 Add User: 添加用户
-Add User to Domain: 添加用户到域
-Remove Selected User from Domain: 将所选用户移出域
+Add User to Domain: 添加用户到班级
+Remove Selected User from Domain: 将所选用户移出班级
 Set Roles for Selected User: 设置所选用户的角色
 Create Role: 创建角色
 Role name can only contains numbers, letters and underscores.: 角色名称只能包含数字、字母和下划线。
 Built-in: 内置
 Always granted all privileges: 总是拥有所有权限
 Valid for visitors: 对未登录的游客有效
-Valid for registered users who are not members of the domain: 对域外注册用户有效
+Valid for registered users who are not members of the domain: 对班级外注册用户有效
 User-defined role: 用户定义的角色
 Users: 用户
 Delete Selected Roles: 删除所选角色
 Owner: 所有者
 Permission: 权限
 Permissions: 权限
-The user is already a member of the domain.: 该用户已是域的成员。
-View this domain: 查看此域
+The user is already a member of the domain.: 该用户已是班级的成员。
+View this domain: 查看此班级
 Edit permissions of a role: 修改角色权限
 Show MOD badge: 展示 MOD 徽章
-Edit description of this domain: 修改此域描述
+Edit description of this domain: 修改此班级描述
 Create problems: 创建题目
 Edit problems: 修改题目
 Edit own problems: 修改自己的题目
 View problems: 查看题目
-Submit problem: 递交题目
+Submit problem: 提交题目
 Read data of problem: 读取题目数据
 Read data of own problems: 读取自己题目的数据
 Read record codes: 读取记录的代码
@@ -460,14 +468,14 @@ Delete own discussion replies: 删除讨论中自己的回复
 Delete discussion replies of own discussion: 删除自己讨论中的回复
 View contests: 查看比赛
 View contest scoreboard: 查看比赛成绩表
-View hidden contest submission status and scoreboard: 查看隐藏的比赛递交状态和成绩表
+View hidden contest submission status and scoreboard: 查看隐藏的比赛提交状态和成绩表
 Create contests: 创建比赛
 Attend contests: 参加比赛
 View training plans: 查看训练计划
 View ranking: 查看排名
-Have ALL PERMISSIONS in this domain: 在此域中拥有全部权限
+Have ALL PERMISSIONS in this domain: 在此班级中拥有全部权限
 Select User: 选择用户
-Submitted: 已递交
+Submitted: 已提交
 timeago_locale: zh_CN
 Live: 正在进行
 Ready: 即将开始
@@ -497,7 +505,7 @@ There are no contests...: 没有比赛…
 View Contest: 查看比赛
 Cancel Score: 取消成绩
 score canceled: 成绩取消
-You have permissions to create problems for this domain.: 您有权限为此域创建题目。
+You have permissions to create problems for this domain.: 您有权限为此班级创建题目。
 Sort by: 排序
 '↓ # Enrollees': '↓ 参与人数'
 '↓ # Likes': '↓ 赞数'
@@ -513,17 +521,17 @@ You can create your own training plans and share with others.: 您可以创建�
 Set Role: 设置角色
 Set Roles for selected users: 为所选用户设置角色
 Please select at least one user to perform this operation.: 请选择至少一个用户来进行操作。
-Confirm removing the selected users from this domain?: 您确定将所选用户从此域中移除吗？
-Their account will not be deleted and they will be with the default role when visiting this domain.: 他们的账号不会被删除，并且之后将以 default 角色访问此域。
-Selected users have been removed from the domain.: 所选用户已从此域中移除。
+Confirm removing the selected users from this domain?: 您确定将所选用户从此班级中移除吗？
+Their account will not be deleted and they will be with the default role when visiting this domain.: 他们的账号不会被删除，并且之后将以 default 角色访问此班级。
+Selected users have been removed from the domain.: 所选用户已从此班级中移除。
 Role has been updated to {0} for selected users.: 所选用户角色已更新为 {0}。
 Role has been updated to {0}.: 角色已更新为 {0}。
 Confirm deleting the selected roles?: 您确定删除所选角色吗？
-Users with those roles will be removed from the domain.: 拥有这些角色的用户将从此域中移除。
+Users with those roles will be removed from the domain.: 拥有这些角色的用户将从此班级中移除。
 Selected roles have been deleted.: 所选角色已删除。
 Please select at least one role to perform this operation.: 请选择至少一个角色来进行操作。
-'Role {1} already exists in domain {0}.': '域 {0} 中已存在角色 {1}。'
-Domain {0} is bulit-in and cannot be modified.: 域 {0} 为内置，不可修改。
+'Role {1} already exists in domain {0}.': '班级 {0} 中已存在角色 {1}。'
+Domain {0} is bulit-in and cannot be modified.: 班级 {0} 为内置，不可修改。
 perm_general: 一般
 perm_problem: 题库
 perm_record: 记录
@@ -562,7 +570,7 @@ Ops: 运维
 Feedback: 反馈
 'Discussion: Terms Of Service': 讨论区服务条款
 no_translation_warn: ''
-Domain: 域
+Domain: 班级
 Compilers' Version and Parameters: 编译器版本及参数
 Limitations: 限制
 IO: 输入输出
@@ -625,7 +633,7 @@ By Contest: 由比赛
 Reset: 重置
 Data of problem {1} not found.: 题目 {1} 的数据未找到。
 Data of record {0} not found.: 记录 {0} 的数据未找到。
-All Submissions: 所有递交
+All Submissions: 所有提交
 My Files: 我的文件
 home_file: 我的文件
 "What's file?": 什么是文件？
@@ -637,8 +645,10 @@ Hash: 散列
 This type of files are not allowed to be uploaded.: 不允许上传这种文件。
 Usage exceeded.: 用量超限。
 The uploaded file is too long.: 上传的文件太长。
-Congratulations! Your submission is accepted.: 恭喜！您的递交已评测通过。
+Congratulations! Your submission is accepted.: 恭喜！您的提交已评测通过。
 Search: 搜索
+Search PID: 搜索题号
+Search Title or Context: 搜索标题或内容
 Mark Yellow: 标黄
 Mark Green: 标绿
 Clear Marks: 清除标记
@@ -665,11 +675,11 @@ No problem.: 没有题目。
 Initialize: 初始化
 Profile Background Image: 背景图片
 Choose the background image in your profile page.: 选择您资料页面的背景图片。
-'{} is a moderator of this domain.': '{}是这个域的管理者之一。'
+'{} is a moderator of this domain.': '{}是这个班级的管理者之一。'
 He: 他
 She: 她
 Bulletin: 公告
-You cannot visit this domain.: 您不能访问此域。
+You cannot visit this domain.: 您不能访问此班级。
 'Copy failed :(': '复制失败 :('
 Code copied to clipboard!: 代码已复制到剪贴板！
 No comments so far...: 目前还没有评论...
@@ -686,8 +696,8 @@ Introduce must not exceed 500 characters and it will be shown in the list view.:
 Hint: 提示
 An example of dataset: 测试数据集的一个例子
 Open in Problem Set: 在题库中打开
-You cannot submit for this problem because the contest is ended. You can click "Open in Problem Set" to view this problem in normal mode.: 该比赛已结束，您无法在比赛模式下递交该题目。您可以点击“在题库中打开”以普通模式查看和递交本题。
-Recent Submissions: 最近递交
+You cannot submit for this problem because the contest is ended. You can click "Open in Problem Set" to view this problem in normal mode.: 该比赛已结束，您无法在比赛模式下提交该题目。您可以点击“在题库中打开”以普通模式查看和提交本题。
+Recent Submissions: 最近提交
 Oh, the user hasn't submitted yet!: 这个用户还没有交过题 _(:зゝ∠)_
 Oh, the user hasn't created any discussions yet!: 这个用户还没有发布过讨论
 Recently Created Discussions: 最近创建的讨论
@@ -715,13 +725,13 @@ Not Claimed: 未认领
 Create Homework: 创建作业
 Calendar View: 日历视图
 List View: 列表视图
-My Recent Submissions: 我的最近递交记录
-The homework's deadline is due but in extension. You can still submit for this problem but your score will be penalized.: 作业已超过截止时间，但仍在延期时间内。您递交题目将无法获得全部分数。
-You cannot submit for this problem because the homework's deadline is due.: 作业已超过截止时间，您无法递交本题目。
+My Recent Submissions: 我的最近提交记录
+The homework's deadline is due but in extension. You can still submit for this problem but your score will be penalized.: 作业已超过截止时间，但仍在延期时间内。您提交题目将无法获得全部分数。
+You cannot submit for this problem because the homework's deadline is due.: 作业已超过截止时间，您无法提交本题目。
 End Date: 结束日期
 End Time: 结束时间
 Extension (days): 最长延期 (日)
-Extension Score Penalty: 延期递交扣分规则
+Extension Score Penalty: 延期提交扣分规则
 Edit Homework: 编辑作业
 This homework is not open and you cannot view problems.: 该作业还未到开放时间，您无法查看作业题目。
 homework_status: 作业成绩表
@@ -731,7 +741,7 @@ Scoreboard: 成绩表
 Scoreboard (Hidden): 成绩表 (隐藏)
 View homework: 查看作业
 View homework scoreboard: 查看作业成绩表
-View hidden homework submission status and scoreboard: 查看隐藏的作业递交状态和成绩表
+View hidden homework submission status and scoreboard: 查看隐藏的作业提交状态和成绩表
 Create homework: 创建作业
 Claim homework: 认领作业
 Edit any homework: 修改任意的作业
@@ -742,18 +752,18 @@ Hard Deadline: 最终截止时间
 Deadline: 截止时间
 There is no homework so far ╰(*°▽°*)╯: 目前还没有作业 ╰(*°▽°*)╯
 Homework scoreboard is not visible.: 目前无法查看作业成绩表。
-This homework is not open.: 该作业还未开放递交。
+This homework is not open.: 该作业还未开放提交。
 You've already claimed this homework.: 您已认领过该作业。
 You haven't claimed this homework yet.: 您还未认领过该作业。
 Contributions: 贡献
 Contributed Problems: 贡献的题目
 Method: 方法
-No user is allowed to join this domain: 没有用户可以自助加入此域
-Any user is allowed to join this domain: 任意用户都可以加入此域
-Any user is allowed to join this domain with an invitation code: 任意用户都可以通过邀请码加入此域
-The role to assign when user joining the domain.: 用户加入此域时分配的角色。
-User will no longer be allowed to join the domain after expiration.: 过期后，用户将不能加入此域。
-The invitation code to enter to successfully join the domain. You can only use letters and numbers in the code and it should not be longer than 64 characters.: 加入此域的邀请码。您只能使用字母和数字，并且不能长于 64 个字符。
+No user is allowed to join this domain: 没有用户可以自助加入此班级
+Any user is allowed to join this domain: 任意用户都可以加入此班级
+Any user is allowed to join this domain with an invitation code: 任意用户都可以通过邀请码加入此班级
+The role to assign when user joining the domain.: 用户加入此班级时分配的角色。
+User will no longer be allowed to join the domain after expiration.: 过期后，用户将不能加入此班级。
+The invitation code to enter to successfully join the domain. You can only use letters and numbers in the code and it should not be longer than 64 characters.: 加入此班级的邀请码。您只能使用字母和数字，并且不能长于 64 个字符。
 Role Assignment: 角色分配
 Invitation Code: 邀请码
 Update Settings: 更新设置
@@ -765,35 +775,38 @@ In 3 days: 三天后
 In 1 week: 一周后
 In 1 month: 一个月后
 Never expire: 从不过期
-User can join this domain by visiting the following URL: 用户可以访问此链接来加入此域
+User can join this domain by visiting the following URL: 用户可以访问此链接来加入此班级
 Or, with automatically filled invitation code: 或者，这是可以自动填写邀请码的
 The link will be expired at {0}: 链接将于 {0} 过期
-By clicking the button, you will become a member of the domain {0}.: 点击按钮，您将成为域 {0} 的成员。
-You need to enter the invitation code to join the domain.: 您需要输入邀请码来加入此域。
+By clicking the button, you will become a member of the domain {0}.: 点击按钮，您将成为班级 {0} 的成员。
+You need to enter the invitation code to join the domain.: 您需要输入邀请码来加入此班级。
 Join: 加入
 setting_info_domain: 个人信息
 Display Name: 显示名
 display_name: 显示名
-home_domain_account: 当前域的设置
+home_domain_account: 当前班级的设置
 'The value `{1}` of {0} already exists.': '{0} 的值 `{1}` 已经存在。'
 Display name {1} you want to set is used by others.: 您想要设置的显示名 {1} 已经被其他人使用了。
-Numeric PID: 数字题号
+Leave blank to use numeric pid.: 留空以使用数字题号
+PNAME: 题号
 Only {0} problems can be copied in one request, got {1}.: 一次请求只能复制 {0} 个题目，但是您输入了 {1} 个。
 Problem is successfully copied.: 题目复制完成。
 problem_copy: 复制题目
 Copy Problem: 复制题目
 Be Copied: 被复制
 Copy from: 复制自
+domain_ranking: 排名
 Problem ID List: 题目 ID 列表
 Copy: 复制
-Destination Domain: 目标域
-Domain ID: 域 ID
+Info: 信息
+Destination Domain: 目标班级
+Domain ID: 班级 ID
 Test data comes from: 测试数据来自
 Current dataset comes from: 当前数据集来自
 Copy Problem To: 将题目复制到
 What's this?: 这是什么？
 About test data: 关于测试数据
 With this feature, you can copy problems that you can view from a domain to some other domain. Their title, content, tags and categories will be copied. However, their test data are not copied directly.: 您可以通过这个功能将某域下您能查看的题目复制到其它域中，题目的标题、描述、标签与分类将被复制过来。但是测试数据不会被直接复制。
+With this feature, you can copy problems that you can view from a domain to some other domain. Their title, content, tags and categories will be copied. However, their test data are not copied directly.: 您可以通过这个功能将某班级下您能查看的题目复制到其它班级中，题目的标题、描述、标签与分类将被复制过来。但是测试数据不会被直接复制。
 Instead of copying the test data directly, the test data of the copied problems will be linked to the test data of the source problems (called the source test data). Thus, the copied problems can observe the changes in the source test data. The permissions of the test data of the copied problems follow the source test data, e.g., you still might not download them but the judges can. By uploading some new test data, the link will be broken and the new test data will be used.: 虽然测试数据不会被复制，但是系统会将题目的测试数据链接到原题。因此在原题的数据被改动的时候，复制后的题目的数据也会同时改动。链接后的测试数据的权限以原题为准，比如您可能依旧无法下载数据，但是评测机可以。在题目设置页面中可以通过上传新的测试数据的方式，这个数据链接会被删除，以后将使用您的新测试数据。
-This message will be presented to those whose submissions are accepted.: 这条消息将会被展示给通过此题的用户。
-Sorry, there is no user in this domain.: 此域中目前没有用户。
+Sorry, there is no user in this domain.: 此班级中目前没有用户。

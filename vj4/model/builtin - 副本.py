@@ -191,17 +191,20 @@ JUDGE_PRIV = (PRIV_USER_PROFILE
 
 # Domains.
 DOMAIN_ID_SYSTEM = 'system'
+# Permissions for guests : 针对游客的权限设置 - 查看题目、讨论、比赛
 BASIC_PERMISSIONS = (
     PERM_VIEW |
     PERM_VIEW_PROBLEM |
-    PERM_VIEW_PROBLEM_SOLUTION |
+    # PERM_VIEW_PROBLEM_SOLUTION |
     PERM_VIEW_DISCUSSION |
     PERM_VIEW_CONTEST |
-    PERM_VIEW_CONTEST_SCOREBOARD |
-    PERM_VIEW_HOMEWORK |
-    PERM_VIEW_HOMEWORK_SCOREBOARD |
-    PERM_VIEW_TRAINING
+    # PERM_VIEW_CONTEST_SCOREBOARD |
+    # PERM_VIEW_HOMEWORK |
+    # PERM_VIEW_HOMEWORK_SCOREBOARD |
+    # PERM_VIEW_TRAINING |
+    PERM_VIEW_RANKING
 )
+# Permission for students: 针对学生(注册用户但未在域内)的权限设置 
 DEFAULT_PERMISSIONS = (
     PERM_VIEW |
     PERM_VIEW_PROBLEM |
@@ -233,7 +236,47 @@ DEFAULT_PERMISSIONS = (
     PERM_ATTEND_HOMEWORK |
     PERM_EDIT_HOMEWORK_SELF |
     PERM_VIEW_TRAINING |
-    PERM_CREATE_TRAINING |
+    # PERM_CREATE_TRAINING |
+    PERM_EDIT_TRAINING_SELF |
+    PERM_VIEW_RANKING
+)
+# Permission for problem managers: 针对题目管理者(学生)的权限设置 - 可以自己创建题目、管理言论
+STU_MANAGER_PERMISSIONS = (
+    PERM_VIEW |
+    PERM_MOD_BADGE |
+    PERM_CREATE_PROBLEM |
+    PERM_VIEW_PROBLEM |
+    PERM_EDIT_PROBLEM_SELF |
+    PERM_SUBMIT_PROBLEM |
+    PERM_READ_PROBLEM_DATA_SELF |
+    PERM_VIEW_PROBLEM_SOLUTION |
+    PERM_CREATE_PROBLEM_SOLUTION |
+    PERM_VOTE_PROBLEM_SOLUTION |
+    PERM_EDIT_PROBLEM_SOLUTION_SELF |
+    PERM_DELETE_PROBLEM_SOLUTION_SELF |
+    PERM_REPLY_PROBLEM_SOLUTION |
+    PERM_EDIT_PROBLEM_SOLUTION_REPLY_SELF |
+    PERM_DELETE_PROBLEM_SOLUTION_REPLY_SELF |
+    PERM_VIEW_DISCUSSION |
+    PERM_CREATE_DISCUSSION |
+    PERM_HIGHLIGHT_DISCUSSION |
+    PERM_EDIT_DISCUSSION_SELF |
+    PERM_DELETE_DISCUSSION_SELF |
+    PERM_REPLY_DISCUSSION |
+    PERM_EDIT_DISCUSSION_REPLY_SELF |
+    # PERM_EDIT_DISCUSSION_REPLY_SELF_DISCUSSION |
+    PERM_DELETE_DISCUSSION_REPLY_SELF |
+    PERM_DELETE_DISCUSSION_REPLY_SELF_DISCUSSION |
+    PERM_VIEW_CONTEST |
+    PERM_VIEW_CONTEST_SCOREBOARD |
+    PERM_ATTEND_CONTEST |
+    PERM_EDIT_CONTEST_SELF |
+    PERM_VIEW_HOMEWORK |
+    PERM_VIEW_HOMEWORK_SCOREBOARD |
+    PERM_ATTEND_HOMEWORK |
+    PERM_EDIT_HOMEWORK_SELF |
+    PERM_VIEW_TRAINING |
+    # PERM_CREATE_TRAINING |
     PERM_EDIT_TRAINING_SELF |
     PERM_VIEW_RANKING
 )
@@ -243,7 +286,7 @@ ADMIN_PERMISSIONS = PERM_ALL
 ROLE_ROOT = 'root'
 ROLE_GUEST = 'guest'
 ROLE_DEFAULT = 'default'
-ROLE_MEMBER = 'member'
+ROLE_MEMBER = 'manager'
 ROLE_ADMIN = 'admin'
 
 BuiltinRoleDescriptor = functools.partial(
@@ -262,17 +305,17 @@ DOMAIN_SYSTEM = {
     'owner_uid': 0,
     'roles': {ROLE_GUEST: BASIC_PERMISSIONS,
               ROLE_DEFAULT: DEFAULT_PERMISSIONS,
-              ROLE_MEMBER: DEFAULT_PERMISSIONS,
+              ROLE_MEMBER: STU_MANAGER_PERMISSIONS,
               ROLE_ADMIN: ADMIN_PERMISSIONS},
     'gravatar': '',
-    'name': 'Vijos',
+    'name': 'Tops',
     'bulletin': ''
 }
 DOMAINS = [DOMAIN_SYSTEM]
 
 # Users.
 UID_SYSTEM = 0
-UNAME_SYSTEM = 'Vijos'
+UNAME_SYSTEM = 'Tops'
 USER_SYSTEM = {
     '_id': UID_SYSTEM,
     'uname': UNAME_SYSTEM,
@@ -332,30 +375,140 @@ LEVELS = collections.OrderedDict([(10, 1),
                                   (2, 95),
                                   (1, 100)])
 
-# Footer extra HTMLs. TODO(iceboy): remove.
-FOOTER_EXTRA_HTMLS = ['© 2005 - 2020 <a href="https://vijos.org/">Vijos.org</a>', version.get(),
-                      '<a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow">' +
-                      '沪ICP备14040537号</a>']
+FOOTER_EXTRA_HTMLS = ["版本号:", version.get()]
+FOOTER_EXTRA_HTMLS = ["版本号:", "1.0"]
 
 PROBLEM_CATEGORIES = collections.OrderedDict([
-    ('动态规划', [
-        'LCS',
-        'LIS',
-        '背包',
-        '单调性DP',
-        '环形DP',
-        '树形DP',
-        '状态压缩DP'
+    ('顺序结构', [
+        '输入输出',
+        '数学运算',
+        '变量',
+        '问题计算'
+    ]),
+    ('选择结构', [
+        '条件判断',
+        '逻辑运算符',
+        '双分支',
+        '多分支和嵌套'
+    ]),
+    ('循环结构', [
+        '简单循环',
+        '单循环+单分支',
+        '单循环+多分支',
+        '单循环+数组',
+        '循环嵌套',
+        'while循环'
+    ]),
+    ('数组', [
+        '一维数组',
+        '二维数组',
+        '字符数组(字符串)',
+        '多维数组',
+        '数组标记'
+    ]),
+    ('排序与查找', [
+        '计数排序',
+        '选择排序',
+        '快速排序',
+        '归并排序',
+        '双数组排序',
+        '双指针扫描',
+        '二分查找',
+        '三分查找',
+        '求逆序对'
+    ]),
+    ('函数', [
+        '递归'
+    ]),
+    ('枚举', []),
+    ('递推', []),
+    ('模拟', []),
+    ('贪心', []),
+    ('分治', []),
+    ('字符串', [
+        'KMP',
+        '后缀数据结构',
+        'Trie树',
+        'AC自动机',
+        'Manacher',
+        '表达式处理',
+        '最小表示法'
+    ]),
+    ('数学数论', [
+        '素数',
+        'Fibonacci数列'
+        '数位统计',
+        '排列组合',
+        '进制转换',
+        '计数原理',
+        '容斥原理',
+        '埃/欧氏筛法',
+        '同余定理',
+        'Catalan数列',
+        'Stirling数',
+        '欧几里得算法',
+        '不定方程',
+        '解线性同余方程',
+        '勾股方程',
+        'Pell方程',
+        'baby-step-giant-step',
+        'Polya定理',
+        '康托展开',
+        '大整数质因数分解',
+        '生成函数',
+        '积性函数'
+    ]),
+    ('高精度', [
+        '加法',
+        '减法',
+        '乘法',
+        '除法',
+        '压位',
+        'FFT'
+    ]),
+    ('数据结构', [
+        '结构体',
+        '队列',
+        '栈',
+        '链表',
+        '单调栈',
+        '单调队列',
+        '优先队列',
+        '集合(set)',
+        '映射(map)',
+        '堆(heap)',
+        '并查集',
+        '平衡树',
+        '线段树',
+        '树套树',
+        '四分树',
+        '划分树',
+        '归并树',
+        'k-d树',
+        '树状数组',
+        '块状链表',
+        'Hashing'
     ]),
     ('搜索', [
-        '枚举',
-        '搜索与剪枝',
+        '深度优先搜索DFS',
+        '广度优先搜索BFS',
+        '回溯',
+        '剪枝',
         '启发式搜索',
         'DLX',
         '双向搜索',
         '折半搜索',
-        '记忆化搜索',
         '模拟退火'
+    ]),
+    ('动态规划', [
+        'LCS',
+        'LIS',
+        '背包问题',
+        '线性DP',
+        '环形DP',
+        '区间DP',
+        '树形DP',
+        '状态压缩DP'
     ]),
     ('计算几何', [
         '半平面交',
@@ -369,10 +522,8 @@ PROBLEM_CATEGORIES = collections.OrderedDict([
         'Voronoi图',
         '平面图的对偶图',
         '三角剖分',
-        '梯形剖分',
-        '几何知识'
+        '梯形剖分'
     ]),
-    ('贪心', []),
     ('树结构', [
         '最近公共祖先',
         '生成树',
@@ -395,83 +546,25 @@ PROBLEM_CATEGORIES = collections.OrderedDict([
         '欧拉回路',
         '2-SAT'
     ]),
-    ('数论', [
-        '素数判定',
-        '欧几里得算法',
-        '不定方程',
-        '数位统计',
-        '解线性同余方程',
-        'baby-step-giant-step',
-        'Pell方程',
-        '大整数质因数分解',
-        '勾股方程',
-        '积性函数',
-        'Fibonacci数列'
-    ]),
-    ('模拟', []),
-    ('数据结构', [
-        '栈',
-        '队列',
-        '链表',
-        '单调队列',
-        '并查集',
-        '堆',
-        '平衡树',
-        '线段树',
-        '树状数组',
-        '树套树',
-        '四分树',
-        '划分树',
-        '归并树',
-        'k-d树',
-        '块状链表',
-        'Hashing',
-        '函数式编程'
-    ]),
     ('博弈论', []),
-    ('字符串', [
-        'KMP',
-        '后缀数据结构',
-        'Trie树',
-        'AC自动机',
-        'Manacher',
-        '表达式处理',
-        '最小表示法'
-    ]),
-    ('组合数学', [
-        '生成函数',
-        '容斥原理',
-        '康托展开',
-        'Catalan数列',
-        'Stirling数',
-        '差分',
-        'Polya定理'
-    ]),
     ('线性代数', [
         '矩阵乘法',
         '高斯消元',
         '线性规划'
     ]),
-    ('高精度', [
-        'FFT'
-    ]),
-    ('递推', []),
     ('概率论', [
         '随机化'
     ]),
-    ('NPC', []),
-    ('其他', [
-        '二分查找',
-        '三分查找',
-        '双指针扫描',
-        '分治',
-        '分块',
-        'RMQ',
-        '快速幂',
-        '数学',
-        '排序',
-        '构造'
-    ])
+    ('高性能', [
+        '前缀和',
+        '差分'
+    ]),
+    ('STL', [
+        '容器',
+        '算法',
+        '迭代器'
+    ]),
+    ('其他', [])
 ])
 PROBLEM_SUB_CATEGORIES = {}
 for category, sub_categories in PROBLEM_CATEGORIES.items():
@@ -486,60 +579,54 @@ for category, sub_categories in PROBLEM_CATEGORIES.items():
 
 VNODE_MISSING = {'title': '(missing)'}
 DEFAULT_VNODES = collections.OrderedDict([
-  ('探索', [
+  ('站务', [
+    {'pic': None, 'name': '公告'},
+    {'pic': None, 'name': '月赛'},
+    {'pic': 'topsoj', 'name': '团队'},
+    {'pic': 'advice', 'name': '建议'}
+  ]),
+  ('题目', [
     {'pic': 'qa', 'name': '问答'},
     {'pic': 'share', 'name': '分享'},
     {'pic': 'solution', 'name': '题解'}
   ]),
-  ('Vijos', [
-    {'pic': 'vijos', 'name': 'Vijos'},
-    {'pic': None, 'name': '团队'},
-    {'pic': None, 'name': '月赛'},
-    {'pic': 'advice', 'name': '建议'}
-  ]),
   ('数据结构', [
-    {'pic': None, 'name': '散列表'},
-    {'pic': None, 'name': '搜索树'},
+    {'pic': None, 'name': '变量和数组'},
+    {'pic': None, 'name': '字符和字符串'},
+    {'pic': None, 'name': '结构体和STL'},
     {'pic': None, 'name': '栈和队列'},
     {'pic': None, 'name': '图'},
-    {'pic': None, 'name': '堆'}
+    {'pic': None, 'name': '树和堆'},
+    {'pic': None, 'name': '散列表'}
   ]),
   ('算法', [
+    {'pic': None, 'name': '枚举'},
+    {'pic': None, 'name': '排序'},
+    {'pic': None, 'name': '模拟'},
+    {'pic': None, 'name': '递推和递归'},
+    {'pic': None, 'name': '搜索与回溯'},
+    {'pic': None, 'name': '贪心'},
+    {'pic': None, 'name': '动态规划'},
     {'pic': None, 'name': '数论'},
     {'pic': None, 'name': '几何'},
     {'pic': None, 'name': '图论'},
-    {'pic': None, 'name': '网络流'},
-    {'pic': None, 'name': '动态规划'},
-    {'pic': None, 'name': '背包'},
-    {'pic': None, 'name': '排序'},
-    {'pic': None, 'name': '搜索'},
     {'pic': None, 'name': '并查集'},
-    {'pic': None, 'name': '贪心'},
     {'pic': None, 'name': '博弈论'}
   ]),
   ('在线题库', [
+    {'pic': None, 'name': '洛谷'},
     {'pic': None, 'name': 'CodeForces'},
-    {'pic': None, 'name': 'TopCoder'},
-    {'pic': None, 'name': 'POJ'},
-    {'pic': None, 'name': 'BZOJ'},
     {'pic': None, 'name': 'USACO'},
-    {'pic': None, 'name': 'RQNOJ'},
-    {'pic': None, 'name': 'UOJ'},
-    {'pic': None, 'name': 'LibreOJ'},
-    {'pic': None, 'name': '洛谷'}
+    {'pic': None, 'name': 'POJ'},
+    {'pic': None, 'name': 'LibreOJ'}
   ]),
-  ('泛', [
+  ('灌水', [
+    {'pic': None, 'name': '校园生活'},
     {'pic': None, 'name': '数学'},
     {'pic': None, 'name': '编程'},
-    {'pic': None, 'name': '数据库'},
-    {'pic': None, 'name': 'C'},
     {'pic': None, 'name': 'C++'},
-    {'pic': None, 'name': 'Pascal'},
-    {'pic': None, 'name': 'Java'},
-    {'pic': None, 'name': 'PHP'},
     {'pic': None, 'name': 'Python'},
     {'pic': None, 'name': '游戏'},
-    {'pic': None, 'name': '保送'},
-    {'pic': None, 'name': 'ACM'}
+    {'pic': None, 'name': 'NOIP'}
   ])
 ])
