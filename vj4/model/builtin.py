@@ -82,6 +82,9 @@ PERM_CREATE_TRAINING = 1 << 47
 PERM_EDIT_TRAINING = 1 << 48
 PERM_EDIT_TRAINING_SELF = 1 << 49
 
+# Ranking.
+PERM_VIEW_RANKING = 1 << 59
+
 PERM_ALL = -1
 
 Permission = collections.namedtuple('Permission',
@@ -147,6 +150,7 @@ PERMS = [
     Permission('perm_training', PERM_CREATE_TRAINING, 'Create training plans'),
     Permission('perm_training', PERM_EDIT_TRAINING, 'Edit training plans'),
     Permission('perm_training', PERM_EDIT_TRAINING_SELF, 'Edit own training plans'),
+    Permission('perm_ranking', PERM_VIEW_RANKING, 'View ranking'),
 ]
 
 PERMS_BY_FAMILY = collections.OrderedDict(
@@ -193,11 +197,12 @@ BASIC_PERMISSIONS = (
     PERM_VIEW_PROBLEM |
     # PERM_VIEW_PROBLEM_SOLUTION |
     PERM_VIEW_DISCUSSION |
-    PERM_VIEW_CONTEST
+    PERM_VIEW_CONTEST |
     # PERM_VIEW_CONTEST_SCOREBOARD |
     # PERM_VIEW_HOMEWORK |
     # PERM_VIEW_HOMEWORK_SCOREBOARD |
-    # PERM_VIEW_TRAINING
+    # PERM_VIEW_TRAINING |
+    PERM_VIEW_RANKING
 )
 # Permission for students: 针对学生(注册用户但未在域内)的权限设置 
 DEFAULT_PERMISSIONS = (
@@ -232,7 +237,8 @@ DEFAULT_PERMISSIONS = (
     PERM_EDIT_HOMEWORK_SELF |
     PERM_VIEW_TRAINING |
     # PERM_CREATE_TRAINING |
-    PERM_EDIT_TRAINING_SELF
+    PERM_EDIT_TRAINING_SELF |
+    PERM_VIEW_RANKING
 )
 # Permission for problem managers: 针对题目管理者(学生)的权限设置 - 可以自己创建题目、管理言论
 STU_MANAGER_PERMISSIONS = (
@@ -271,7 +277,8 @@ STU_MANAGER_PERMISSIONS = (
     PERM_EDIT_HOMEWORK_SELF |
     PERM_VIEW_TRAINING |
     # PERM_CREATE_TRAINING |
-    PERM_EDIT_TRAINING_SELF
+    PERM_EDIT_TRAINING_SELF |
+    PERM_VIEW_RANKING
 )
 ADMIN_PERMISSIONS = PERM_ALL
 
