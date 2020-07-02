@@ -191,20 +191,18 @@ JUDGE_PRIV = (PRIV_USER_PROFILE
 
 # Domains.
 DOMAIN_ID_SYSTEM = 'system'
-# Permissions for guests : 针对游客的权限设置 - 查看题目、讨论、比赛
 BASIC_PERMISSIONS = (
     PERM_VIEW |
     PERM_VIEW_PROBLEM |
-    # PERM_VIEW_PROBLEM_SOLUTION |
+    PERM_VIEW_PROBLEM_SOLUTION |
     PERM_VIEW_DISCUSSION |
     PERM_VIEW_CONTEST |
-    # PERM_VIEW_CONTEST_SCOREBOARD |
-    # PERM_VIEW_HOMEWORK |
-    # PERM_VIEW_HOMEWORK_SCOREBOARD |
-    # PERM_VIEW_TRAINING |
+    PERM_VIEW_CONTEST_SCOREBOARD |
+    PERM_VIEW_HOMEWORK |
+    PERM_VIEW_HOMEWORK_SCOREBOARD |
+    PERM_VIEW_TRAINING |
     PERM_VIEW_RANKING
 )
-# Permission for students: 针对学生(注册用户但未在域内)的权限设置 
 DEFAULT_PERMISSIONS = (
     PERM_VIEW |
     PERM_VIEW_PROBLEM |
@@ -236,12 +234,12 @@ DEFAULT_PERMISSIONS = (
     PERM_ATTEND_HOMEWORK |
     PERM_EDIT_HOMEWORK_SELF |
     PERM_VIEW_TRAINING |
-    # PERM_CREATE_TRAINING |
+    PERM_CREATE_TRAINING |
     PERM_EDIT_TRAINING_SELF |
     PERM_VIEW_RANKING
 )
-# Permission for problem managers: 针对题目管理者(学生)的权限设置 - 可以自己创建题目、管理言论
-STU_MANAGER_PERMISSIONS = (
+# Permission for problem & discussion managers
+MEMBER_PERMISSIONS = (
     PERM_VIEW |
     PERM_MOD_BADGE |
     PERM_CREATE_PROBLEM |
@@ -279,6 +277,7 @@ STU_MANAGER_PERMISSIONS = (
     # PERM_CREATE_TRAINING |
     PERM_EDIT_TRAINING_SELF |
     PERM_VIEW_RANKING
+
 )
 ADMIN_PERMISSIONS = PERM_ALL
 
@@ -286,7 +285,7 @@ ADMIN_PERMISSIONS = PERM_ALL
 ROLE_ROOT = 'root'
 ROLE_GUEST = 'guest'
 ROLE_DEFAULT = 'default'
-ROLE_MEMBER = 'manager'
+ROLE_MEMBER = 'member'
 ROLE_ADMIN = 'admin'
 
 BuiltinRoleDescriptor = functools.partial(
@@ -305,7 +304,7 @@ DOMAIN_SYSTEM = {
     'owner_uid': 0,
     'roles': {ROLE_GUEST: BASIC_PERMISSIONS,
               ROLE_DEFAULT: DEFAULT_PERMISSIONS,
-              ROLE_MEMBER: STU_MANAGER_PERMISSIONS,
+              ROLE_MEMBER: MEMBER_PERMISSIONS,
               ROLE_ADMIN: ADMIN_PERMISSIONS},
     'gravatar': '',
     'name': 'Tops',
@@ -375,7 +374,7 @@ LEVELS = collections.OrderedDict([(10, 1),
                                   (2, 95),
                                   (1, 100)])
 
-FOOTER_EXTRA_HTMLS = ["版本号:", version.get()]
+# Footer extra HTMLs. TODO(iceboy): remove.
 FOOTER_EXTRA_HTMLS = ["版本号:", "1.0"]
 
 PROBLEM_CATEGORIES = collections.OrderedDict([
@@ -393,8 +392,8 @@ PROBLEM_CATEGORIES = collections.OrderedDict([
     ]),
     ('循环结构', [
         '简单循环',
-        '单循环+单分支',
-        '单循环+多分支',
+        '简单循环+单分支',
+        '简单循环+多分支',
         '单循环+数组',
         '循环嵌套',
         'while循环'
@@ -402,7 +401,7 @@ PROBLEM_CATEGORIES = collections.OrderedDict([
     ('数组', [
         '一维数组',
         '二维数组',
-        '字符数组(字符串)',
+        '字符数组',
         '多维数组',
         '数组标记'
     ]),
@@ -436,7 +435,7 @@ PROBLEM_CATEGORIES = collections.OrderedDict([
     ]),
     ('数学数论', [
         '素数',
-        'Fibonacci数列'
+        'Finbonacci数列',
         '数位统计',
         '排列组合',
         '进制转换',
@@ -449,12 +448,12 @@ PROBLEM_CATEGORIES = collections.OrderedDict([
         '欧几里得算法',
         '不定方程',
         '解线性同余方程',
-        '勾股方程',
-        'Pell方程',
-        'baby-step-giant-step',
         'Polya定理',
+        'baby-step-giant-step',
+        'Pell方程',
         '康托展开',
         '大整数质因数分解',
+        '勾股方程',
         '生成函数',
         '积性函数'
     ]),
@@ -494,6 +493,7 @@ PROBLEM_CATEGORIES = collections.OrderedDict([
         '广度优先搜索BFS',
         '回溯',
         '剪枝',
+        '记忆化搜索',
         '启发式搜索',
         'DLX',
         '双向搜索',
@@ -501,14 +501,14 @@ PROBLEM_CATEGORIES = collections.OrderedDict([
         '模拟退火'
     ]),
     ('动态规划', [
-        'LCS',
-        'LIS',
-        '背包问题',
         '线性DP',
         '环形DP',
         '区间DP',
         '树形DP',
-        '状态压缩DP'
+        '状态压缩DP',
+        'LCS',
+        'LIS',
+        '背包问题'
     ]),
     ('计算几何', [
         '半平面交',
@@ -522,7 +522,8 @@ PROBLEM_CATEGORIES = collections.OrderedDict([
         'Voronoi图',
         '平面图的对偶图',
         '三角剖分',
-        '梯形剖分'
+        '梯形剖分',
+        '几何知识'
     ]),
     ('树结构', [
         '最近公共祖先',
@@ -556,13 +557,12 @@ PROBLEM_CATEGORIES = collections.OrderedDict([
         '随机化'
     ]),
     ('高性能', [
-        '前缀和',
-        '差分'
+        '前缀和'
     ]),
     ('STL', [
         '容器',
         '算法',
-        '迭代器'
+        '迭代器',
     ]),
     ('其他', [])
 ])
@@ -582,18 +582,13 @@ DEFAULT_VNODES = collections.OrderedDict([
   ('站务', [
     {'pic': None, 'name': '公告'},
     {'pic': None, 'name': '月赛'},
-    {'pic': 'topsoj', 'name': '团队'},
+    {'pic': 'tops', 'name': '团队'},
     {'pic': 'advice', 'name': '建议'}
   ]),
   ('题目', [
     {'pic': 'qa', 'name': '问答'},
     {'pic': 'share', 'name': '分享'},
     {'pic': 'solution', 'name': '题解'}
-  ]),
-  ('语法', [
-    {'pic': None, 'name': '顺序结构'},
-    {'pic': None, 'name': '选择结构'},
-    {'pic': None, 'name': '循环结构'}
   ]),
   ('数据结构', [
     {'pic': None, 'name': '变量和数组'},

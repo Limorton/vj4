@@ -4,7 +4,7 @@
 API: API
 about: 关于
 About: 关于
-About TopsOJ: 关于 TopsOJ
+About TopsCoding: 关于 TopsCoding
 Accepted: 已通过
 Accepted Ratio: 通过率
 Active Sessions: 活动会话
@@ -21,9 +21,9 @@ Bio Visibility: 个人简介可见性
 Blog: 博客
 Boom!: 炸了！
 Browser: 浏览器
-? By signing up a TopsOJ universal account, you can submit code and join discussions in all online
+? By signing up a TopsCoding universal account, you can submit code and join discussions in all online
   judging services provided by us.
-: 注册一个 TopsOJ 通用账户，您就可以在我们提供的所有在线评测服务上提交代码、参与讨论。
+: 注册一个 TopsCoding 通用账户，您就可以在我们提供的所有在线评测服务上提交代码、参与讨论。
 CLOSE: 关闭
 Cancel: 取消
 Ok: 确定
@@ -76,11 +76,11 @@ Forgot password or username?: 忘记密码或者用户名？
 Gender: 性别
 Gender Visibility: 性别可见性
 Gravatar Email: Gravatar Email 地址
-'Hello! You can click following link to sign up your TopsOJ account:': 您好！您可以点击以下链接来注册您的 TopsOJ 账户：
-'Hello, {0}! You can click following link to reset the password of your TopsOJ account:': 您好，{0}！您可以点击以下链接来重置您
-  TopsOJ 账户的密码：
-'Hello, {0}! You can click following link to active your new email of your TopsOJ account:': 您好，{0}！您可以点击以下链接来激活您
-  TopsOJ 账户的新电子邮件地址：
+'Hello! You can click following link to sign up your TopsCoding account:': 您好！您可以点击以下链接来注册您的 TopsCoding 账户：
+'Hello, {0}! You can click following link to reset the password of your TopsCoding account:': 您好，{0}！您可以点击以下链接来重置您
+  TopsCoding 账户的密码：
+'Hello, {0}! You can click following link to active your new email of your TopsCoding account:': 您好，{0}！您可以点击以下链接来激活您
+  TopsCoding 账户的新电子邮件地址：
 Confirmation mail has been sent to your new email.: 确认邮件已经发送到您的新电子邮箱。
 Help: 帮助
 Hide all tags: 隐藏所有标签
@@ -141,9 +141,11 @@ WeChat: 微信
 WeChat Visibility: 微信可见性
 Quit Scratchpad: 退出在线编程模式
 Recent Activities: 最近活动
+Refresh Results: 刷新结果
 Registered at: 注册于
 Related: 相关
 Related Discussions: 相关讨论
+Return to Tops: 返回主题库
 Remember me: 记住我
 Repeat Password: 重复密码
 Reply: 回复
@@ -170,7 +172,6 @@ Sign Up Now: 现在注册
 Sign up mail has been sent to your email.: 注册邮件已经发送到您的电子邮箱。
 Solutions: 题解
 'Solved {0} problems, RP: {1} (No. {2})': '解决了 {0} 道题目，RP: {1} (No. {2})'
-'Solved {0} problems, RP: {1}': '解决了 {0} 道题目，RP: {1}'
 Sorry: 对不起
 Sorry, there is no problem in the problem set: 题库中没有题目
 Solutions Liked: 题解被赞
@@ -211,7 +212,7 @@ Uploaded By: 上传者
 Upload Problem: 上传题目
 User: 用户
 Username: 用户名
-Using your TopsOJ universal account: 使用您的 TopsOJ 通用账户
+Using your TopsCoding universal account: 使用您的 TopsCoding 通用账户
 View Problem: 查看题目
 View or create discussion: 查看与发表讨论
 View or submit solution: 查看与发表题解
@@ -286,7 +287,6 @@ Sample Output: 输出数据
 Records: 评测记录
 Refresh Records: 刷新评测记录
 Refresh: 刷新
-Refresh Results: 刷新结果
 Report: 举报
 Run Pretest: 运行自测
 Pretest Your Code: 使用自定义数据测试
@@ -647,8 +647,6 @@ Usage exceeded.: 用量超限。
 The uploaded file is too long.: 上传的文件太长。
 Congratulations! Your submission is accepted.: 恭喜！您的提交已评测通过。
 Search: 搜索
-Search PID: 搜索题号
-Search Title or Context: 搜索标题或内容
 Mark Yellow: 标黄
 Mark Green: 标绿
 Clear Marks: 清除标记
@@ -787,18 +785,15 @@ display_name: 显示名
 home_domain_account: 当前班级的设置
 'The value `{1}` of {0} already exists.': '{0} 的值 `{1}` 已经存在。'
 Display name {1} you want to set is used by others.: 您想要设置的显示名 {1} 已经被其他人使用了。
-Leave blank to use numeric pid.: 留空以使用数字题号
-PNAME: 题号
+Numeric PID: 数字题号
 Only {0} problems can be copied in one request, got {1}.: 一次请求只能复制 {0} 个题目，但是您输入了 {1} 个。
 Problem is successfully copied.: 题目复制完成。
 problem_copy: 复制题目
 Copy Problem: 复制题目
 Be Copied: 被复制
 Copy from: 复制自
-domain_ranking: 排名
 Problem ID List: 题目 ID 列表
 Copy: 复制
-Info: 信息
 Destination Domain: 目标班级
 Domain ID: 班级 ID
 Test data comes from: 测试数据来自
@@ -806,7 +801,7 @@ Current dataset comes from: 当前数据集来自
 Copy Problem To: 将题目复制到
 What's this?: 这是什么？
 About test data: 关于测试数据
-With this feature, you can copy problems that you can view from a domain to some other domain. Their title, content, tags and categories will be copied. However, their test data are not copied directly.: 您可以通过这个功能将某域下您能查看的题目复制到其它域中，题目的标题、描述、标签与分类将被复制过来。但是测试数据不会被直接复制。
 With this feature, you can copy problems that you can view from a domain to some other domain. Their title, content, tags and categories will be copied. However, their test data are not copied directly.: 您可以通过这个功能将某班级下您能查看的题目复制到其它班级中，题目的标题、描述、标签与分类将被复制过来。但是测试数据不会被直接复制。
 Instead of copying the test data directly, the test data of the copied problems will be linked to the test data of the source problems (called the source test data). Thus, the copied problems can observe the changes in the source test data. The permissions of the test data of the copied problems follow the source test data, e.g., you still might not download them but the judges can. By uploading some new test data, the link will be broken and the new test data will be used.: 虽然测试数据不会被复制，但是系统会将题目的测试数据链接到原题。因此在原题的数据被改动的时候，复制后的题目的数据也会同时改动。链接后的测试数据的权限以原题为准，比如您可能依旧无法下载数据，但是评测机可以。在题目设置页面中可以通过上传新的测试数据的方式，这个数据链接会被删除，以后将使用您的新测试数据。
+This message will be presented to those whose submissions are accepted.: 这条消息将会被展示给通过此题的用户。
 Sorry, there is no user in this domain.: 此班级中目前没有用户。

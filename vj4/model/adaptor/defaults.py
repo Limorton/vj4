@@ -1,5 +1,10 @@
 DEFAULT_CODE_TEMPLATES = {
   'c': r"""
+/*
+ author: me
+ p = 1000
+ you can add some comments here.
+*/
 #include <stdio.h>
 
 int main()
@@ -9,11 +14,11 @@ int main()
 """,
   'cc': r"""
 /*
- pid:
- idea:
+ author: me
+ p = 1000
+ you can add some comments here.
 */
 #include <iostream>
-
 using namespace std;
 
 int main()

@@ -162,7 +162,7 @@ export default class ScratchpadToolbarContainer extends React.PureComponent {
           {' '}
           {i18n('Refresh Results')}
           {' '}
-(F8)
+          (F8)
         </ToolbarButton>
       </Toolbar>
     );
