@@ -103,7 +103,7 @@ export default class ScratchpadToolbarContainer extends React.PureComponent {
           {' '}
           {i18n('Run Pretest')}
           {' '}
-(F9)
+          (F9)
         </ToolbarButton>
         <ToolbarButton
           disabled={this.props.isPosting}
@@ -116,7 +116,7 @@ export default class ScratchpadToolbarContainer extends React.PureComponent {
           {' '}
           {i18n('Submit Solution')}
           {' '}
-(F10)
+          (F10)
         </ToolbarButton>
         <ToolbarItem>
           <select
