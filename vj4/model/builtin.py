@@ -554,7 +554,8 @@ PROBLEM_CATEGORIES = collections.OrderedDict([
         '随机化'
     ]),
     ('高性能', [
-        '前缀和'
+        '前缀和',
+        '差分'
     ]),
     ('STL', [
         '容器',
