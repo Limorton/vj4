@@ -1,7 +1,7 @@
 DEFAULT_CODE_TEMPLATES = {
   'c': r"""
 /*
- author: me
+ author: topscoding
  p = 1000
  you can add some comments here.
 */
@@ -14,7 +14,7 @@ int main()
 """,
   'cc': r"""
 /*
- author: me
+ author: topscoding
  p = 1000
  you can add some comments here.
 */
