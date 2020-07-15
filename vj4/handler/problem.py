@@ -290,7 +290,7 @@ class ProblemSubmitHandler(base.Handler):
   @base.post_argument
   @base.require_csrf_token
   @base.sanitize
-  @base.limit_rate('add_record', 60, 100)
+  @base.limit_rate('add_record', 60, 5)
   async def post(self, *, pid: document.convert_doc_id, lang: str, code: str):
     # TODO(twd2): check status, eg. test, hidden problem, ...
     pdoc = await problem.get(self.domain_id, pid)
@@ -308,7 +308,7 @@ class ProblemPretestHandler(base.Handler):
   @base.post_argument
   @base.require_csrf_token
   @base.sanitize
-  @base.limit_rate('add_record', 60, 100)
+  @base.limit_rate('add_record', 60, 5)
   async def post(self, *, pid: document.convert_doc_id, lang: str, code: str,
                  data_input: str, data_output: str):
     pdoc = await problem.get(self.domain_id, pid)
@@ -603,7 +603,7 @@ class ProblemCopyHandler(base.Handler):
   @base.post_argument
   @base.require_csrf_token
   @base.sanitize
-  @base.limit_rate('copy_problems', 30, 10)
+  @base.limit_rate('copy_problems', 60, 60)
   async def post(self, *, src_domain_id: str, src_pids: str,
                  numeric_pid: bool=False, hidden: bool=False):
     src_ddoc, src_dudoc = await asyncio.gather(domain.get(src_domain_id),
