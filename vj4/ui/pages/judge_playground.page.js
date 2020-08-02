@@ -3,17 +3,22 @@ import { NamedPage } from 'vj/misc/PageLoader';
 import * as recordEnum from 'vj/constant/record';
 
 const page = new NamedPage('judge_playground', async () => {
-  const SockJs = await import('sockjs-client');
+  const { default: SockJs } = await import('sockjs-client');
 
   const sock = new SockJs('/judge/consume-conn');
+  let heartbeatClock;
 
   sock.onopen = () => {
     const div = $('<div class="section visible">').appendTo('#messages');
     $('<div class="section__header"><h1 class="section__title">Connection opened.</h1></div>')
       .appendTo(div);
+
+    heartbeatClock = setInterval(() => {
+      sock.send(JSON.stringify({}));  // heartbeat
+    }, 25000);
   };
 
-  sock.onmessage = (message) => {
+  sock.onmessage = message => {
     const msg = JSON.parse(message.data);
     const div = $('<div class="section visible">').appendTo('#messages');
     $('<div class="section__header"><h1 class="section__title">Record</h1></div>')
@@ -102,7 +107,7 @@ const page = new NamedPage('judge_playground', async () => {
       .appendTo(body);
   };
 
-  sock.onclose = (message) => {
+  sock.onclose = message => {
     const div = $('<div class="section visible">').appendTo('#messages');
     $(`
     <div class="section__header">
@@ -113,6 +118,8 @@ const page = new NamedPage('judge_playground', async () => {
     </div>
     `)
       .appendTo(div);
+
+    clearInterval(heartbeatClock);
   };
 });
 
