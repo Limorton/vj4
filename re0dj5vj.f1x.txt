@@ -1,0 +1,81 @@
+﻿Revert "Merge pull request #3 from vijos/master"
+
+This reverts commit ca07ab81e4100bdf079e72aeae069dd4474de9cf, reversing
+changes made to b871ab28d668c56b0d067d1a538b50c7b61e5b33.
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#	deleted:    .eslintrc.js
+#	modified:   .travis.yml
+#	modified:   README.md
+#	new file:   package-lock.json
+#	modified:   package.json
+#	modified:   scripts/build/config/gulp.js
+#	modified:   scripts/build/config/webpack.js
+#	new file:   scripts/build/plugins/webpackDummyOutputPlugin.js
+#	modified:   scripts/build/plugins/webpackStaticManifestPlugin.js
+#	modified:   scripts/build/runWebpack.js
+#	new file:   scripts/fix_abroad_shrinkwrap.js
+#	modified:   vj4/app.py
+#	modified:   vj4/ui/.eslintrc.js
+#	modified:   vj4/ui/components/DOMAttachedObject.js
+#	modified:   vj4/ui/components/calendar/index.js
+#	modified:   vj4/ui/components/cmeditor/cmeditor.page.js
+#	modified:   vj4/ui/components/discussion/comments.page.js
+#	modified:   vj4/ui/components/footer/footer.page.js
+#	modified:   vj4/ui/components/form/form.page.js
+#	modified:   vj4/ui/components/form/textbox.page.js
+#	modified:   vj4/ui/components/highlighter/highlighter.page.js
+#	modified:   vj4/ui/components/highlighter/prismjs.js
+#	modified:   vj4/ui/components/hotkey/hotkey.page.js
+#	modified:   vj4/ui/components/katex/katex.page.js
+#	modified:   vj4/ui/components/marker/Marker.js
+#	modified:   vj4/ui/components/menu/menu-heading.page.js
+#	modified:   vj4/ui/components/messagepad/MessagePadDialogueContentContainer.js
+#	modified:   vj4/ui/components/messagepad/MessagePadInputContainer.js
+#	modified:   vj4/ui/components/navigation/navigation.page.js
+#	modified:   vj4/ui/components/scratchpad/DataInputComponent.js
+#	modified:   vj4/ui/components/scratchpad/ScratchpadEditorContainer.js
+#	modified:   vj4/ui/components/scratchpad/ScratchpadRecordsRowContainer.js
+#	modified:   vj4/ui/components/scratchpad/ScratchpadToolbarContainer.js
+#	modified:   vj4/ui/components/scratchpad/reducers/pretest.js
+#	modified:   vj4/ui/components/scratchpad/reducers/records.js
+#	modified:   vj4/ui/components/signin/signInDialog.page.js
+#	modified:   vj4/ui/components/star/star.page.js
+#	modified:   vj4/ui/components/sticky/sticky.page.js
+#	modified:   vj4/ui/components/tab/Tab.js
+#	modified:   vj4/ui/components/time/time.page.js
+#	modified:   vj4/ui/components/tooltip/tooltip.page.js
+#	modified:   vj4/ui/components/vote/vote.page.js
+#	modified:   vj4/ui/jsconfig.json
+#	modified:   vj4/ui/misc/PageLoader.js
+#	modified:   vj4/ui/pages/discussion_detail.page.js
+#	modified:   vj4/ui/pages/discussion_node.page.js
+#	modified:   vj4/ui/pages/home_messages.page.js
+#	modified:   vj4/ui/pages/homework_main.page.js
+#	modified:   vj4/ui/pages/judge_playground.page.js
+#	modified:   vj4/ui/pages/problem_detail.page.js
+#	modified:   vj4/ui/pages/problem_edit.page.js
+#	modified:   vj4/ui/pages/problem_main.page.js
+#	modified:   vj4/ui/pages/problem_settings.page.js
+#	modified:   vj4/ui/pages/problem_solution.page.js
+#	modified:   vj4/ui/pages/problem_submit.page.js
+#	modified:   vj4/ui/pages/record_detail.page.js
+#	modified:   vj4/ui/pages/record_main.page.js
+#	modified:   vj4/ui/pages/user_detail.page.js
+#	modified:   vj4/ui/templates/layout/html5.html
+#	modified:   vj4/ui/utils/loadReactRedux.js
+#	modified:   vj4/ui/utils/parseQueryString.js
+#	modified:   vj4/ui/utils/pjax.js
+#	modified:   vj4/util/locale.py
+#	deleted:    yarn.lock
+#
+# Untracked files:
+#	"vj4/ui/components/scratchpad/ScratchpadRecordsContainer - \345\211\257\346\234\254.js"
+#	"vj4/ui/components/scratchpad/ScratchpadToolbarContainer - \345\211\257\346\234\254.js"
+#
+

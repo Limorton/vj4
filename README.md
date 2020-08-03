@@ -45,7 +45,7 @@ There is pre-built docker package at `vijos/vj4`. This is maintained by [@moesoh
 
 * [Python 3.5.3+](https://www.python.org/downloads/)
 * [MongoDB 3.0+](https://docs.mongodb.org/manual/installation/)
-* [Node.js 10.0+](https://nodejs.org/en/download/package-manager/)
+* [Node.js 6.0+](https://nodejs.org/en/download/package-manager/)
 * [RabbitMQ](http://www.rabbitmq.com/)
 
 #### Install requirements
@@ -54,12 +54,13 @@ In the root of the repository, where `requirements.txt` and `package.json` locat
 
 ```bash
 python3 -m pip install -r requirements.txt
-yarn
+npm install   # cnpm install
 ```
 
-You don't need root privilege to run `yarn`. It installs stuffs in the project directory. We recommend using Node 10.
+You don't need root privilege to run `npm install`. It installs stuffs in the project directory. We recommend using Node 8.
 
-You may want to use [tuna](https://pypi.tuna.tsinghua.edu.cn/) if you are in China.
+You may want to use [cnpm](https://npm.taobao.org/) and [tuna](https://pypi.tuna.tsinghua.edu.cn/)
+if you are in China. Make sure to use `cnpm` by adding `alias` to `npm` instead of installing cnpm cli-tool.
 
 Some requirements may need `Python.h`. In Debian/Ubuntu you can use
 
@@ -80,7 +81,7 @@ You may also want to install [libmaxminddb](https://github.com/maxmind/libmaxmin
 In the root of the repository:
 
 ```bash
-yarn build   # or: yarn build:watch
+npm run build   # or: npm run build:watch
 python3 -m vj4.server --debug
 ```
 
@@ -107,7 +108,7 @@ pm vj4.job.rank run_all
 Frontend source codes can be recompiled automatically by running:
 
 ```bash
-yarn build:watch
+npm run build:watch
 ```
 
 However you need to manually restart the server for server-side code to take effect.
@@ -115,7 +116,7 @@ However you need to manually restart the server for server-side code to take eff
 ## Production
 
 ```bash
-yarn build:production
+npm run build:production
 python3 -m vj4.server --listen=unix:/var/run/vj4.sock
 ```
 

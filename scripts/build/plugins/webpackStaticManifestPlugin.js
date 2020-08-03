@@ -1,4 +1,5 @@
 const _ = require('lodash');
+const path = require('path');
 const crypto = require('crypto');
 
 export default class StaticManifestPlugin {

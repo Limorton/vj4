@@ -22,19 +22,24 @@ export default class MessagePadDialogueContentContainer extends React.PureCompon
     $(this.refs.list).scrollLock({ strict: true });
   }
 
-  componentDidUpdate(prevProps) {
-    const node = this.refs.list;
-    if (this.props.activeId !== prevProps.activeId) {
+  componentWillUpdate(nextProps) {
+    if (nextProps.activeId !== this.props.activeId) {
       this.scrollToBottom = true;
       this.scrollWithAnimation = false;
-    } else if (node.scrollTop + node.offsetHeight === node.scrollHeight) {
+      return;
+    }
+    const node = this.refs.list;
+    if (node.scrollTop + node.offsetHeight === node.scrollHeight) {
       this.scrollToBottom = true;
       this.scrollWithAnimation = true;
-    } else {
-      this.scrollToBottom = false;
+      return;
     }
+    this.scrollToBottom = false;
+  }
 
+  componentDidUpdate() {
     if (this.scrollToBottom) {
+      const node = this.refs.list;
       const targetScrollTop = node.scrollHeight - node.offsetHeight;
       if (this.scrollWithAnimation) {
         $(node).stop().animate({ scrollTop: targetScrollTop }, 200, 'easeOutCubic');

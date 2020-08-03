@@ -26,8 +26,6 @@ const mapStateToProps = state => ({
   recordsVisible: state.ui.records.visible,
   isPosting: state.ui.isPosting,
   editorLang: state.editor.lang,
-  editorCode: state.editor.code,
-  pretest: state.pretest,
   pretestValid: isPretestValid(state.pretest),
 });
 
@@ -50,15 +48,17 @@ const mapDispatchToProps = dispatch => ({
       payload: lang,
     });
   },
-  postPretest(props) {
-    const testCases = props.pretest.tabs
-      .filter(tabId => isTestCaseDataValid(props.pretest.data[tabId]));
+  postPretest(context) {
+    const state = context.store.getState();
+    const { pretest } = state;
+    const testCases = pretest.tabs
+      .filter(tabId => isTestCaseDataValid(pretest.data[tabId]));
     // const titles = testCases.map(tabId => pretest.meta[tabId].title);
-    const inputs = testCases.map(tabId => props.pretest.data[tabId].input);
-    const outputs = testCases.map(tabId => props.pretest.data[tabId].output);
+    const inputs = testCases.map(tabId => pretest.data[tabId].input);
+    const outputs = testCases.map(tabId => pretest.data[tabId].output);
     const req = request.post(Context.postPretestUrl, {
-      lang: props.editorLang,
-      code: props.editorCode,
+      lang: state.editor.lang,
+      code: state.editor.code,
       data_input: inputs,
       data_output: outputs,
     });
@@ -67,10 +67,11 @@ const mapDispatchToProps = dispatch => ({
       payload: req,
     });
   },
-  postSubmit(props) {
+  postSubmit(context) {
+    const state = context.store.getState();
     const req = request.post(Context.postSubmitUrl, {
-      lang: props.editorLang,
-      code: props.editorCode,
+      lang: state.editor.lang,
+      code: state.editor.code,
     });
     dispatch({
       type: 'SCRATCHPAD_POST_SUBMIT',
@@ -94,7 +95,7 @@ export default class ScratchpadToolbarContainer extends React.PureComponent {
         <ToolbarButton
           disabled={this.props.isPosting || !this.props.pretestValid}
           className="scratchpad__toolbar__pretest"
-          onClick={() => this.props.postPretest(this.props)}
+          onClick={() => this.props.postPretest(this.context)}
           data-global-hotkey="f9"
           data-tooltip={`${i18n('Pretest Your Code')} (F9)`}
         >
@@ -107,7 +108,7 @@ export default class ScratchpadToolbarContainer extends React.PureComponent {
         <ToolbarButton
           disabled={this.props.isPosting}
           className="scratchpad__toolbar__submit"
-          onClick={() => this.props.postSubmit(this.props)}
+          onClick={() => this.props.postSubmit(this.context)}
           data-global-hotkey="f10"
           data-tooltip={`${i18n('Submit Your Code')} (F10)`}
         >
