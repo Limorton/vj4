@@ -412,7 +412,7 @@ LEVELS = collections.OrderedDict([(10, 1),
                                   (1, 100)])
 
 # Footer extra HTMLs. TODO(iceboy): remove.
-FOOTER_EXTRA_HTMLS = ["版本号:", "build20200803"]
+FOOTER_EXTRA_HTMLS = ["版本号:", "build20200803-2"]
 
 PROBLEM_CATEGORIES = collections.OrderedDict([
     ('顺序结构', [
