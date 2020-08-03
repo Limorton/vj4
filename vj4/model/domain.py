@@ -91,7 +91,8 @@ def get_pending(**kwargs):
 async def edit(domain_id: str, **kwargs):
   for domain in builtin.DOMAINS:
     if domain['_id'] == domain_id:
-      raise error.BuiltinDomainError(domain_id)
+      # raise error.BuiltinDomainError(domain_id)
+      pass
   coll = db.coll('domain')
   if 'owner_uid' in kwargs:
     del kwargs['owner_uid']
@@ -146,7 +147,8 @@ async def set_roles(domain_id: str, roles):
     update['roles.{0}'.format(role)] = roles[role]
   for domain in builtin.DOMAINS:
     if domain['_id'] == domain_id:
-      raise error.BuiltinDomainError(domain_id)
+      # raise error.BuiltinDomainError(domain_id)
+      pass
   coll = db.coll('domain')
   return await coll.find_one_and_update(filter={'_id': domain_id},
                                         update={'$set': update},
@@ -166,7 +168,8 @@ async def delete_roles(domain_id: str, roles):
       raise error.ModifyBuiltinRoleError(domain_id, role)
   for domain in builtin.DOMAINS:
     if domain['_id'] == domain_id:
-      raise error.BuiltinDomainError(domain_id)
+      # raise error.BuiltinDomainError(domain_id)
+      pass
   user_coll = db.coll('domain.user')
   await user_coll.update_many({'domain_id': domain_id, 'role': {'$in': list(roles)}},
                               {'$unset': {'role': ''}})
@@ -181,7 +184,8 @@ async def delete_roles(domain_id: str, roles):
 async def transfer(domain_id: str, old_owner_uid: int, new_owner_uid: int):
   for domain in builtin.DOMAINS:
     if domain['_id'] == domain_id:
-      raise error.BuiltinDomainError(domain_id)
+      # raise error.BuiltinDomainError(domain_id)
+      pass
   coll = db.coll('domain')
   return await coll.find_one_and_update(filter={'_id': domain_id, 'owner_uid': old_owner_uid},
                                         update={'$set': {'owner_uid': new_owner_uid}},
