@@ -540,12 +540,14 @@ PROBLEM_CATEGORIES = collections.OrderedDict([
     ('动态规划', [
         '线性DP',
         '环形DP',
+        '坐标DP',
         '区间DP',
         '树形DP',
         '状态压缩DP',
+        '背包问题',
+        '资源分配DP',
         'LCS',
-        'LIS',
-        '背包问题'
+        'LIS'
     ]),
     ('计算几何', [
         '半平面交',
@@ -563,7 +565,8 @@ PROBLEM_CATEGORIES = collections.OrderedDict([
         '几何知识'
     ]),
     ('树结构', [
-        '最近公共祖先',
+        '树的遍历',
+        '最近公共祖先LCA',
         '生成树',
         'DFS序列',
         '树上倍增',
@@ -572,10 +575,12 @@ PROBLEM_CATEGORIES = collections.OrderedDict([
         'Link-Cut-Tree'
     ]),
     ('图结构', [
+        '图的遍历',
         '平面图',
         '二分图',
         '二分图匹配',
         '最短路',
+        '最小生成树',
         '差分约束',
         '拓扑排序',
         '网络流',
