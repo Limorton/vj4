@@ -6,6 +6,7 @@ About: 關於
 Accepted: 已通過
 Accepted Ratio: 通過率
 Active Sessions: 活動會話
+All Training Plans: 所有訓練計劃
 Arguments: 參數
 Attend Contest: 參加比賽
 Attended: 已參加
@@ -26,6 +27,7 @@ CLOSE: 關閉
 Cancel: 取消
 Ok: 確定
 Category: 分類
+Categories: 分類
 Change Email: 修改電子郵件
 Change Password: 修改密碼
 Code: 程式碼
@@ -38,6 +40,7 @@ contest_main: 比賽
 contest_create: 創建比賽
 contest_edit: 編輯比賽
 contest_scoreboard: 比賽成績表
+Copy Problem: 復制題目
 Create: 創建
 Create Contest: 創建比賽
 Create Homework: 創建功課
@@ -91,6 +94,7 @@ In following homework: 在以下功課中
 Information: 資訊
 It works!: 它成了！
 Judged At: 評測時間
+Judged By: 評測機
 Judging Queue: 評測佇列
 Language: 語言
 Last Update At: 最後活動時間
@@ -132,6 +136,7 @@ QQ Visibility: QQ 可見性
 WeChat: 微信
 WeChat Visibility: 微信可見性
 Quit Scratchpad: 退出線上程式設計模式
+ranking_main: 排名
 Recent Activities: 最近活動
 Registered at: 註冊於
 Related: 相關
@@ -311,6 +316,7 @@ Access Control: 訪問控制
 domain_main: 首頁
 domain_manage: 管理域
 domain_manage_dashboard: 概況
+domain_manage_discussion: 討論節點
 domain_manage_edit: 編輯域資料
 domain_manage_join_applications: 加域申請
 domain_manage_role: 管理角色
