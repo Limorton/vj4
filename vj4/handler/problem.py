@@ -290,7 +290,7 @@ class ProblemSubmitHandler(base.Handler):
   @base.post_argument
   @base.require_csrf_token
   @base.sanitize
-  @base.limit_rate('add_record', 60, 5)
+  @base.limit_rate('add_record', 60, 15)
   async def post(self, *, pid: document.convert_doc_id, lang: str, code: str):
     # TODO(twd2): check status, eg. test, hidden problem, ...
     pdoc = await problem.get(self.domain_id, pid)
