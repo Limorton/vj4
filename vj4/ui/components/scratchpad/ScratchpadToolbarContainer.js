@@ -88,6 +88,10 @@ export default class ScratchpadToolbarContainer extends React.PureComponent {
     store: PropTypes.object,
   };
 
+  componentDidMount() {
+    this.props.loadSubmissions();
+  }
+
   render() {
     return (
       <Toolbar>
