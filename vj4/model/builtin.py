@@ -191,27 +191,35 @@ JUDGE_PRIV = (PRIV_USER_PROFILE
 
 # Domains.
 DOMAIN_ID_SYSTEM = 'system'
+
+# guest user : should can never view problem solutions
 BASIC_PERMISSIONS = (
     PERM_VIEW |
     PERM_VIEW_PROBLEM |
-    # PERM_VIEW_PROBLEM_SOLUTION |
-    PERM_VIEW_DISCUSSION |
     PERM_VIEW_CONTEST |
-    # PERM_VIEW_CONTEST_SCOREBOARD |
-    # PERM_VIEW_HOMEWORK |
-    # PERM_VIEW_HOMEWORK_SCOREBOARD |
-    # PERM_VIEW_TRAINING
     PERM_VIEW_RANKING
 )
+
+# open register user : can only submit problems、attend contest and training
+OPEN_PERMISSIONS = (
+    PERM_VIEW |
+    PERM_VIEW_PROBLEM |
+    PERM_SUBMIT_PROBLEM |
+    PERM_VIEW_CONTEST |
+    PERM_VIEW_CONTEST_SCOREBOARD |
+    PERM_VIEW_TRAINING |
+    PERM_ATTEND_CONTEST
+    # PERM_VIEW_RANKING
+)
+
+# default user
 DEFAULT_PERMISSIONS = (
     PERM_VIEW |
     PERM_VIEW_PROBLEM |
     PERM_EDIT_PROBLEM_SELF |
     PERM_SUBMIT_PROBLEM |
     PERM_READ_PROBLEM_DATA_SELF |
-    # PERM_VIEW_PROBLEM_SOLUTION |
     PERM_CREATE_PROBLEM_SOLUTION |
-    # PERM_VOTE_PROBLEM_SOLUTION |
     PERM_EDIT_PROBLEM_SOLUTION_SELF |
     PERM_DELETE_PROBLEM_SOLUTION_SELF |
     PERM_REPLY_PROBLEM_SOLUTION |
@@ -222,7 +230,6 @@ DEFAULT_PERMISSIONS = (
     PERM_EDIT_DISCUSSION_SELF |
     PERM_REPLY_DISCUSSION |
     PERM_EDIT_DISCUSSION_REPLY_SELF |
-    # PERM_EDIT_DISCUSSION_REPLY_SELF_DISCUSSION |
     PERM_DELETE_DISCUSSION_REPLY_SELF |
     PERM_DELETE_DISCUSSION_REPLY_SELF_DISCUSSION |
     PERM_VIEW_CONTEST |
@@ -234,10 +241,40 @@ DEFAULT_PERMISSIONS = (
     PERM_ATTEND_HOMEWORK |
     PERM_EDIT_HOMEWORK_SELF |
     PERM_VIEW_TRAINING |
-    # PERM_CREATE_TRAINING |
-    # PERM_EDIT_TRAINING_SELF |
     PERM_VIEW_RANKING
 )
+# role for student member : student
+STU_PERMISSIONS = (
+    PERM_VIEW |
+    PERM_VIEW_PROBLEM |
+    PERM_EDIT_PROBLEM_SELF |
+    PERM_SUBMIT_PROBLEM |
+    PERM_READ_PROBLEM_DATA_SELF |
+    PERM_CREATE_PROBLEM_SOLUTION |
+    PERM_EDIT_PROBLEM_SOLUTION_SELF |
+    PERM_DELETE_PROBLEM_SOLUTION_SELF |
+    PERM_REPLY_PROBLEM_SOLUTION |
+    PERM_EDIT_PROBLEM_SOLUTION_REPLY_SELF |
+    PERM_DELETE_PROBLEM_SOLUTION_REPLY_SELF |
+    PERM_VIEW_DISCUSSION |
+    PERM_CREATE_DISCUSSION |
+    PERM_EDIT_DISCUSSION_SELF |
+    PERM_REPLY_DISCUSSION |
+    PERM_EDIT_DISCUSSION_REPLY_SELF |
+    PERM_DELETE_DISCUSSION_REPLY_SELF |
+    PERM_DELETE_DISCUSSION_REPLY_SELF_DISCUSSION |
+    PERM_VIEW_CONTEST |
+    PERM_VIEW_CONTEST_SCOREBOARD |
+    PERM_ATTEND_CONTEST |
+    PERM_EDIT_CONTEST_SELF |
+    PERM_VIEW_HOMEWORK |
+    PERM_VIEW_HOMEWORK_SCOREBOARD |
+    PERM_ATTEND_HOMEWORK |
+    PERM_EDIT_HOMEWORK_SELF |
+    PERM_VIEW_TRAINING |
+    PERM_VIEW_RANKING
+)
+# role for student admin
 MEMBER_PERMISSIONS = (
     PERM_VIEW |
     PERM_MOD_BADGE |
@@ -272,32 +309,22 @@ MEMBER_PERMISSIONS = (
     PERM_VIEW_HOMEWORK_SCOREBOARD |
     PERM_ATTEND_HOMEWORK |
     PERM_EDIT_HOMEWORK_SELF |
+    PERM_CREATE_TRAINING |
     PERM_VIEW_TRAINING |
     PERM_EDIT_TRAINING_SELF |
     PERM_VIEW_RANKING
 )
+# slient users : slient student
 SLIENT_PERMISSIONS = (
     PERM_VIEW |
     PERM_VIEW_PROBLEM |
     PERM_EDIT_PROBLEM_SELF |
     PERM_SUBMIT_PROBLEM |
     PERM_READ_PROBLEM_DATA_SELF |
-    # PERM_VIEW_PROBLEM_SOLUTION |
     PERM_CREATE_PROBLEM_SOLUTION |
-    # PERM_VOTE_PROBLEM_SOLUTION |
     PERM_EDIT_PROBLEM_SOLUTION_SELF |
     PERM_DELETE_PROBLEM_SOLUTION_SELF |
-    # PERM_REPLY_PROBLEM_SOLUTION |
-    # PERM_EDIT_PROBLEM_SOLUTION_REPLY_SELF |
-    # PERM_DELETE_PROBLEM_SOLUTION_REPLY_SELF |
     PERM_VIEW_DISCUSSION |
-    # PERM_CREATE_DISCUSSION |
-    # PERM_EDIT_DISCUSSION_SELF |
-    # PERM_REPLY_DISCUSSION |
-    # PERM_EDIT_DISCUSSION_REPLY_SELF |
-    # PERM_EDIT_DISCUSSION_REPLY_SELF_DISCUSSION |
-    # PERM_DELETE_DISCUSSION_REPLY_SELF |
-    # PERM_DELETE_DISCUSSION_REPLY_SELF_DISCUSSION |
     PERM_VIEW_CONTEST |
     PERM_VIEW_CONTEST_SCOREBOARD |
     PERM_ATTEND_CONTEST |
@@ -307,11 +334,10 @@ SLIENT_PERMISSIONS = (
     PERM_ATTEND_HOMEWORK |
     PERM_EDIT_HOMEWORK_SELF |
     PERM_VIEW_TRAINING |
-    # PERM_CREATE_TRAINING |
-    # PERM_EDIT_TRAINING_SELF |
     PERM_VIEW_RANKING
 )
 
+# teachers
 ADMIN_PERMISSIONS = PERM_ALL
 
 # Roles.
@@ -319,7 +345,9 @@ ROLE_ROOT = 'root'
 ROLE_GUEST = 'guest'
 ROLE_DEFAULT = 'default'
 ROLE_SLIENT = 'slient'
-ROLE_MEMBER = 'member'
+ROLE_OPEN = 'open'
+ROLE_MEMBER = 'stuadmin'
+ROLE_STU = 'student'
 ROLE_ADMIN = 'admin'
 
 BuiltinRoleDescriptor = functools.partial(
@@ -340,6 +368,7 @@ DOMAIN_SYSTEM = {
               ROLE_GUEST: BASIC_PERMISSIONS,
               ROLE_DEFAULT: DEFAULT_PERMISSIONS,
               ROLE_SLIENT: SLIENT_PERMISSIONS,
+              ROLE_OPEN: OPEN_PERMISSIONS,
               ROLE_MEMBER: MEMBER_PERMISSIONS,
               ROLE_ADMIN: ADMIN_PERMISSIONS
               },
@@ -412,7 +441,7 @@ LEVELS = collections.OrderedDict([(10, 1),
                                   (1, 100)])
 
 # Footer extra HTMLs. TODO(iceboy): remove.
-FOOTER_EXTRA_HTMLS = ["版本号:", "build20200815"]
+FOOTER_EXTRA_HTMLS = ["版本号:", "build20200930"]
 
 PROBLEM_CATEGORIES = collections.OrderedDict([
     ('顺序结构', [
@@ -451,6 +480,7 @@ PROBLEM_CATEGORIES = collections.OrderedDict([
         '双指针扫描',
         '二分查找',
         '三分查找',
+        '二分答案',
         '求逆序对'
     ]),
     ('函数', [
@@ -460,14 +490,15 @@ PROBLEM_CATEGORIES = collections.OrderedDict([
     ('递推', []),
     ('模拟', []),
     ('贪心', []),
-    ('分治', []),
+    ('分治', [
+        'CDQ'
+    ]),
     ('字符串', [
+        '字符串哈希',
         'KMP',
-        '后缀数据结构',
-        'Trie树',
         'AC自动机',
+        '后缀数组和后缀自动机',
         'Manacher',
-        '表达式处理',
         '最小表示法'
     ]),
     ('数学数论', [
@@ -521,7 +552,11 @@ PROBLEM_CATEGORIES = collections.OrderedDict([
         '划分树',
         '归并树',
         'k-d树',
+        'Trie树',
+        'splay',
+        'treap',
         '树状数组',
+        'ST表',
         '块状链表',
         'Hashing'
     ]),
@@ -542,12 +577,18 @@ PROBLEM_CATEGORIES = collections.OrderedDict([
         '环形DP',
         '坐标DP',
         '区间DP',
-        '树形DP',
-        '状态压缩DP',
         '背包问题',
         '资源分配DP',
+        'DAG上的DP',
         'LCS',
-        'LIS'
+        'LIS',
+        '树形DP',
+        '计数DP',
+        '状压DP',
+        '动态DP',
+        '概率DP',
+        '数位DP',
+        '插头DP'
     ]),
     ('计算几何', [
         '半平面交',
@@ -567,12 +608,14 @@ PROBLEM_CATEGORIES = collections.OrderedDict([
     ('树结构', [
         '树的遍历',
         '最近公共祖先LCA',
-        '生成树',
+        '树的直径',
+        '树的重心',
         'DFS序列',
         '树上倍增',
-        '树的分治',
+        '树上的分治',
         '树链剖分',
-        'Link-Cut-Tree'
+        'Link-Cut-Tree',
+        '虚树'
     ]),
     ('图结构', [
         '图的遍历',
@@ -580,6 +623,7 @@ PROBLEM_CATEGORIES = collections.OrderedDict([
         '二分图',
         '二分图匹配',
         '最短路',
+        'k短路',
         '最小生成树',
         '差分约束',
         '拓扑排序',
@@ -589,7 +633,13 @@ PROBLEM_CATEGORIES = collections.OrderedDict([
         '欧拉回路',
         '2-SAT'
     ]),
-    ('博弈论', []),
+    ('博弈论', [
+        '巴什博弈',
+        '尼姆博弈',
+        '威佐夫博弈',
+        '斐波那契博弈',
+        'SG定理'
+    ]),
     ('线性代数', [
         '矩阵乘法',
         '高斯消元',
@@ -600,14 +650,21 @@ PROBLEM_CATEGORIES = collections.OrderedDict([
     ]),
     ('高性能', [
         '前缀和',
-        '差分'
+        '差分',
+        '倍增',
+        '分块'
     ]),
     ('STL', [
         '容器',
         '算法',
         '迭代器',
     ]),
-    ('其他', [])
+    ('其他', [
+        '打表',
+        '位运算',
+        '离散化',
+        '莫队'
+    ])
 ])
 PROBLEM_SUB_CATEGORIES = {}
 for category, sub_categories in PROBLEM_CATEGORIES.items():
@@ -633,14 +690,18 @@ DEFAULT_VNODES = collections.OrderedDict([
     {'pic': 'share', 'name': '分享'},
     {'pic': 'solution', 'name': '题解'}
   ]),
+  ('学习', [
+    {'pic': None, 'name': '学习笔记'},
+    {'pic': None, 'name': '学习经验'}
+  ]),
   ('数据结构', [
     {'pic': None, 'name': '变量和数组'},
     {'pic': None, 'name': '字符和字符串'},
     {'pic': None, 'name': '结构体和STL'},
     {'pic': None, 'name': '栈和队列'},
-    {'pic': None, 'name': '图'},
     {'pic': None, 'name': '树和堆'},
-    {'pic': None, 'name': '散列表'}
+    {'pic': None, 'name': '图'},
+    {'pic': None, 'name': '高级数据结构'}
   ]),
   ('算法', [
     {'pic': None, 'name': '枚举'},
@@ -653,8 +714,14 @@ DEFAULT_VNODES = collections.OrderedDict([
     {'pic': None, 'name': '数论'},
     {'pic': None, 'name': '几何'},
     {'pic': None, 'name': '图论'},
-    {'pic': None, 'name': '并查集'},
     {'pic': None, 'name': '博弈论'}
+  ]),
+  ('竞赛', [
+    {'pic': None, 'name': '小学组'},
+    {'pic': None, 'name': '初中组'},
+    {'pic': None, 'name': '高中组'},
+    {'pic': None, 'name': '省选'},
+    {'pic': None, 'name': '国赛'}
   ]),
   ('在线题库', [
     {'pic': None, 'name': '洛谷'},
@@ -670,6 +737,6 @@ DEFAULT_VNODES = collections.OrderedDict([
     {'pic': None, 'name': 'C++'},
     {'pic': None, 'name': 'Python'},
     {'pic': None, 'name': '游戏'},
-    {'pic': None, 'name': 'NOIP'}
+    {'pic': None, 'name': '竟赛'}
   ])
 ])

@@ -27,7 +27,7 @@
           <li class="footer__category__item"><a href="https://oi-wiki.org/">{{ _('OI Wiki') }}</a></li>
         </ul></div>
       </div>
-      <div class="medium-3 large-2 columns footer__category expandable end">
+      <div class="medium-3 large-2 columns footer__category expandable">
         <h1>
           {{ _('Community') }}
           <span class="expand-icon">
@@ -35,20 +35,28 @@
           </span>
         </h1>
         <div class="footer__category__expander"><ul class="footer__category__list">
-          <li class="footer__category__item"><a href="http://www.tlscode.com/info/52532.html">{{ _('Contact Us') }}</a></li>
+          <li class="footer__category__item"><a href="/wiki/help">{{ _('Help') }}</a></li>
           <li class="footer__category__item"><a href="https://jq.qq.com/?_wv=1027&k=nZEpThBF">{{ _('Parents Group') }}</a></li>
           <li class="footer__category__item"><a href="https://jq.qq.com/?_wv=1027&k=sf7dZBBK">{{ _('Students Group') }}</a></li>
         </ul></div>
+      </div>
+      <div class="medium-3 large-2 columns footer__category expandable">
+        <li class="footer__category__item"><a>{{_('Scan to follow on wechat')}}</a></li>
+        <a target="_blank"><img src="https://i.loli.net/2020/09/30/4Vdz8JscNS1DOgy.png" ></a>
+      </div>
+      <div class="medium-3 large-2 columns footer__category expandable end">
+        <li class="footer__category__item"><a>{{_('QQ Group')}}</a></li>
+        <a target="_blank"><img src="https://i.loli.net/2020/10/02/yAqr6tPbv35NBxS.png" ></a>
       </div>
     </div>
   {% endif %}
     <div class="footer__extra-link clearfix">
       <div class="footer__extra-left">
         <ol class="clearfix">
-          <li class="footer__extra-link-item"><a href="//vijos.github.io/about-vijos/about/about-vijos/">{{ _('About') }}</a></li>
-          <li class="footer__extra-link-item"><a href="//vijos.github.io/about-vijos/about/privacy-policy/">{{ _('Privacy') }}</a></li>
-          <li class="footer__extra-link-item"><a href="//vijos.github.io/about-vijos/about/terms-of-service/">{{ _('Terms of Service') }}</a></li>
-          <li class="footer__extra-link-item"><a href="//vijos.github.io/about-vijos/about/copyright-complaint/">{{ _('Copyright Complaint') }}</a></li>
+          <li class="footer__extra-link-item"><a href="//www.topscoding.com/about">{{ _('About') }}</a></li>
+          <li class="footer__extra-link-item">© 2018-2020 拓尔思编程 版权所有</a></li>
+          <li class="footer__extra-link-item"><a href="beian.miit.gov.cn/">皖ICP备19000842号</a></li>
+          <li class="footer__extra-link-item">Powered by Vijos</a></li>
           <li class="footer__extra-link-item" data-dropdown-target="#menu-footer-lang">
             <span><span class="icon icon-global"></span> Language <span class="icon icon-expand_less"></span></span>
             <ol class="dropdown-target menu" id="menu-footer-lang">

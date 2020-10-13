@@ -290,7 +290,7 @@ class ProblemSubmitHandler(base.Handler):
   @base.post_argument
   @base.require_csrf_token
   @base.sanitize
-  @base.limit_rate('add_record', 60, 100)
+  @base.limit_rate('add_record', 60, 45)
   async def post(self, *, pid: document.convert_doc_id, lang: str, code: str):
     # TODO(twd2): check status, eg. test, hidden problem, ...
     pdoc = await problem.get(self.domain_id, pid)
@@ -308,12 +308,12 @@ class ProblemPretestHandler(base.Handler):
   @base.post_argument
   @base.require_csrf_token
   @base.sanitize
-  @base.limit_rate('add_record', 60, 5)
+  @base.limit_rate('add_record', 60, 20)
   async def post(self, *, pid: document.convert_doc_id, lang: str, code: str,
                  data_input: str, data_output: str):
     pdoc = await problem.get(self.domain_id, pid)
     # don't need to check hidden status
-    # create zip file, TODO(twd2): check file size
+    # create zip file, TODO(twd2) TODO(limorton): check file size
     post = await self.request.post()
     content = list(zip(post.getall('data_input'), post.getall('data_output')))
     output_buffer = io.BytesIO()
@@ -364,13 +364,17 @@ class ProblemPretestConnection(record_handler.RecordVisibilityMixin, base.Connec
 class ProblemSolutionHandler(base.OperationHandler):
   SOLUTIONS_PER_PAGE = 20
 
-  @base.require_perm(builtin.PERM_VIEW_PROBLEM_SOLUTION)
+  # @base.require_perm(builtin.PERM_VIEW_PROBLEM_SOLUTION)
   @base.get_argument
   @base.route_argument
   @base.sanitize
   async def get(self, *, pid: document.convert_doc_id, page: int=1):
     uid = self.user['_id'] if self.has_priv(builtin.PRIV_USER_PROFILE) else None
     pdoc = await problem.get(self.domain_id, pid, uid)
+    if not self.has_perm(builtin.PERM_VIEW_PROBLEM_SOLUTION) and \
+        (pdoc['psdoc'] is None or 'status' not in pdoc['psdoc'] or \
+         pdoc['psdoc']['status'] != constant.record.STATUS_ACCEPTED):
+        raise error.PermissionError(builtin.PERM_VIEW_PROBLEM_SOLUTION)
     if pdoc.get('hidden', False):
       self.check_perm(builtin.PERM_VIEW_PROBLEM_HIDDEN)
     psdocs, pcount, pscount = await pagination.paginate(
@@ -807,6 +811,7 @@ class ProblemSearchHandler(base.Handler):
       pdoc = await problem.get(self.domain_id, document.convert_doc_id(q))
     except error.ProblemNotFoundError:
       pdoc = None
+    # TODO(limorton) : add title search function
     if pdoc:
       self.redirect(self.reverse_url('problem_detail', pid=pdoc['doc_id']))
       return

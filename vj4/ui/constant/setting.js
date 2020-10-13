@@ -9,6 +9,10 @@ export const PRIVACY_RANGE = {
   [PRIVACY_SECRET]: 'Secret',
 };
 attachObjectMeta(PRIVACY_RANGE, 'intKey', true);
+export const OPEN_RANGE = {
+  [PRIVACY_PUBLIC]: 'Public',
+};
+attachObjectMeta(OPEN_RANGE, 'intKey', true);
 
 export const FUNCTION_RANGE = {
   0: 'Disabled',

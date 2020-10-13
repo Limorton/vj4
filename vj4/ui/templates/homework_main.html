@@ -14,8 +14,8 @@
           <span class="nojs--hide">
             {{ _('View') }}:
             <select class="inline compact select" name="homework_display">
-              <option value="calendar">{{ _('Calendar View') }}</option>
               <option value="list">{{ _('List View') }}</option>
+              <option value="calendar">{{ _('Calendar View') }}</option>
             </select>
           </span>
         {% if handler.has_perm(vj4.model.builtin.PERM_CREATE_HOMEWORK) %}
@@ -27,7 +27,8 @@
       {% if not tdocs %}
         {{ nothing.render('There is no homework so far ╰(*°▽°*)╯') }}
       {% else %}
-        <ol class="section__list homework__list hasjs--hide">
+        <div name="calendar_entry"></div>
+        <ol class="section__list homework__list hasjs--display">
         {% for tdoc in tdocs %}
           <li class="section__list__item homework__item">
             <div class="media">
@@ -59,7 +60,6 @@
           </li>
         {% endfor %}
         </ol>
-        <div name="calendar_entry"></div>
       {% endif %}
       </div>
     </div>

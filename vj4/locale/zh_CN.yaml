@@ -1,6 +1,7 @@
 #简体中文
 ---
 (None): (无)
+Address: 邮寄地址
 API: API
 about: 关于
 About: 关于
@@ -31,7 +32,9 @@ Category: 分类
 Change Email: 修改电子邮件
 Change Password: 修改密码
 Code: 代码
+Created: 创建于
 Comments: 评论
+Latest Comment: 最新评论
 Contact Us: 联系我们
 Content: 内容
 Contest Scoreboard: 比赛成绩表
@@ -75,6 +78,7 @@ Footer: 页脚
 Forgot password or username?: 忘记密码或者用户名？
 Gender: 性别
 Gender Visibility: 性别可见性
+Grade: 年级
 Gravatar Email: Gravatar Email 地址
 'Hello! You can click following link to sign up your TopsCoding account:': 您好！您可以点击以下链接来注册您的 TopsCoding 账户：
 'Hello, {0}! You can click following link to reset the password of your TopsCoding account:': 您好，{0}！您可以点击以下链接来重置您
@@ -131,8 +135,8 @@ Public: 公开
 Published at: 发表于
 QQ Group: QQ 群
 QQ Visibility: QQ 可见性
-WeChat: 微信
-WeChat Visibility: 微信可见性
+WeChat: 联系电话/微信
+WeChat Visibility: 微信/电话可见性
 Quit Scratchpad: 退出在线编程模式
 Recent Activities: 最近活动
 Registered at: 注册于
@@ -146,6 +150,8 @@ Rule: 规则
 SIGN IN: 登录
 Save All Changes: 保存所有修改
 Saved session: 已保存的会话
+School: 学校
+Teacher: 指导老师
 Score: 分数
 Secret: 保密
 Secret (visible to admins): 保密（对管理员可见）
@@ -211,6 +217,7 @@ View or submit solution: 查看与发表题解
 Visible to registered users: 对注册用户可见
 Vote: 投票
 'We use <a href="https://en.gravatar.com/" target="_blank">Gravatar</a> to present your avatar icon.': '我们使用 <a href="https://cn.gravatar.com/" target="_blank">Gravatar</a> 服务来呈现您的头像。'
+Scan to follow on wechat: 微信公众号
 Whether to show tags in the problem list.: 是否在题目列表中显示题目的标签。
 Write Your Comment: 发表您的评论
 Write Your Solution: 发表您的题解
@@ -295,7 +302,7 @@ Code language: 代码语言
 Comment: 评论
 Share: 分享
 Delete: 删除
-Highlight: 高亮讨论
+Highlight: 置顶讨论
 Begin at: 开始于
 End at: 结束于
 Action: 动作
@@ -606,6 +613,7 @@ Evaluated difficulty: 估计的难度
 Difficulty displayed: 显示的难度
 Difficulty by algorithm: 算法计算的难度
 Difficulty by admin: 管理员设定的难度
+Hitokoto: 每日一言（ヒトコト）
 Recommended: 推荐
 Chinese: 中文
 English: 英文
@@ -621,11 +629,18 @@ Total: 总计
 Filter: 过滤
 By Username / UID: 由用户名或 UID
 By Problem: 由题目
+By Status: 由状态
 By Contest: 由比赛
 Reset: 重置
 Data of problem {1} not found.: 题目 {1} 的数据未找到。
 Data of record {0} not found.: 记录 {0} 的数据未找到。
 All Submissions: 所有递交
+Waiting: 等待评测
+Wrong Answer: 答案错误
+Runtime Error: 运行时错误
+System Error: 系统错误
+Memory Exceeded: 超内存
+Time Exceeded: 超时
 My Files: 我的文件
 home_file: 我的文件
 "What's file?": 什么是文件？
@@ -643,6 +658,7 @@ Mark Red: 标红
 Mark Yellow: 标黄
 Mark Blue: 标蓝
 Mark Green: 标绿
+Mark Purple: 标紫
 Clear Marks: 清除标记
 Bold: 加粗
 Italic: 斜体
@@ -666,21 +682,25 @@ Pick a problem randomly based on current filter: 根据当前过滤条件随机�
 No problem.: 没有题目。
 Initialize: 初始化
 Profile Background Image: 背景图片
-Choose the background image in your profile page.: 选择您资料页面的背景图片。
-'{} is a moderator of this domain.': '{}是这个班级的管理者之一。'
+Choose the background image in your profile page.: 选择您资料页面的背景图片
+'{} is a moderator of this domain.': '{}是这个班级的管理者之一'
+'a boss from {}{}.': '一位来自{}{}的大佬'
+'less than 30 characters, otherwise it will be shown unexpectedly': '不要超过30个字符，过多将无法正常显示'
 He: 他
+School Visibility: 学校可见性
+Grade Visibility: 年级可见性
 She: 她
 Bulletin: 公告
 You cannot visit this domain.: 您不能访问此班级。
 'Copy failed :(': '复制失败 :('
 Code copied to clipboard!: 代码已复制到剪贴板！
-No comments so far...: 目前还没有评论...
-No solutions so far...: 目前还没有题解...
+No comments so far...: 目前还没有评论，快来抢沙发...
+No solutions so far...: 目前还没有题解，快来抢沙发...
 Edit Profile: 编辑个人信息
 Send Message: 发送站内信息
 Copy Email: 复制电子邮件
 Copy QQ Number: 复制QQ号
-Copy WeChat Account: 复制微信号
+Copy WeChat Account: 复制微信/电话
 '"{data}" copied to clipboard!': “{data}”已复制到剪贴板！
 'Copy "{data}" failed :(': '复制“{data}”失败 :('
 Introduce: 简介

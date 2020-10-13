@@ -31,8 +31,8 @@
                 </li>
                 <li>
                   {{ user.render_inline(udict[ddoc['owner_uid']], dudoc=dudoc if dudoc else dudict[ddoc['owner_uid']], badge=false) }}
-                  @
-                  {{ datetime_span(ddoc['update_at'] or ddoc['_id'].generation_time) }}
+                  {{ _('Created') }} @ {{ datetime_span(ddoc['_id'].generation_time) }}
+                  {{ _('Latest Comment') }} @ {{ datetime_span(ddoc['update_at']) }} 
                 </li>
               </ul>
             </div>

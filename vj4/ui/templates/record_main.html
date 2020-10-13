@@ -19,19 +19,37 @@
         <div class="section__body">
           <div class="row">
             <!-- TODO: replace with form_builder -->
-            <div class="medium-4 columns">
+            <div class="medium-3 columns">
               <label class="filter-user">
                 {{ _('By Username / UID') }}
                 <input name="uid_or_name" type="text" class="textbox" value="{{ filter_uid_or_name }}" autocomplete="off" data-autofocus>
               </label>
             </div>
-            <div class="medium-4 columns">
+            <div class="medium-3 columns">
               <label>
                 {{ _('By Problem') }}
                 <input name="pid" type="text" class="textbox" value="{{ filter_pid }}">
               </label>
             </div>
-            <div class="medium-4 columns">
+            <div class="medium-2 columns">
+              <label>
+                {{ _('By Status') }}
+              </label>
+              <!-- <input name="state" type="text" class="textbox" value="{{ filter_status }}"> -->
+              <!-- state: 0:waiting, 1:ac, 2:wa, 3:TLE,4:MLE,6:RE,7:CE,8:system error -->
+              <select class="inline compact select" name="status">
+                <option value="">{{ _('All Submissions') }}</option>  
+                <!-- <option value="0">{{ _('Waiting') }}</option> -->
+                <option value="1">{{ _('Accepted') }}</option>
+                <option value="2">{{ _('Wrong Answer') }}</option>
+                <option value="3">{{ _('Time Exceeded') }}</option>
+                <option value="4">{{ _('Memory Exceeded') }}</option>
+                <option value="6">{{ _('Runtime Error') }}</option>
+                <option value="7">{{ _('Compile Error') }}</option>
+                <option value="8">{{ _('System Error') }}</option>
+              </select>
+            </div>
+            <div class="medium-3 columns">
               <label>
                 {{ _('By Contest') }}
                 <input name="tid" type="text" class="textbox" value="{{ filter_tid }}">

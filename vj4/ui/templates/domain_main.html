@@ -3,6 +3,7 @@
 {% import "components/contest.html" as contest with context %}
 {% block content %}
 {% if handler.domain['bulletin'] %}
+<!-- TODO(Limorton): add domain description -->
 <div class="row">
   <div class="large-12 columns">
     <div class="section">
@@ -163,7 +164,17 @@
     </div>
   {% endif %}
   </div>
+  
   <div class="large-3 columns">
+  
+    <!-- TODO(add 一言 和 签到) -->
+  <!-- <div class="section side">
+    <div class="section__header">
+      <h1 class="section__title">{{_('Hitokoto')}}</h1>
+    </div>
+    <div>一言功能开发中</div>    
+  </div> -->
+
   {% if handler.has_perm(vj4.model.builtin.PERM_VIEW_DISCUSSION) %}
     {% include 'discussion_nodes_widget.html' %}
   {% endif %}

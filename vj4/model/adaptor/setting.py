@@ -34,15 +34,23 @@ PREFERENCE_SETTINGS = [
             desc='If left blank, the built-in template of the corresponding language will be used.')]
 
 ACCOUNT_SETTINGS = [
-    Setting('setting_info', 'gravatar', str,
-            name='Gravatar Email',
-            desc='We use <a href="https://en.gravatar.com/" target="_blank">Gravatar</a> to present your avatar icon.'),
+    Setting('setting_info', 'gender', int, range=constant.model.USER_GENDER_RANGE,
+            ui='select', name='Gender'),
+    Setting('setting_info', 'school', str,
+            name='School',desc='请如实填写学校信息'),
+    Setting('setting_info', 'grade', int, range=constant.model.USER_GRADE_RANGE,
+            ui='select', name='Grade', desc='请如实填写年级信息'),
+    Setting('setting_info', 'teacher', str,
+            name='Teacher',desc=''),
     Setting('setting_info', 'qq', str,
             name='QQ'),
     Setting('setting_info', 'wechat', str,
-            name='WeChat'),
-    Setting('setting_info', 'gender', int, range=constant.model.USER_GENDER_RANGE,
-            ui='select', name='Gender'),
+            name='WeChat', desc='此联系方式将作为邮寄奖品时的联系电话，请如实填写'),
+    Setting('setting_info', 'address', str,
+            name='Address', desc='此地址将作为邮寄奖品的收货地址，请如实填写'),
+    Setting('setting_info', 'gravatar', str,
+            name='Gravatar Email',
+            desc='We use <a href="https://en.gravatar.com/" target="_blank">Gravatar</a> to present your avatar icon.'),
     Setting('setting_info', 'bio', str,
             ui='markdown', name='Bio'),
     Setting('setting_privacy', 'show_mail', int, range=constant.setting.PRIVACY_RANGE,
@@ -55,6 +63,10 @@ ACCOUNT_SETTINGS = [
             ui='select', name='Gender Visibility'),
     Setting('setting_privacy', 'show_bio', int, range=constant.setting.PRIVACY_RANGE,
             ui='select', name='Bio Visibility'),
+    Setting('setting_privacy', 'show_school', int, range=constant.setting.OPEN_RANGE,
+            ui='select', name='School Visibility'),
+    Setting('setting_privacy', 'show_grade', int, range=constant.setting.OPEN_RANGE,
+            ui='select', name='Grade Visibility'),
     Setting('setting_customize', 'background_img', int, range=constant.setting.BACKGROUND_RANGE,
             ui='image_radio', name='Profile Background Image',
             desc='Choose the background image in your profile page.',
@@ -62,8 +74,8 @@ ACCOUNT_SETTINGS = [
 
 
 DOMAIN_ACCOUNT_SETTINGS = [
-    Setting('setting_info_domain', 'display_name', str,
-            name='Display Name')]
+    Setting('setting_info', 'display_name', str,
+            name='Display Name', desc='less than 30 characters, otherwise it will be shown unexpectedly')]
 
 DOMAIN_SETTINGS_KEYS = set(s.key for s in DOMAIN_ACCOUNT_SETTINGS)
 

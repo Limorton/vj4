@@ -29,9 +29,12 @@ class RecordVisibilityMixin(contest.ContestVisibilityMixin):
     else:
       return self.can_show_scoreboard(tdoc), tdoc
 
-
+# generate command dict for getting record from database 
 class RecordCommonOperationMixin(object):
-  async def get_filter_query(self, uid_or_name, pid, tid):
+  '''
+  status: 0:waiting, 1:ac, 2:wa, 3:TLE,4:MLE,6:RE,7:CE,8:system error
+  '''
+  async def get_filter_query(self, uid_or_name, pid, tid, status):
     query = dict()
     if uid_or_name:
       try:
@@ -47,6 +50,8 @@ class RecordCommonOperationMixin(object):
         query['pid'] = document.convert_doc_id(pid)
       if tid:
         query['tid'] = document.convert_doc_id(tid)
+    if status:
+      query['status'] = int(status)
     return query
 
 
@@ -58,7 +63,7 @@ class RecordMixin(RecordVisibilityMixin, RecordCommonOperationMixin):
 class RecordMainHandler(RecordMixin, base.Handler):
   @base.get_argument
   @base.sanitize
-  async def get(self, *, start: str='', uid_or_name: str='', pid: str='', tid: str=''):
+  async def get(self, *, start: str='', uid_or_name: str='', pid: str='', tid: str='', status: str=''):
     if not self.has_priv(builtin.PRIV_VIEW_JUDGE_STATISTICS):
       start = ''
     if start:
@@ -68,7 +73,7 @@ class RecordMainHandler(RecordMixin, base.Handler):
         raise error.InvalidArgumentError('start')
     else:
       start = None
-    query = await self.get_filter_query(uid_or_name, pid, tid)
+    query = await self.get_filter_query(uid_or_name, pid, tid, status)
     # TODO(iceboy): projection, pagination.
     rdocs = await record.get_all_multi(**query, end_id=start,
       get_hidden=self.has_priv(builtin.PRIV_VIEW_HIDDEN_RECORD)).sort([('_id', -1)]).limit(50).to_list()
@@ -98,7 +103,7 @@ class RecordMainHandler(RecordMixin, base.Handler):
       [('uid_or_name', uid_or_name), ('pid', pid), ('tid', tid)])
     self.render(
         'record_main.html', rdocs=rdocs, udict=udict, dudict=dudict, pdict=pdict,
-        statistics=statistics, filter_uid_or_name=uid_or_name, filter_pid=pid, filter_tid=tid,
+        statistics=statistics, filter_uid_or_name=uid_or_name, filter_pid=pid, filter_status=status, filter_tid=tid,
         socket_url=url_prefix + '/records-conn?' + query_string, # FIXME(twd2): magic
         query_string=query_string)
 
@@ -107,9 +112,9 @@ class RecordMainHandler(RecordMixin, base.Handler):
 class RecordMainConnection(RecordMixin, base.Connection):
   @base.get_argument
   @base.sanitize
-  async def on_open(self, *, uid_or_name: str='', pid: str='', tid: str=''):
+  async def on_open(self, *, uid_or_name: str='', pid: str='', tid: str='', status: str=''):
     await super(RecordMainConnection, self).on_open()
-    self.query = await self.get_filter_query(uid_or_name, pid, tid)
+    self.query = await self.get_filter_query(uid_or_name, pid, tid, status)
     bus.subscribe(self.on_record_change, ['record_change'])
 
   async def on_record_change(self, e):

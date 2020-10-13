@@ -66,6 +66,14 @@
                   {{ vj4.constant.model.USER_GENDER_ICONS[handler.get_udoc_setting(udoc, 'gender')] }}
                 </span>
               {% endif %}
+              {% if handler.get_udoc_setting(udoc, 'school') != none
+              %}
+                <a class="profile-header__contact-item"  
+                  data-tooltip="{{ _('a boss from {}{}.').format(_(udoc['school']), _(vj4.constant.model.USER_GRADE_RANGE[handler.get_udoc_setting(udoc, 'grade')])) }}"
+                >
+                  <span class="icon icon-info"></span>
+                </a>
+              {% endif %}
               {% if handler.dudoc_has_perm(udoc, dudoc, vj4.model.builtin.PERM_MOD_BADGE) %}
                 <span
                   class="profile-header__contact-item user-profile-badge badge--mod"

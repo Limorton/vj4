@@ -59,7 +59,7 @@
         <span class="icon icon-comment--text"></span> {{ _('Discussions') }}
       </a></li>
     {% endif %}
-    {% if handler.has_perm(vj4.model.builtin.PERM_VIEW_PROBLEM_SOLUTION) %}
+    {% if handler.has_perm(vj4.model.builtin.PERM_VIEW_PROBLEM_SOLUTION) or pdoc['psdoc']['status'] == vj4.constant.record.STATUS_ACCEPTED %}
       <li class="menu__item"><a class="menu__link{% if page_name == 'problem_solution' %} active{% endif %}" href="{{ reverse_url('problem_solution', pid=pdoc['doc_id']) }}">
         <span class="icon icon-comment--text"></span> {{ _('Solutions') }}
       </a></li>
