@@ -26,7 +26,7 @@ def node_url(handler, name, node_or_dtuple):
 
 @app.route('/discuss', 'discussion_main')
 class DiscussionMainHandler(base.Handler):
-  DISCUSSIONS_PER_PAGE = 25
+  DISCUSSIONS_PER_PAGE = 30
 
   @base.require_perm(builtin.PERM_VIEW_DISCUSSION)
   @base.get_argument
