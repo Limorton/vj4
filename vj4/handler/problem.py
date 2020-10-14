@@ -378,7 +378,7 @@ class ProblemSolutionHandler(base.OperationHandler):
     if pdoc.get('hidden', False):
       self.check_perm(builtin.PERM_VIEW_PROBLEM_HIDDEN)
     psdocs, pcount, pscount = await pagination.paginate(
-        problem.get_multi_solution(self.domain_id, pdoc['doc_id']),
+        problem.get_multi_solution(self.domain_id, pdoc['doc_id']).sort([("vote",-1)]),
         page, self.SOLUTIONS_PER_PAGE)
     uids = {pdoc['owner_uid']}
     uids.update(psdoc['owner_uid'] for psdoc in psdocs)
