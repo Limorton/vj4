@@ -444,7 +444,7 @@ LEVELS = collections.OrderedDict([(10, 1),
 # FOOTER_EXTRA_HTMLS = ['© 2005 - 2020 <a href="https://vijos.org/">Vijos.org</a>', version.get(),
 #                       '<a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow">' +
 #                       '沪ICP备14040537号</a>']
-FOOTER_EXTRA_HTMLS = ["版本号:", "build20201013-2"]
+FOOTER_EXTRA_HTMLS = ["版本号:", "build20201014-1618"]
 
 PROBLEM_CATEGORIES = collections.OrderedDict([
     ('顺序结构', [
