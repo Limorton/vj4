@@ -54,7 +54,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => ({
 export default class ScratchpadRecordsRowContainer extends React.PureComponent {
   handleRowClick(ev, id) {
     const url = substitute(
-      decodeURIComponent(Context.getRecordDetailUrl),
+      decodeURIComponent(decodeURIComponent(Context.getRecordDetailUrl)),
       { rid: id }
     );
     emulateAnchorClick(ev, url, true);

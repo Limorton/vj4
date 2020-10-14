@@ -51,7 +51,7 @@ async function updateSelection(sendRequest = true) {
     if (requestTags.length === 0) {
       url = Context.getProblemUrlWithoutCategory;
     } else {
-      url = substitute(decodeURIComponent(Context.getProblemUrlWithCategory), {
+      url = substitute(decodeURIComponent(decodeURIComponent(Context.getProblemUrlWithCategory)), {
         category: requestTags
           .map(tag => tag.split(',').map(encodeURIComponent).join(','))
           .join('+'), // build a beautiful URL
