@@ -695,7 +695,8 @@ DEFAULT_VNODES = collections.OrderedDict([
   ]),
   ('学习', [
     {'pic': None, 'name': '学习笔记'},
-    {'pic': None, 'name': '学习经验'}
+    {'pic': None, 'name': '学习经验'},
+    {'pic': None, 'name': '干货'}
   ]),
   ('数据结构', [
     {'pic': None, 'name': '变量和数组'},
