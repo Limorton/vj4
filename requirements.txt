@@ -12,5 +12,5 @@ geoip2
 GitPython
 PyYAML
 aiomongo
-yarl
+yarl==1.5.1
 aiohttp-sentry
