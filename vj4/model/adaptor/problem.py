@@ -81,9 +81,9 @@ async def get(domain_id: str, pid: document.convert_doc_id, uid: int = None):
 @argmethod.wrap
 async def edit(domain_id: str, pid: document.convert_doc_id, **kwargs):
   if 'title' in kwargs:
-      validator.check_title(kwargs['title'])
+    validator.check_title(kwargs['title'])
   if 'content' in kwargs:
-      validator.check_content(kwargs['content'])
+    validator.check_content(kwargs['content'])
   pdoc = await document.set(domain_id, document.TYPE_PROBLEM, pid, **kwargs)
   if not pdoc:
     raise error.DocumentNotFoundError(domain_id, document.TYPE_PROBLEM, pid)
