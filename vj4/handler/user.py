@@ -227,9 +227,14 @@ class UserDetailHandler(base.Handler, UserSettingsMixin):
     pstardocs = await pstardocs.to_list()
 
     # get user's star discussion
-    dstardocs = discussion.get_multi_status(domain_id=self.domain_id, uid=uid, star=True)
-    dstarcount = await dstardocs.count()
-    dstardocs = await dstardocs.to_list()
+    if self.has_perm(builtin.PERM_VIEW_DISCUSSION):
+      dstardocs = discussion.get_multi_status(domain_id=self.domain_id, uid=uid, star=True)
+      dstarcount = await dstardocs.count()
+      dstardocs = await dstardocs.to_list()
+    else:
+      dstardocs = []
+      dstarcount = 0
+      dstardocs = {}
 
     self.render('user_detail.html', is_self_profile=is_self_profile,
                 udoc=udoc, dudoc=dudoc, sdoc=sdoc,
