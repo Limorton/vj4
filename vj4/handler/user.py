@@ -202,13 +202,15 @@ class UserDetailHandler(base.Handler, UserSettingsMixin):
     pdocs = problem.get_multi(domain_id=self.domain_id, owner_uid=uid, **f).sort([('_id', -1)])
     pcount = await pdocs.count()
     pdocs = await pdocs.limit(10).to_list()
-
+    
+    # get user's problem solutions
     psdocs = problem.get_multi_solution_by_uid(self.domain_id, uid)
     psdocs_hot = problem.get_multi_solution_by_uid(self.domain_id, uid)
     pscount = await psdocs.count()
     psdocs = await psdocs.limit(10).to_list()
     psdocs_hot = await psdocs_hot.sort([('vote', -1), ('doc_id', -1)]).limit(10).to_list()
 
+    # get user's discussion
     if self.has_perm(builtin.PERM_VIEW_DISCUSSION):
       ddocs = discussion.get_multi(self.domain_id, owner_uid=uid)
       dcount = await ddocs.count()
@@ -219,10 +221,22 @@ class UserDetailHandler(base.Handler, UserSettingsMixin):
       vndict = {}
       dcount = 0
 
+    # get user's star problem
+    pstardocs = problem.get_multi_status(domain_id=self.domain_id, uid=uid, star=True)
+    pstarcount = await pstardocs.count()
+    pstardocs = await pstardocs.to_list()
+
+    # get user's star discussion
+    dstardocs = discussion.get_multi_status(domain_id=self.domain_id, uid=uid, star=True)
+    dstarcount = await dstardocs.count()
+    dstardocs = await dstardocs.to_list()
+
     self.render('user_detail.html', is_self_profile=is_self_profile,
                 udoc=udoc, dudoc=dudoc, sdoc=sdoc,
                 rdocs=rdocs, pdict=pdict, pdocs=pdocs, pcount=pcount,
                 psdocs=psdocs, pscount=pscount, psdocs_hot=psdocs_hot,
+                pstardocs=pstardocs, pstarcount=pstarcount,
+                dstardocs=dstardocs, dstarcount=dstarcount,
                 ddocs=ddocs, dcount=dcount, vndict=vndict)
 
 

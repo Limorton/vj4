@@ -119,7 +119,7 @@
                 </div>
                 <div class="section__body">
                 {% for pdoc in pdocs %}
-                  <p><a href="{{ reverse_url('problem_detail', pid=pdoc['doc_id']) }}">{{ pdoc['title'] }}</a></p>
+                  <p><a href="{{ reverse_url('problem_detail', pid=pdoc['doc_id']) }}">P{{ pdoc['doc_id'] }} {{ pdoc['title'] }}</a></p>
                 {% endfor %}
                 </div>
               {% endif %}{# if pdocs #}
@@ -129,7 +129,7 @@
                 </div>
                 <div class="section__body">
                 {% for psdoc in psdocs_hot %}
-                  <p><a href="{{ reverse_url('problem_solution', pid=psdoc['parent_doc_id']) }}">PS{{ psdoc['doc_id'] }}</a></p>
+                  <p><a href="{{ reverse_url('problem_solution', pid=psdoc['parent_doc_id']) }}">P{{psdoc['parent_doc_id']}}</a></p>
                 {% endfor %}
                 </div>
                 <div class="section__header">
@@ -137,7 +137,7 @@
                 </div>
                 <div class="section__body">
                 {% for psdoc in psdocs %}
-                  <p><a href="{{ reverse_url('problem_solution', pid=psdoc['parent_doc_id']) }}">PS{{ psdoc['doc_id'] }}</a></p>
+                  <p><a href="{{ reverse_url('problem_solution', pid=psdoc['parent_doc_id']) }}">P{{psdoc['parent_doc_id']}}</a></p>
                 {% endfor %}
                 </div>
               {% endif %}{# if psdocs #}
@@ -187,6 +187,37 @@
               {% endif %}
               </div>
             </li>
+            {% if is_self_profile %}
+              <li class="section__tab-item">
+                <h1 class="section__tab-title">{{ _('Star') }} ({{ pstarcount + dstarcount }})</h1>
+                <div class="section__tab-main">
+                {% if not pstardocs %}
+                  {{ nothing.render('Oh, the user doesn\'t have any stars!') }}
+                {% else %}
+                {% if pstarcount %}
+                  <div class="section__header">
+                    <h1 class="section__title">{{ _('Stared Problems') }}</h1>
+                  </div>
+                  <div class="section__body">
+                    {% for pstardoc in pstardocs %}
+                      <p><a href="{{ reverse_url('problem_detail', pid=pstardoc['doc_id']) }}">{{ pstardoc['doc_id'] }}</a></p>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+                {% if dstarcount %}
+                  <div class="section__header">
+                    <h1 class="section__title">{{ _('Stared Discussions') }}</h1>
+                  </div>
+                  <div class="section__body">
+                    {% for dstardoc in dstardocs %}
+                      <p><a href="{{ reverse_url('discussion_detail', did=dstardoc['doc_id']) }}">{{ dstardoc['doc_id'] }}</a></p>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+                {% endif %}
+                </div>
+              </li>
+            {% endif %}
           </ul>
         </div>
       </div>

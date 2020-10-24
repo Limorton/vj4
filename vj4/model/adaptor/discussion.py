@@ -184,8 +184,8 @@ def get_multi(domain_id: str, *, fields=None, **kwargs):
                             **kwargs) \
                  .sort([("highlight",-1),
                         ('generation_time', -1),
-                        ('num_replies', -1),
-                        ('update_at', -1)])
+                        ('update_at', -1),
+                        ('num_replies', -1)])
 
 
 @argmethod.wrap
@@ -300,6 +300,8 @@ async def set_star(domain_id: str, did: document.convert_doc_id, uid: int, star:
 async def get_status(domain_id: str, did: document.convert_doc_id, uid: int):
   return await document.get_status(domain_id, document.TYPE_DISCUSSION, did, uid)
 
+def get_multi_status(*, fields=None, **kwargs):
+  return document.get_multi_status(doc_type=document.TYPE_DISCUSSION, fields=fields, **kwargs)
 
 if __name__ == '__main__':
   argmethod.invoke_by_args()

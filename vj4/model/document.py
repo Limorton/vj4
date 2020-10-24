@@ -229,7 +229,7 @@ async def get_status(domain_id: str, doc_type: int, doc_id: convert_doc_id, uid:
                               'doc_id': doc_id, 'uid': uid},
                              projection=fields)
 
-
+@argmethod.wrap
 def get_multi_status(*, fields=None, **kwargs):
   coll = db.coll('document.status')
   return coll.find(kwargs, projection=fields)

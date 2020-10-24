@@ -11,6 +11,7 @@ export const PRIVACY_RANGE = {
 attachObjectMeta(PRIVACY_RANGE, 'intKey', true);
 export const OPEN_RANGE = {
   [PRIVACY_PUBLIC]: 'Public',
+  [PRIVACY_REGISTERED_ONLY]: 'Visible to registered users',
 };
 attachObjectMeta(OPEN_RANGE, 'intKey', true);
 
