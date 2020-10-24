@@ -183,8 +183,8 @@ def get_multi(domain_id: str, *, fields=None, **kwargs):
                             fields=fields,
                             **kwargs) \
                  .sort([("highlight",-1),
-                        ('generation_time', -1),
                         ('update_at', -1),
+                        ('generation_time', -1),
                         ('num_replies', -1)])
 
 
