@@ -63,7 +63,7 @@ class RecordMixin(RecordVisibilityMixin, RecordCommonOperationMixin):
 class RecordMainHandler(RecordMixin, base.Handler):
   @base.get_argument
   @base.sanitize
-  async def get(self, *, start: str='', uid_or_name: str='', pid: str='', tid: str='', status: str=''):
+  async def get(self, *, start: str='', uid_or_name: str='', pid: str='', tid: str='', status: str='', sort_by: str=''):
     if not self.has_priv(builtin.PRIV_VIEW_JUDGE_STATISTICS):
       start = ''
     if start:
@@ -75,8 +75,12 @@ class RecordMainHandler(RecordMixin, base.Handler):
       start = None
     query = await self.get_filter_query(uid_or_name, pid, tid, status)
     # TODO(iceboy): projection, pagination.
-    rdocs = await record.get_all_multi(**query, end_id=start,
-      get_hidden=self.has_priv(builtin.PRIV_VIEW_HIDDEN_RECORD)).sort([('_id', -1)]).limit(50).to_list()
+    if sort_by:
+      rdocs = await record.get_all_multi(**query, end_id=start,
+        get_hidden=self.has_priv(builtin.PRIV_VIEW_HIDDEN_RECORD)).sort([('_id', -1)]).limit(50).to_list()
+    else:
+      rdocs = await record.get_all_multi(**query, end_id=start,
+        get_hidden=self.has_priv(builtin.PRIV_VIEW_HIDDEN_RECORD)).sort([('_id', -1)]).sort([('score', -1),('time_ms', 1)]).limit(50).to_list()
     # TODO(iceboy): projection.
     udict, dudict, pdict = await asyncio.gather(
         user.get_dict(rdoc['uid'] for rdoc in rdocs),
@@ -103,7 +107,7 @@ class RecordMainHandler(RecordMixin, base.Handler):
       [('uid_or_name', uid_or_name), ('pid', pid), ('tid', tid)])
     self.render(
         'record_main.html', rdocs=rdocs, udict=udict, dudict=dudict, pdict=pdict,
-        statistics=statistics, filter_uid_or_name=uid_or_name, filter_pid=pid, filter_status=status, filter_tid=tid,
+        statistics=statistics, filter_uid_or_name=uid_or_name, filter_pid=pid, filter_status=status, filter_tid=tid, sort_by='',
         socket_url=url_prefix + '/records-conn?' + query_string, # FIXME(twd2): magic
         query_string=query_string)
 

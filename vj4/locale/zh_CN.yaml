@@ -505,7 +505,7 @@ View Contest: 查看比赛
 Cancel Score: 取消成绩
 score canceled: 成绩取消
 You have permissions to create problems for this domain.: 您有权限为此班级创建题目。
-Sort by: 排序
+Sort by: 排序方式
 '↓ # Enrollees': '↓ 参与人数'
 '↓ # Likes': '↓ 赞数'
 '↓ # Stars': '↓ 收藏数'
@@ -630,7 +630,7 @@ Filter: 过滤
 By Username / UID: 由用户名或 UID
 By Problem: 由题目
 By Status: 由状态
-By Contest: 由比赛
+By Contest: 由比赛或作业
 Reset: 重置
 Data of problem {1} not found.: 题目 {1} 的数据未找到。
 Data of record {0} not found.: 记录 {0} 的数据未找到。
@@ -641,6 +641,8 @@ Runtime Error: 运行时错误
 System Error: 系统错误
 Memory Exceeded: 超内存
 Time Exceeded: 超时
+Latest Submission: 最新提交
+Optimal Solution: 最优解
 My Files: 我的文件
 home_file: 我的文件
 "What's file?": 什么是文件？
