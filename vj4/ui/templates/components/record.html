@@ -4,7 +4,7 @@
     <span class="icon record-status--icon {{ vj4.constant.record.STATUS_CODES[rdoc['status']] }}"></span>
     <a href="{{ reverse_url('record_detail', rid=rdoc[rid_key], domain_id=rdoc['domain_id']) }}" class="record-status--text {{ vj4.constant.record.STATUS_CODES[rdoc['status']] }}">
       {{ vj4.constant.record.STATUS_TEXTS[rdoc['status']]}}
-      {% if not rdoc['status'] == vj4.constant.record.STATUS_ACCEPTED %}
+      {% if 'score' in rdoc.keys() and not rdoc['status'] == vj4.constant.record.STATUS_ACCEPTED %}
         | {{ rdoc['score'] }}
       {% endif %}
     </a>
