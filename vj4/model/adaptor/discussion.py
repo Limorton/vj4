@@ -184,8 +184,7 @@ def get_multi(domain_id: str, *, fields=None, **kwargs):
                             **kwargs) \
                  .sort([("highlight",-1),
                         ('update_at', -1),
-                        ('doc_id', -1),
-                        ('num_replies', -1)])
+                        ('doc_id', -1)])
 
 
 @argmethod.wrap
