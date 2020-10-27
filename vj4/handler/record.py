@@ -29,7 +29,7 @@ class RecordVisibilityMixin(contest.ContestVisibilityMixin):
     else:
       return self.can_show_scoreboard(tdoc), tdoc
 
-# generate command dict for getting record from database 
+# generate command dict for getting record from database
 class RecordCommonOperationMixin(object):
   '''
   status: 0:waiting, 1:ac, 2:wa, 3:TLE,4:MLE,6:RE,7:CE,8:system error
@@ -56,7 +56,16 @@ class RecordCommonOperationMixin(object):
 
 
 class RecordMixin(RecordVisibilityMixin, RecordCommonOperationMixin):
-  pass
+  async def ac_problem(self, pid: document.convert_doc_id):
+    if '_id' not in self.domain_user.keys():
+      uid = builtin.UID_GUEST
+    else:
+      uid = self.domain_user['_id']
+    if uid is not None:
+      psdoc = await document.get_status(self.domain_id, document.TYPE_PROBLEM, doc_id=pid, uid=uid)
+      if psdoc is not None:
+        return 'status' in psdoc.keys() and psdoc['status'] == constant.record.STATUS_ACCEPTED
+    return False
 
 
 @app.route('/records', 'record_main')
@@ -161,9 +170,11 @@ class RecordDetailHandler(RecordMixin, base.Handler):
     else:
       show_status, tdoc = True, None
     # TODO(twd2): futher check permission for visibility.
+    ac_myself = await self.ac_problem(rdoc['pid'])
     if (not self.own(rdoc, field='uid')
         and not self.has_perm(builtin.PERM_READ_RECORD_CODE)
-        and not self.has_priv(builtin.PRIV_READ_RECORD_CODE)):
+        and not self.has_priv(builtin.PRIV_READ_RECORD_CODE)
+        and not ac_myself):
       del rdoc['code']
     if not show_status and 'code' not in rdoc:
       if tdoc['doc_type'] == document.TYPE_CONTEST:
