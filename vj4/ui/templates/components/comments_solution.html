@@ -43,12 +43,12 @@
             <input type="hidden" name="csrf_token" value="{{ handler.csrf_token }}">
             <button type="submit" class="vote-button upvote{% if pssdict[doc['doc_id']]['vote'] == 1 %} active{% endif %}" data-tooltip="{{ _('Upvote') }}" data-tooltip-pos="bottom center" aria-label="{{ _('Upvote') }}"><span class="icon icon-vote--up"></span></button>
           </form>
-          <!-- <form method="post">
-            <input type="hidden" name="operation" value="downvote">
+          <form method="post">
+            <!-- <input type="hidden" name="operation" value="downvote"> -->
             <input type="hidden" name="psid" value="{{ doc['doc_id'] }}">
             <input type="hidden" name="csrf_token" value="{{ handler.csrf_token }}">
             <button type="submit" class="vote-button downvote{% if pssdict[doc['doc_id']]['vote'] == -1 %} active{% endif %}" data-tooltip="{{ _('Downvote') }}" data-tooltip-pos="bottom center" aria-label="{{ _('Downvote') }}"><span class="icon icon-vote--down"></span></button>
-          </form> -->
+          </form>
         </div>
       {% else %}
         <div class="vote-number">{{ doc['vote'] }}</div>
