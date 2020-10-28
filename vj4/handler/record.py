@@ -60,7 +60,7 @@ class RecordMixin(RecordVisibilityMixin, RecordCommonOperationMixin):
     if '_id' not in self.domain_user.keys():
       uid = builtin.UID_GUEST
     else:
-      uid = self.domain_user['_id']
+      uid = self.domain_user['uid']
     if uid is not None:
       psdoc = await document.get_status(self.domain_id, document.TYPE_PROBLEM, doc_id=pid, uid=uid)
       if psdoc is not None:
