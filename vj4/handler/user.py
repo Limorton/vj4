@@ -228,7 +228,7 @@ class UserDetailHandler(base.Handler, UserSettingsMixin):
 
     # get user's star discussion
     if self.has_perm(builtin.PERM_VIEW_DISCUSSION):
-      dstardocs = discussion.get_multi_status(domain_id=self.domain_id, fields={"status" : 1}, uid=uid)
+      dstardocs = discussion.get_multi_status(domain_id=self.domain_id, status = 1, uid=uid)
       dstarcount = await dstardocs.count()
       dstardocs = await dstardocs.to_list()
     else:
