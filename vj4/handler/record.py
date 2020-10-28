@@ -57,11 +57,8 @@ class RecordCommonOperationMixin(object):
 
 class RecordMixin(RecordVisibilityMixin, RecordCommonOperationMixin):
   async def ac_problem(self, pid: document.convert_doc_id):
-    if '_id' not in self.domain_user.keys():
-      uid = builtin.UID_GUEST
-    else:
+    if 'uid' in self.domain_user.keys():
       uid = self.domain_user['uid']
-    if uid is not None:
       psdoc = await document.get_status(self.domain_id, document.TYPE_PROBLEM, doc_id=pid, uid=uid)
       if psdoc is not None:
         return 'status' in psdoc.keys() and psdoc['status'] == constant.record.STATUS_ACCEPTED
