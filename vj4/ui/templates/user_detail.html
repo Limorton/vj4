@@ -219,7 +219,7 @@
               </li>
             {% endif %}
             <li class="section__tab-main">
-              <h1 class="section__tab-title">{{ _('Practice') }} ({{ (dudoc['num_accept'] + triedcount) or 0 }})</h1>
+              <h1 class="section__tab-title">{{ _('Practice') }} ({{ dudoc['num_accept'] or 0 }})</h1>
               {% if not trieddocs and not acdocs %}
                 {{ nothing.render('Oh, you can really AC!') }}
               {% else %}
@@ -243,7 +243,7 @@
               </div>
               <div class="section__tab-item">
                 <div class="section__header">
-                  <h1 class="section__title">{{ _('AC Problems') }} ( {{ dudoc['num_accept'] | default(0) }} ) </h1>
+                  <h1 class="section__title">{{ _('AC Problems') }} ( {{ dudoc['num_accept'] or 0 }} ) </h1>
                 </div>
                 <div class="section__body no-padding">
                   <table class="data-table">
