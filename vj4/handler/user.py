@@ -255,7 +255,7 @@ class UserDetailHandler(base.Handler, UserSettingsMixin):
     if  acdocs is not None:
       split_num = 8
       idx = 0
-      while idx+split_num < len(trieddocs):
+      while idx+split_num < len(acdocs):
         acdocset.append(acdocs[idx:idx+split_num])
         idx = idx + split_num
       if idx < len(acdocs):
