@@ -218,6 +218,33 @@
                 </div>
               </li>
             {% endif %}
+            {% if is_self_profile %}
+              <li class="section__tab-item">
+                <h1 class="section__tab-title">{{ _('Practice') }} (AC:{{ dudoc['num_accept'] or 0 }})</h1>
+                <div class="section__tab-main">
+                {% if not rdocs %}
+                  {{ nothing.render('Oh, the user hasn\'t submitted yet!') }}
+                {% else %}
+                  <div class="section__header">
+                    <h1 class="section__title">{{ _('Tried Problems') }} ( {{ triedcount or 0 }} ) </h1>
+                  </div>
+                  <div class="section__body no-padding">
+                    <table class="data-table">
+                      <tbody>
+                      {% for trieddoc in trieddocs %}
+                        <tr>
+                          {% for problem in trieddoc %}
+                            <td><a href="{{ reverse_url('problem_detail', pid=problem['doc_id']) }}">P{{ problem['doc_id'] }}</a></td>
+                          {% endfor %}
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                {% endif %}
+                </div>
+              </li>
+            {% endif %}
           </ul>
         </div>
       </div>

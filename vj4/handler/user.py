@@ -228,7 +228,7 @@ class UserDetailHandler(base.Handler, UserSettingsMixin):
 
     # get user's star discussion
     if self.has_perm(builtin.PERM_VIEW_DISCUSSION):
-      dstardocs = discussion.get_multi_status(domain_id=self.domain_id, uid=uid, star=True)
+      dstardocs = discussion.get_multi_status(domain_id=self.domain_id, fields={"status" : 1}, uid=uid)
       dstarcount = await dstardocs.count()
       dstardocs = await dstardocs.to_list()
     else:
@@ -236,12 +236,27 @@ class UserDetailHandler(base.Handler, UserSettingsMixin):
       dstarcount = 0
       dstardocs = {}
 
+    # get user's tried problems
+    trieddocs = problem.get_multi_status(domain_id=self.domain_id, uid=uid, status=1)
+    triedcount = await trieddocs.count()
+    trieddocs = await trieddocs.to_list()
+    trieddocset = []
+    if  trieddocs is not None:
+      split_num = 8
+      idx = 0
+      while idx+split_num < len(trieddocs):
+        trieddocset.append(trieddocs[idx:idx+split_num])
+        idx = idx + split_num
+      if idx < len(trieddocs):
+        trieddocset.append(trieddocs[idx:])
+
     self.render('user_detail.html', is_self_profile=is_self_profile,
                 udoc=udoc, dudoc=dudoc, sdoc=sdoc,
                 rdocs=rdocs, pdict=pdict, pdocs=pdocs, pcount=pcount,
                 psdocs=psdocs, pscount=pscount, psdocs_hot=psdocs_hot,
                 pstardocs=pstardocs, pstarcount=pstarcount,
                 dstardocs=dstardocs, dstarcount=dstarcount,
+                trieddocs=trieddocset, triedcount = triedcount,
                 ddocs=ddocs, dcount=dcount, vndict=vndict)
 
 
