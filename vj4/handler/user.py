@@ -237,7 +237,7 @@ class UserDetailHandler(base.Handler, UserSettingsMixin):
       dstardocs = {}
 
     # get user's tried problems
-    trieddocs = problem.get_multi_status(domain_id=self.domain_id, uid=uid, status=1)
+    trieddocs = problem.get_multi_status(domain_id=self.domain_id, uid=uid, status={'$ne':1})
     triedcount = await trieddocs.count()
     trieddocs = await trieddocs.to_list()
     trieddocset = []
@@ -249,6 +249,17 @@ class UserDetailHandler(base.Handler, UserSettingsMixin):
         idx = idx + split_num
       if idx < len(trieddocs):
         trieddocset.append(trieddocs[idx:])
+    # get user's ac problems
+    acdocs = await problem.get_multi_status(domain_id=self.domain_id, uid=uid, status=1).to_list()
+    acdocset = []
+    if  acdocs is not None:
+      split_num = 8
+      idx = 0
+      while idx+split_num < len(trieddocs):
+        acdocset.append(acdocs[idx:idx+split_num])
+        idx = idx + split_num
+      if idx < len(acdocs):
+        acdocset.append(acdocs[idx:])
 
     self.render('user_detail.html', is_self_profile=is_self_profile,
                 udoc=udoc, dudoc=dudoc, sdoc=sdoc,
@@ -256,7 +267,7 @@ class UserDetailHandler(base.Handler, UserSettingsMixin):
                 psdocs=psdocs, pscount=pscount, psdocs_hot=psdocs_hot,
                 pstardocs=pstardocs, pstarcount=pstarcount,
                 dstardocs=dstardocs, dstarcount=dstarcount,
-                trieddocs=trieddocset, triedcount = triedcount,
+                trieddocs=trieddocset, triedcount = triedcount, acdocs = acdocset,
                 ddocs=ddocs, dcount=dcount, vndict=vndict)
 
 

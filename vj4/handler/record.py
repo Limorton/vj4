@@ -171,7 +171,7 @@ class RecordDetailHandler(RecordMixin, base.Handler):
     if (not self.own(rdoc, field='uid')
         and not self.has_perm(builtin.PERM_READ_RECORD_CODE)
         and not self.has_priv(builtin.PRIV_READ_RECORD_CODE)
-        and not ac_myself):
+        and not (ac_myself and rdoc['status'] == constant.record.STATUS_ACCEPTED)):
       del rdoc['code']
     if not show_status and 'code' not in rdoc:
       if tdoc['doc_type'] == document.TYPE_CONTEST:
