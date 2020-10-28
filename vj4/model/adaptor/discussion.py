@@ -182,7 +182,7 @@ def get_multi(domain_id: str, *, fields=None, **kwargs):
                             doc_type=document.TYPE_DISCUSSION,
                             fields=fields,
                             **kwargs) \
-                 .sort([("highlight",-1),
+                 .sort([('highlight',-1),
                         ('update_at', -1),
                         ('doc_id', -1)])
 
