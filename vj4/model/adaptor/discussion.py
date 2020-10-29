@@ -300,7 +300,7 @@ async def set_star(domain_id: str, did: document.convert_doc_id, uid: int, star:
 async def get_status(domain_id: str, did: document.convert_doc_id, uid: int):
   return await document.get_status(domain_id, document.TYPE_DISCUSSION, did, uid)
 
-def get_multi_status(*, fields=None, **kwargs):
+async def get_multi_status(*, fields=None, **kwargs):
   return document.get_multi_status(doc_type=document.TYPE_DISCUSSION, fields=fields, **kwargs)
 
 if __name__ == '__main__':

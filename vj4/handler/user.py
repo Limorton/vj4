@@ -20,6 +20,19 @@ from vj4.util import validator
 from vj4.handler import base
 
 
+def split_list(docs, split_num = 8):
+  if docs is None:
+    return None
+  idx = 0
+  docset = []
+  while idx + split_num < len(docs):
+    docset.append(docs[idx:idx+split_num])
+    idx = idx + split_num
+  if idx < len(docs):
+    docset.append(docs[idx:])
+  return docset
+
+
 class UserSettingsMixin(object):
   def can_view(self, udoc, key):
     privacy = udoc.get('show_' + key, next(iter(setting.SETTINGS_BY_KEY['show_' + key].range)))
@@ -202,13 +215,16 @@ class UserDetailHandler(base.Handler, UserSettingsMixin):
     pdocs = problem.get_multi(domain_id=self.domain_id, owner_uid=uid, **f).sort([('_id', -1)])
     pcount = await pdocs.count()
     pdocs = await pdocs.limit(10).to_list()
+    pdocs = split_list(pdocs, 6)
     
     # get user's problem solutions
     psdocs = problem.get_multi_solution_by_uid(self.domain_id, uid)
     psdocs_hot = problem.get_multi_solution_by_uid(self.domain_id, uid)
     pscount = await psdocs.count()
     psdocs = await psdocs.limit(10).to_list()
+    psdocs = split_list(psdocs)
     psdocs_hot = await psdocs_hot.sort([('vote', -1), ('doc_id', -1)]).limit(10).to_list()
+    psdocs_hot = split_list(psdocs_hot)
 
     # get user's discussion
     if self.has_perm(builtin.PERM_VIEW_DISCUSSION):
@@ -225,12 +241,18 @@ class UserDetailHandler(base.Handler, UserSettingsMixin):
     pstardocs = problem.get_multi_status(domain_id=self.domain_id, uid=uid, star=True)
     pstarcount = await pstardocs.count()
     pstardocs = await pstardocs.to_list()
+    pstardocs = split_list(pstardocs)
 
     # get user's star discussion
     if self.has_perm(builtin.PERM_VIEW_DISCUSSION):
-      dstardocs = discussion.get_multi_status(domain_id=self.domain_id, status = 1, uid=uid)
+      dstardocs = await discussion.get_multi_status(domain_id=self.domain_id, star=True, uid=uid)
       dstarcount = await dstardocs.count()
       dstardocs = await dstardocs.to_list()
+      # TODO(limorton): this is not a pretty way to get 'title', when user
+      for i in range(len(dstardocs)):
+        dsdetail = await discussion.get(domain_id=self.domain_id, did=dstardocs[i]['doc_id'])
+        dstardocs[i]['title'] = dsdetail['title']
+      dstardocs = split_list(dstardocs, 3)
     else:
       dstardocs = []
       dstarcount = 0
@@ -240,26 +262,11 @@ class UserDetailHandler(base.Handler, UserSettingsMixin):
     trieddocs = problem.get_multi_status(domain_id=self.domain_id, uid=uid, status={'$ne':1})
     triedcount = await trieddocs.count()
     trieddocs = await trieddocs.to_list()
-    trieddocset = []
-    if  trieddocs is not None:
-      split_num = 8
-      idx = 0
-      while idx+split_num < len(trieddocs):
-        trieddocset.append(trieddocs[idx:idx+split_num])
-        idx = idx + split_num
-      if idx < len(trieddocs):
-        trieddocset.append(trieddocs[idx:])
+    trieddocs = split_list(trieddocs)
+
     # get user's ac problems
     acdocs = await problem.get_multi_status(domain_id=self.domain_id, uid=uid, status=1).to_list()
-    acdocset = []
-    if  acdocs is not None:
-      split_num = 8
-      idx = 0
-      while idx+split_num < len(acdocs):
-        acdocset.append(acdocs[idx:idx+split_num])
-        idx = idx + split_num
-      if idx < len(acdocs):
-        acdocset.append(acdocs[idx:])
+    acdocs = split_list(acdocs)
 
     self.render('user_detail.html', is_self_profile=is_self_profile,
                 udoc=udoc, dudoc=dudoc, sdoc=sdoc,
@@ -267,7 +274,7 @@ class UserDetailHandler(base.Handler, UserSettingsMixin):
                 psdocs=psdocs, pscount=pscount, psdocs_hot=psdocs_hot,
                 pstardocs=pstardocs, pstarcount=pstarcount,
                 dstardocs=dstardocs, dstarcount=dstarcount,
-                trieddocs=trieddocset, triedcount = triedcount, acdocs = acdocset,
+                trieddocs=trieddocs, triedcount = triedcount, acdocs = acdocs,
                 ddocs=ddocs, dcount=dcount, vndict=vndict)
 
 
