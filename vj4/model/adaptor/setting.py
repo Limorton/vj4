@@ -40,6 +40,8 @@ ACCOUNT_SETTINGS = [
             name='School',desc='请如实填写学校信息'),
     Setting('setting_info', 'grade', int, range=constant.model.USER_GRADE_RANGE,
             ui='select', name='Grade', desc='请如实填写年级信息'),
+    Setting('setting_info', 'yourself', str,
+            name='Self Assessment', desc='用一个词语描述自己，比如“蒟蒻、大佬、帅锅、镁铝、追梦人...”'),
     Setting('setting_info', 'teacher', str,
             name='Teacher',desc=''),
     Setting('setting_info', 'qq', str,

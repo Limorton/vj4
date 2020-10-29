@@ -689,11 +689,12 @@ Initialize: 初始化
 Profile Background Image: 背景图片
 Choose the background image in your profile page.: 选择您资料页面的背景图片
 '{} is a moderator of this domain.': '{}是这个班级的管理者之一'
-'a boss from {}{}.': '一位来自{}{}的大佬'
+'a {0} from {1} {2}.': '一位来自{1}{2}的{0}'
 'less than 30 characters, otherwise it will be shown unexpectedly': '不要超过30个字符，过多将无法正常显示'
 He: 他
 School Visibility: 学校可见性
 Grade Visibility: 年级可见性
+Self Assessment: 自我评价
 She: 她
 Bulletin: 公告
 You cannot visit this domain.: 您不能访问此班级。

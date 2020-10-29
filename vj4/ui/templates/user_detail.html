@@ -67,9 +67,10 @@
                 </span>
               {% endif %}
               {% if handler.get_udoc_setting(udoc, 'school') != none
+                 and handler.can_view(udoc, 'school')
               %}
                 <a class="profile-header__contact-item"  
-                  data-tooltip="{{ _('a boss from {}{}.').format(_(udoc['school']), _(vj4.constant.model.USER_GRADE_RANGE[handler.get_udoc_setting(udoc, 'grade')])) }}"
+                  data-tooltip="{{ _('a {0} from {1} {2}.').format( _( udoc['yourself']), _( udoc['school']), _(vj4.constant.model.USER_GRADE_RANGE[handler.get_udoc_setting(udoc, 'grade')]) ) }}"
                 >
                   <span class="icon icon-info"></span>
                 </a>
