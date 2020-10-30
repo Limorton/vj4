@@ -69,7 +69,7 @@ class RecordMixin(RecordVisibilityMixin, RecordCommonOperationMixin):
 class RecordMainHandler(RecordMixin, base.Handler):
   @base.get_argument
   @base.sanitize
-  async def get(self, *, start: str='', uid_or_name: str='', pid: str='', tid: str='', status: str='', sort_by: str=''):
+  async def get(self, *, start: str='', uid_or_name: str='', pid: str='', tid: str='', status: str='', sort_by: str='0'):
     if not self.has_priv(builtin.PRIV_VIEW_JUDGE_STATISTICS):
       start = ''
     if start:

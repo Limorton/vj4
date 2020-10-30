@@ -214,16 +214,16 @@ class UserDetailHandler(base.Handler, UserSettingsMixin):
       f = {}
     pdocs = problem.get_multi(domain_id=self.domain_id, owner_uid=uid, **f).sort([('_id', -1)])
     pcount = await pdocs.count()
-    pdocs = await pdocs.limit(10).to_list()
+    pdocs = await pdocs.limit(20).to_list()
     pdocs = split_list(pdocs, 6)
     
     # get user's problem solutions
     psdocs = problem.get_multi_solution_by_uid(self.domain_id, uid)
     psdocs_hot = problem.get_multi_solution_by_uid(self.domain_id, uid)
     pscount = await psdocs.count()
-    psdocs = await psdocs.limit(10).to_list()
+    psdocs = await psdocs.limit(20).to_list()
     psdocs = split_list(psdocs)
-    psdocs_hot = await psdocs_hot.sort([('vote', -1), ('doc_id', -1)]).limit(10).to_list()
+    psdocs_hot = await psdocs_hot.sort([('vote', -1), ('doc_id', -1)]).limit(20).to_list()
     psdocs_hot = split_list(psdocs_hot)
 
     # get user's discussion
