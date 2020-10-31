@@ -31,6 +31,9 @@
     {% if handler.has_priv(vj4.model.builtin.PRIV_USER_PROFILE) and handler.has_perm(vj4.model.builtin.PERM_VIEW_RANKING) %}
       {{ nav_item('ranking_main', 'ranking_main') }}
     {% endif %}
+    {% if handler.has_priv(vj4.model.builtin.PRIV_USER_PROFILE) %}
+      {{ nav_item('record_main', 'records') }}
+    {% endif %}
     {% if handler.has_perm(vj4.model.builtin.PERM_EDIT_DESCRIPTION) or handler.has_perm(vj4.model.builtin.PERM_EDIT_PERM) %}
       {{ nav_item('domain_manage', 'domain_manage') }}
     {% endif %}
