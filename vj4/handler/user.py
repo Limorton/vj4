@@ -251,7 +251,11 @@ class UserDetailHandler(base.Handler, UserSettingsMixin):
       # TODO(limorton): this is not a pretty way to get 'title', when user
       for i in range(len(dstardocs)):
         dsdetail = await discussion.get(domain_id=self.domain_id, did=dstardocs[i]['doc_id'])
-        dstardocs[i]['title'] = dsdetail['title']
+        # TODO(limorton) 2020.10.31: this check should be removed after soon
+        if dsdetail is None:
+          dstardocs[i]['title'] = 'a deleted discussion'
+        else:
+          dstardocs[i]['title'] = dsdetail['title']
       dstardocs = split_list(dstardocs, 3)
     else:
       dstardocs = []

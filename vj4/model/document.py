@@ -78,19 +78,31 @@ async def set(domain_id: str, doc_type: int, doc_id: convert_doc_id, **kwargs):
   return doc
 
 
-async def delete(domain_id: str, doc_type: int, doc_id: convert_doc_id):
-  # TODO(twd2): delete status?
+async def delete(domain_id: str, doc_type: int, doc_id: convert_doc_id, **kwargs):
   coll = db.coll('document')
-  return await coll.delete_one({'domain_id': domain_id,
+  deldoc = await coll.delete_one({'domain_id': domain_id,
                                 'doc_type': doc_type,
                                 'doc_id': doc_id})
-
+  # limorton(2020.10.31): delete related status: problem now should not be deleted
+  coll = db.coll('document.status')
+  delstatus = await coll.delete_many({'domain_id': domain_id,
+                                'doc_type': doc_type,
+                                'doc_id': doc_id,
+                                **kwargs})
+  return deldoc and delstatus
 
 async def delete_multi(domain_id: str, doc_type: int, **kwargs):
-  # TODO(twd2): delete status?
+  # limorton: dangerous operation!!!
   coll = db.coll('document')
   return await coll.delete_many({'domain_id': domain_id,
                                  'doc_type': doc_type,
+                                 **kwargs})
+                                
+async def delete_multi_status(domain_id: str, doc_type: int, doc_id: int, **kwargs):
+  coll = db.coll('document.status')
+  return await coll.delete_many({'domain_id': domain_id,
+                                 'doc_type': doc_type,
+                                 'doc_id': doc_id,
                                  **kwargs})
 
 
