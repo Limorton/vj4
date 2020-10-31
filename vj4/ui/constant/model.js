@@ -30,6 +30,11 @@ export const USER_GRADE_9 = 9;
 export const USER_GRADE_10 = 10;
 export const USER_GRADE_11 = 11;
 export const USER_GRADE_12 = 12;
+export const USER_GRADE_13 = 13;
+export const USER_GRADE_14 = 14;
+export const USER_GRADE_15 = 15;
+export const USER_GRADE_16 = 16;
+export const USER_GRADE_17 = 17;
 
 export const USER_GRADE_RANGE = {
   [USER_GRADE_0]: '其他',
@@ -45,5 +50,10 @@ export const USER_GRADE_RANGE = {
   [USER_GRADE_10]: '高一',
   [USER_GRADE_11]: '高二',
   [USER_GRADE_12]: '高三',
+  [USER_GRADE_13]: '大一',
+  [USER_GRADE_14]: '大二',
+  [USER_GRADE_15]: '大三',
+  [USER_GRADE_16]: '大四',
+  [USER_GRADE_17]: '毕业生',
 };
 attachObjectMeta(USER_GRADE_RANGE, 'intKey', true);
