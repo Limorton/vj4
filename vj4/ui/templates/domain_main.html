@@ -167,12 +167,29 @@
   
   <div class="large-3 columns">
   
-  <div class="section side">
+  <!-- TODO(Limorton): add it after https is done -->
+  <!-- <div class="section side">
     <div class="section__header">
       <h1 class="section__title">{{_('Hitokoto')}}</h1>
     </div>
-    <div>一言功能开发中</div>    
-  </div>
+    <div>一言功能开发中</div> 
+    <script>
+      var xhr = new XMLHttpRequest();
+      xhr.open('get', 'https://v1.hitokoto.cn');
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          var data = JSON.parse(xhr.responseText);
+          var hitokoto = document.getElementById('hitokoto_text');
+          hitokoto.href = 'https://hitokoto.cn/?uuid=' + data.uuid
+          hitokoto.innerText = data.hitokoto;
+        }
+      }
+      xhr.send();
+      document.write(hitokoto);
+    </script>
+    <div id="hitokoto-innerText"></div>
+    <div id="hitokoto-from"></div>
+  </div> -->
 
   {% if handler.has_perm(vj4.model.builtin.PERM_VIEW_DISCUSSION) %}
     {% include 'discussion_nodes_widget.html' %}

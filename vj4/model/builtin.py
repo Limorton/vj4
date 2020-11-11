@@ -593,7 +593,8 @@ PROBLEM_CATEGORIES = collections.OrderedDict([
         '动态DP',
         '概率DP',
         '数位DP',
-        '插头DP'
+        '插头DP',
+        'DP优化'
     ]),
     ('计算几何', [
         '半平面交',

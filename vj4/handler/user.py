@@ -19,7 +19,7 @@ from vj4.util import pagination
 from vj4.util import validator
 from vj4.handler import base
 
-
+# TODO(limorton): maybe it's ugly
 def split_list(docs, split_num = 8):
   if docs is None:
     return None
