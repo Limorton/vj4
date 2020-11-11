@@ -1,0 +1,57 @@
+{% extends "layout/basic.html" %}
+{% import "components/paginator.html" as paginator with context %}
+{% import "components/nothing.html" as nothing with context %}
+{% block content %}
+<div class="row">
+  <div class="medium-12 columns">
+    <div class="section">
+      <div class="section__body no-padding">
+        <div data-fragment-id="ranking">
+          {% if not dudocs %}
+          {{ nothing.render('No users are currently participating in this training plan.') }}
+          {% else %}
+          <table class="data-table">
+            <colgroup>
+                <col class="col--rank">
+                <col class="col--user">
+                <col class="col--progress">
+                <col class="col--accept">
+                <col class="col--bio">
+            </colgroup>
+            <thead>
+                <tr>
+                  <th class="col--rank">{{ _('Rank') }}</th>
+                  <th class="col--user">{{ _('User') }}</th>
+                  <th class="col--progress">{{ _('Progress') }}</th>
+                  <th class="col--accept">{{ _('Solved Problems') }}</th>
+                  <th class="col--bio">{{ _('Bio') }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for dudoc in dudocs %}
+                <tr>
+                  <td class="col--rank">{{ dudoc['rank'] }}</td>
+                  <td class="col--user">{{ user.render_inline(dudict[dudoc['uid']], dudoc=dudoc, badge=badge) }}</td>
+                  <td class="col--progress">
+                    {% if dudoc['done'] %}
+                    <span class="icon training-status--icon done"></span>
+                    <span style="color:green;">{{ _('Complete') }}</span>
+                    {% else %}
+                    <span class="icon training-status--icon progress"></span>
+                    <span style="color:rgba(214, 35, 35, 0.877);">{{ (100 * dudoc['done_pids']|length / pids|length)|round|int }}%</span>
+                    {% endif %}
+                  </td>
+                  <td class="col--accept">{{ dudoc['done_pids']|length|default(0) }}</td>
+                  <td class="col--bio">{{ dudict[dudoc['uid']]['bio']|default('')|markdown|truncate(100) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+          {{ paginator.render(page, dupcount) }}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

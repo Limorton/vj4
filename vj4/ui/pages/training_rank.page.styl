@@ -1,25 +1,29 @@
-.page--ranking_main
+.page--training_rank
   .col--rank
-    width: rem(90px)
+    width: rem(20px)
     border-right: 1px solid $table-border-color
     text-align: center
 
   .col--user
-    width: rem(260px)
+    width: rem(100px)
     border-right: 1px solid $table-border-color
 
-  .col--rp
-    width: rem(80px)
+  .col--progress
+    width: rem(30px)
     border-right: 1px solid $table-border-color
-    text-align: center
-
+    text-align: left
+  
   .col--accept
-    width: rem(80px)
+    width: rem(30px)
     border-right: 1px solid $table-border-color
     text-align: center
+  
+  .col--bio
+    width: rem(230px)
+    border-right: 1px solid $table-border-color
 
   +mobile()
-    .col--user, .col--accept, .col--rank
+    .col--user, .col--accept
       width: auto
     .col--bio
       display: none
