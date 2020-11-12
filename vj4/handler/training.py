@@ -215,6 +215,36 @@ class TrainingEditHandler(base.Handler, TrainingMixin):
     self.render('training_edit.html', tdoc=tdoc, dag=dag,
                 page_title=tdoc['title'], path_components=path_components)
 
+  @base.require_priv(builtin.PRIV_USER_PROFILE)
+  @base.route_argument
+  @base.post_argument
+  @base.require_csrf_token
+  @base.sanitize
+  async def post(self, *, tid: objectid.ObjectId, title: str, content: str, dag: str, desc: str):
+    tdoc = await training.get(self.domain_id, tid)
+    if not self.own(tdoc, builtin.PERM_EDIT_TRAINING_SELF):
+      self.check_perm(builtin.PERM_EDIT_TRAINING)
+    dag = _parse_dag_json(dag)
+    pids = self.get_pids({'dag': dag})
+    if not pids:
+      # empty plan
+      raise error.ValidationError('dag')
+    pdocs = await problem.get_multi(domain_id=self.domain_id, doc_id={'$in': pids},
+                                    fields={'doc_id': 1, 'hidden': 1}) \
+                         .sort('doc_id', 1) \
+                         .to_list()
+    exist_pids = [pdoc['doc_id'] for pdoc in pdocs]
+    if len(pids) != len(exist_pids):
+      for pid in pids:
+        if pid not in exist_pids:
+          raise error.ProblemNotFoundError(self.domain_id, pid)
+    for pdoc in pdocs:
+      if pdoc.get('hidden', False):
+        self.check_perm(builtin.PERM_VIEW_PROBLEM_HIDDEN)
+    await training.edit(self.domain_id, tdoc['doc_id'], title=title, content=content,
+                        dag=dag, desc=desc)
+    self.json_or_redirect(self.reverse_url('training_detail', tid=tid))
+
 
 @app.route('/training/{tid}/rank', 'training_rank')
 class TrainingRankHandler(base.Handler, TrainingMixin):
@@ -250,34 +280,3 @@ class TrainingRankHandler(base.Handler, TrainingMixin):
     self.render('training_rank.html', tdoc=tdoc, uid=self.user['_id'], pids=pids, dudocs=dudocs,
                 page=page, dudict=dudict, dupcount=dupcount, badge=False,
                 page_title=tdoc['title'], path_components=path_components)
-
-
-  @base.require_priv(builtin.PRIV_USER_PROFILE)
-  @base.route_argument
-  @base.post_argument
-  @base.require_csrf_token
-  @base.sanitize
-  async def post(self, *, tid: objectid.ObjectId, title: str, content: str, dag: str, desc: str):
-    tdoc = await training.get(self.domain_id, tid)
-    if not self.own(tdoc, builtin.PERM_EDIT_TRAINING_SELF):
-      self.check_perm(builtin.PERM_EDIT_TRAINING)
-    dag = _parse_dag_json(dag)
-    pids = self.get_pids({'dag': dag})
-    if not pids:
-      # empty plan
-      raise error.ValidationError('dag')
-    pdocs = await problem.get_multi(domain_id=self.domain_id, doc_id={'$in': pids},
-                                    fields={'doc_id': 1, 'hidden': 1}) \
-                         .sort('doc_id', 1) \
-                         .to_list()
-    exist_pids = [pdoc['doc_id'] for pdoc in pdocs]
-    if len(pids) != len(exist_pids):
-      for pid in pids:
-        if pid not in exist_pids:
-          raise error.ProblemNotFoundError(self.domain_id, pid)
-    for pdoc in pdocs:
-      if pdoc.get('hidden', False):
-        self.check_perm(builtin.PERM_VIEW_PROBLEM_HIDDEN)
-    await training.edit(self.domain_id, tdoc['doc_id'], title=title, content=content,
-                        dag=dag, desc=desc)
-    self.json_or_redirect(self.reverse_url('training_detail', tid=tid))
