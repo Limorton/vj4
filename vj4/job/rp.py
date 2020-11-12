@@ -105,7 +105,9 @@ async def recalc(domain_id: str):
                             fields={'_id': 1, 'doc_id': 1, 'num_accept': 1}).sort('doc_id', 1)
   dudoc_updates = {}
   status_coll = db.coll('document.status')
+  count = 0
   async for pdoc in pdocs:
+    count += 1
     _logger.info('Problem {0}'.format(pdoc['doc_id']))
     psdocs = problem.get_multi_status(domain_id=domain_id,
                                       doc_id=pdoc['doc_id'],
@@ -127,6 +129,9 @@ async def recalc(domain_id: str):
     if order > 0:
       _logger.info('Committing')
       await status_bulk.execute()
+  if count is 0:
+    _logger.info(f'No problem found in domain {domain_id}')
+    return
   # users' rp
   user_bulk = user_coll.initialize_unordered_bulk_op()
   execute = False

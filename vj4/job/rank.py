@@ -12,7 +12,7 @@ _logger = logging.getLogger(__name__)
 
 @domainjob.wrap
 async def run(domain_id: str, keyword: str='rp', rank_field: str='rank', level_field: str='level'):
-  _logger.info('Ranking')
+  _logger.info('RP Ranking')
   dudocs = domain.get_multi_user(domain_id=domain_id, fields={'_id': 1, 'uid': 1, keyword: 1}) \
                  .sort(keyword, -1)
   last_dudoc = {keyword: None}
@@ -55,6 +55,8 @@ async def run(domain_id: str, keyword: str='rp', rank_field: str='rank', level_f
      .update({'$set': {level_field: level_ranks[i][0]}}))
     _logger.info('Committing')
     await user_bulk.execute()
+  if count is 0:
+    _logger.info('No valid user found in this domain')
 
 
 if __name__ == '__main__':
