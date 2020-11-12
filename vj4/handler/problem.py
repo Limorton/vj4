@@ -624,7 +624,7 @@ class ProblemCopyHandler(base.Handler):
       # TODO: This is the source domain's PermissionError.
       raise error.PermissionError(builtin.PERM_VIEW_PROBLEM)
 
-    src_pids = misc.dedupe(map(document.convert_doc_id, src_pids.replace('\r\n', '\n').split('\n')))
+    src_pids = contest._parse_pids(src_pids)
     if len(src_pids) > self.MAX_PROBLEMS_PER_REQUEST:
       raise error.BatchCopyLimitExceededError(self.MAX_PROBLEMS_PER_REQUEST, len(src_pids))
     pdocs = await problem.get_multi(domain_id=src_domain_id, doc_id={'$in': src_pids}) \

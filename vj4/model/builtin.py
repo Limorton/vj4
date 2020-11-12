@@ -283,6 +283,7 @@ MEMBER_PERMISSIONS = (
     PERM_VIEW_PROBLEM |
     PERM_EDIT_PROBLEM_SELF |
     PERM_SUBMIT_PROBLEM |
+    PERM_READ_PROBLEM_DATA |
     PERM_READ_PROBLEM_DATA_SELF |
     PERM_VIEW_PROBLEM_SOLUTION |
     PERM_CREATE_PROBLEM_SOLUTION |
@@ -445,7 +446,7 @@ LEVELS = collections.OrderedDict([(10, 1),
 # FOOTER_EXTRA_HTMLS = ['© 2005 - 2020 <a href="https://vijos.org/">Vijos.org</a>', version.get(),
 #                       '<a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow">' +
 #                       '沪ICP备14040537号</a>']
-FOOTER_EXTRA_HTMLS = ["版本号:", "build20201030"]
+FOOTER_EXTRA_HTMLS = ["版本号:", "build20201112"]
 
 PROBLEM_CATEGORIES = collections.OrderedDict([
     ('顺序结构', [
