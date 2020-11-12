@@ -215,43 +215,6 @@ class TrainingEditHandler(base.Handler, TrainingMixin):
     self.render('training_edit.html', tdoc=tdoc, dag=dag,
                 page_title=tdoc['title'], path_components=path_components)
 
-
-@app.route('/training/{tid}/rank', 'training_rank')
-class TrainingRankHandler(base.Handler, TrainingMixin):
-  USERS_PER_PAGE = 100
-  
-  @base.require_priv(builtin.PRIV_USER_PROFILE)
-  @base.require_perm(builtin.PERM_VIEW_RANKING)
-  @base.get_argument
-  @base.route_argument
-  @base.sanitize
-  async def get(self, *, tid: objectid.ObjectId, page: int=1):
-    tdoc = await training.get(self.domain_id, tid)
-    pids = self.get_pids(tdoc)
-    dudocs, dupcount, _ = await pagination.paginate(
-        training.get_multi_status(domain_id=self.domain_id, doc_id=tdoc['doc_id'], enroll=1).sort([('num_done', -1)]),
-        page, self.USERS_PER_PAGE)
-
-    rank = (page - 1) * self.USERS_PER_PAGE + 1
-    for dudoc in dudocs:
-      dudoc['rank'] = rank
-      dname = await domain.get_user(self.domain_id, dudoc['uid'], fields={'display_name': 1 })
-      if dname is not None and 'display_name' in dname.keys():
-        dudoc['display_name'] = dname['display_name']
-      rank = rank + 1
-    if page > dupcount:
-      raise error.ValidationError('page')
-
-    dudict= await user.get_dict(set(dudoc['uid'] for dudoc in dudocs))
-    path_components = self.build_path(
-      (self.translate('training_main'), self.reverse_url('training_main')),
-      (tdoc['title'], self.reverse_url('training_detail', tid=tdoc['doc_id'])),
-      (self.translate('Rank'), None))
-    self.render('training_rank.html', tdoc=tdoc, uid=self.user['_id'], pids=pids, dudocs=dudocs,
-                page=page, dudict=dudict, dupcount=dupcount, badge=False,
-                page_title=tdoc['title'], path_components=path_components)
-
-
   @base.require_priv(builtin.PRIV_USER_PROFILE)
   @base.route_argument
   @base.post_argument
