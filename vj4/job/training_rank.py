@@ -9,14 +9,38 @@ from vj4.model import user
 from vj4.util import argmethod
 from vj4.util import domainjob
 from vj4.handler import base
-from vj4.handler import training as htraining
 from vj4.model.adaptor import problem
 from vj4.model.adaptor import training
 
 
 _logger = logging.getLogger(__name__)
 
-training_ = htraining.TrainingMixin()
+
+class TrainingMixin(object):
+  def get_pids(self, tdoc):
+    pids = set()
+    for node in tdoc['dag']:
+      pids.update(node['pids'])
+    return list(pids)
+
+  def is_done(self, node, done_nids, done_pids):
+    return set(done_nids) >= set(node['require_nids']) \
+           and set(done_pids) >= set(node['pids'])
+
+  def is_progress(self, node, done_nids, done_pids, prog_pids):
+    return set(done_nids) >= set(node['require_nids']) \
+           and not set(done_pids) >= set(node['pids']) \
+           and ((set(done_pids) | set(prog_pids)) & set(node['pids']))
+
+  def is_open(self, node, done_nids, done_pids, prog_pids):
+    return set(done_nids) >= set(node['require_nids']) \
+           and not set(done_pids) >= set(node['pids']) \
+           and not ((set(done_pids) | set(prog_pids)) & set(node['pids']))
+
+  def is_invalid(self, node, done_nids):
+    return not set(done_nids) >= set(node['require_nids'])
+
+training_ = TrainingMixin()
 
 @domainjob.wrap
 async def run(domain_id: str):
