@@ -160,7 +160,7 @@
 {{ form_end(columns=columns, **kwargs) }}
 {% endmacro %}
 
-{% macro textarea(name='', value='', placeholder='') %}
+{% macro textarea(name='', value='', placeholder='', style='') %}
 {% set markdown = kwargs.pop('markdown', false) %}
 <div
   name="form_item_{{ name }}"
@@ -169,6 +169,7 @@
   <textarea
     name="{{ name }}"
     placeholder="{{ placeholder }}"
+    style="{{ style }}"
     {% if markdown %}data-markdown{% endif %}
     {{ form_attr('textbox', **kwargs) }}
   >{{ value }}</textarea>
