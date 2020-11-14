@@ -1,24 +1,29 @@
-{% extends "layout/home_base.html" %}
-{% block home_content %}
-<div style="display: none" class="dialog__body--user-select">
-  <div>
-    <div class="row"><div class="columns">
-      <h1>{{ _('Select User') }}</h1>
-    </div></div>
-    <div class="row">
-      <div class="columns">
-        <label>
-          {{ _('Username / UID') }}
-          <input name="user" type="text" class="textbox" autocomplete="off" data-autofocus>
-        </label>
+{% import "components/home.html" as home with context %}
+{% extends "layout/basic.html" %}
+{% block content %}
+<div class="row" data-sticky-parent>
+  <div class="medium-12 columns">
+    <div style="display: none" class="dialog__body--user-select">
+      <div>
+        <div class="row"><div class="columns">
+          <h1>{{ _('Select User') }}</h1>
+        </div></div>
+        <div class="row">
+          <div class="columns">
+            <label>
+              {{ _('Username / UID') }}
+              <input name="user" type="text" class="textbox" autocomplete="off" data-autofocus>
+            </label>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-<div class="section">
-  <div id="messagePad">
-    {{ noscript_note.render() }}
-    <div class="loader-container"><div class="loader"></div></div>
+    <div class="section">
+      <div id="messagePad">
+        {{ noscript_note.render() }}
+        <div class="loader-container"><div class="loader"></div></div>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}

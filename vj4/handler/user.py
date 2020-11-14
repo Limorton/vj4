@@ -195,6 +195,8 @@ class UserDetailHandler(base.Handler, UserSettingsMixin):
   @base.route_argument
   @base.sanitize
   async def get(self, *, uid: int):
+    PROBLEM_ID_PER_ROW = 8
+    PROBLEM_TITLE_PER_ROW = 6
     is_self_profile = self.has_priv(builtin.PRIV_USER_PROFILE) and self.user['_id'] == uid
     udoc = await user.get_by_uid(uid)
     if not udoc:
@@ -215,16 +217,16 @@ class UserDetailHandler(base.Handler, UserSettingsMixin):
     pdocs = problem.get_multi(domain_id=self.domain_id, owner_uid=uid, **f).sort([('_id', -1)])
     pcount = await pdocs.count()
     pdocs = await pdocs.limit(20).to_list()
-    pdocs = split_list(pdocs, 6)
+    pdocs = split_list(pdocs, PROBLEM_TITLE_PER_ROW)
     
     # get user's problem solutions
     psdocs = problem.get_multi_solution_by_uid(self.domain_id, uid)
     psdocs_hot = problem.get_multi_solution_by_uid(self.domain_id, uid)
     pscount = await psdocs.count()
     psdocs = await psdocs.limit(20).to_list()
-    psdocs = split_list(psdocs)
+    psdocs = split_list(psdocs, PROBLEM_ID_PER_ROW)
     psdocs_hot = await psdocs_hot.sort([('vote', -1), ('doc_id', -1)]).limit(20).to_list()
-    psdocs_hot = split_list(psdocs_hot)
+    psdocs_hot = split_list(psdocs_hot, PROBLEM_ID_PER_ROW)
 
     # get user's discussion
     if self.has_perm(builtin.PERM_VIEW_DISCUSSION):
@@ -241,7 +243,10 @@ class UserDetailHandler(base.Handler, UserSettingsMixin):
     pstardocs = problem.get_multi_status(domain_id=self.domain_id, uid=uid, star=True)
     pstarcount = await pstardocs.count()
     pstardocs = await pstardocs.to_list()
-    pstardocs = split_list(pstardocs)
+    pdict = await problem.get_multi(domain_id=self.domain_id, 
+                                    doc_id={'$in': [psdoc['doc_id'] for psdoc in pstardocs]},
+                                    fields={'doc_id': 1, 'title': 1}).to_list()
+    pstardocs = split_list(pdict, PROBLEM_TITLE_PER_ROW)
 
     # get user's star discussion
     if self.has_perm(builtin.PERM_VIEW_DISCUSSION):
@@ -266,7 +271,10 @@ class UserDetailHandler(base.Handler, UserSettingsMixin):
     trieddocs = problem.get_multi_status(domain_id=self.domain_id, uid=uid, status={'$ne':1})
     triedcount = await trieddocs.count()
     trieddocs = await trieddocs.to_list()
-    trieddocs = split_list(trieddocs)
+    pdict = await problem.get_multi(domain_id=self.domain_id, 
+                                    doc_id={'$in': [trdoc['doc_id'] for trdoc in trieddocs]},
+                                    fields={'doc_id': 1, 'title': 1}).to_list()
+    trieddocs = split_list(pdict, 6)
 
     # get user's ac problems
     acdocs = await problem.get_multi_status(domain_id=self.domain_id, uid=uid, status=1).to_list()
