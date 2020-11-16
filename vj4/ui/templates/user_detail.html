@@ -254,6 +254,7 @@
               </div>
               {% endif %}
             </li>
+            {% if is_self_profile %}
             <li class="section__tab-item">
               <h1 class="section__tab-title">{{ _('Enroll Activities') }} ({{ contestcount + tcount }})</h1>
               <div class="section__tab-main">
@@ -324,6 +325,7 @@
               {% endif %}
               </div>
             </li>
+            {% endif %}
             {% if is_self_profile %}
               <li class="section__tab-item">
                 <h1 class="section__tab-title">{{ _('Star') }} ({{ pstarcount + dstarcount }})</h1>
