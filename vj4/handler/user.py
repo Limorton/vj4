@@ -5,12 +5,15 @@ from vj4 import app
 from vj4 import constant
 from vj4 import error
 from vj4.model import builtin
+from vj4.model import document
 from vj4.model import domain
 from vj4.model import record
 from vj4.model import system
 from vj4.model import token
 from vj4.model import user
 from vj4.model.adaptor import discussion
+from vj4.model.adaptor import contest
+from vj4.model.adaptor import training
 from vj4.model.adaptor import problem
 from vj4.model.adaptor import setting
 from vj4.util import misc
@@ -197,6 +200,10 @@ class UserDetailHandler(base.Handler, UserSettingsMixin):
   async def get(self, *, uid: int):
     PROBLEM_ID_PER_ROW = 8
     PROBLEM_TITLE_PER_ROW = 6
+    DISCUSSION_PER_ROW = 4
+    LIST_LIMIT = 15
+    TABLE_LIMIT = 40
+    RECORD_LIMIT = 10
     is_self_profile = self.has_priv(builtin.PRIV_USER_PROFILE) and self.user['_id'] == uid
     udoc = await user.get_by_uid(uid)
     if not udoc:
@@ -206,7 +213,7 @@ class UserDetailHandler(base.Handler, UserSettingsMixin):
 
     rdocs = record.get_multi(get_hidden=self.has_priv(builtin.PRIV_VIEW_HIDDEN_RECORD),
                              uid=uid).sort([('_id', -1)])
-    rdocs = await rdocs.limit(10).to_list()
+    rdocs = await rdocs.limit(RECORD_LIMIT).to_list()
     pdict = await problem.get_dict_multi_domain((rdoc['domain_id'], rdoc['pid']) for rdoc in rdocs)
 
     # check hidden problem
@@ -216,14 +223,14 @@ class UserDetailHandler(base.Handler, UserSettingsMixin):
       f = {}
     pdocs = problem.get_multi(domain_id=self.domain_id, owner_uid=uid, **f).sort([('_id', -1)])
     pcount = await pdocs.count()
-    pdocs = await pdocs.limit(20).to_list()
+    pdocs = await pdocs.limit(TABLE_LIMIT).to_list()
     pdocs = split_list(pdocs, PROBLEM_TITLE_PER_ROW)
     
     # get user's problem solutions
     psdocs = problem.get_multi_solution_by_uid(self.domain_id, uid)
     psdocs_hot = problem.get_multi_solution_by_uid(self.domain_id, uid)
     pscount = await psdocs.count()
-    psdocs = await psdocs.limit(20).to_list()
+    psdocs = await psdocs.limit(LIST_LIMIT).to_list()
     psdocs = split_list(psdocs, PROBLEM_ID_PER_ROW)
     psdocs_hot = await psdocs_hot.sort([('vote', -1), ('doc_id', -1)]).limit(20).to_list()
     psdocs_hot = split_list(psdocs_hot, PROBLEM_ID_PER_ROW)
@@ -232,7 +239,7 @@ class UserDetailHandler(base.Handler, UserSettingsMixin):
     if self.has_perm(builtin.PERM_VIEW_DISCUSSION):
       ddocs = discussion.get_multi(self.domain_id, owner_uid=uid)
       dcount = await ddocs.count()
-      ddocs = await ddocs.limit(10).to_list()
+      ddocs = await ddocs.limit(LIST_LIMIT).to_list()
       vndict = await discussion.get_dict_vnodes(self.domain_id, map(discussion.node_id, ddocs))
     else:
       ddocs = []
@@ -253,19 +260,57 @@ class UserDetailHandler(base.Handler, UserSettingsMixin):
       dstardocs = await discussion.get_multi_status(domain_id=self.domain_id, star=True, uid=uid)
       dstarcount = await dstardocs.count()
       dstardocs = await dstardocs.to_list()
-      # TODO(limorton): this is not a pretty way to get 'title', when user
-      for i in range(len(dstardocs)):
-        dsdetail = await discussion.get(domain_id=self.domain_id, did=dstardocs[i]['doc_id'])
-        # TODO(limorton) 2020.10.31: this check should be removed after soon
-        if dsdetail is None:
-          dstardocs[i]['title'] = 'a deleted discussion'
-        else:
-          dstardocs[i]['title'] = dsdetail['title']
-      dstardocs = split_list(dstardocs, 3)
+      pdict = await discussion.get_multi(domain_id=self.domain_id, 
+                                    doc_id={'$in': [dsdoc['doc_id'] for dsdoc in dstardocs]},
+                                    fields={'doc_id': 1, 'title': 1}).to_list()
+      dstardocs = split_list(pdict, DISCUSSION_PER_ROW)
     else:
       dstardocs = []
       dstarcount = 0
       dstardocs = {}
+    
+    # get user's attend contest
+    if self.has_perm(builtin.PERM_ATTEND_CONTEST):
+      tdocs = await contest.get_multi(domain_id=self.domain_id, doc_type=document.TYPE_CONTEST).to_list()
+      tid = [t['doc_id'] for t in tdocs]
+      tdict = dict(zip(tid, tdocs))
+      tsdict = await contest.get_dict_status(domain_id=self.domain_id, uid=uid, doc_type=document.TYPE_CONTEST,
+                                            tids=(tdoc['doc_id'] for tdoc in tdocs), fields={'doc_id':1, 'title':1})
+      tdocs = [doc for doc in tdocs if doc['doc_id'] in tsdict.keys()]
+      for doc_id in tsdict: 
+        tsdict[doc_id]['title'] = tdict[doc_id]['title']
+      tsdict = [v for v in tsdict.values()]
+      contestcount = len(tdocs)
+      contestdocs = tdocs
+    else:
+      contestcount = 0
+      contestdocs = []
+    
+    # get user's enrolled tranining
+    if self.has_perm(builtin.PERM_VIEW_TRAINING):
+      tdocs= await training.get_multi(domain_id=self.domain_id,fields={'doc_id':1, 'title':1}).to_list()
+      tids = set(tdoc['doc_id'] for tdoc in tdocs)
+      tsdict = dict()
+      tdict = dict()
+      if self.has_priv(builtin.PRIV_USER_PROFILE):
+        enrolled_tids = set()
+        async for tsdoc in training.get_multi_status(domain_id=self.domain_id,
+                                                    uid=self.user['_id'],
+                                                    **{'$or': [{'doc_id': {'$in': list(tids)}},
+                                                                {'enroll': 1}]}):
+          tsdict[tsdoc['doc_id']] = tsdoc
+          enrolled_tids.add(tsdoc['doc_id'])
+        enrolled_tids -= tids
+        if enrolled_tids:
+          tdict = await training.get_dict(self.domain_id, enrolled_tids)
+      for tdoc in tdocs:
+        tdict[tdoc['doc_id']] = tdoc
+      tcount = len(tsdict)
+    else:
+      tdict = {}
+      tsdict = {}
+      tcount = 0
+    
 
     # get user's tried problems
     trieddocs = problem.get_multi_status(domain_id=self.domain_id, uid=uid, status={'$ne':1})
@@ -274,11 +319,11 @@ class UserDetailHandler(base.Handler, UserSettingsMixin):
     pdict = await problem.get_multi(domain_id=self.domain_id, 
                                     doc_id={'$in': [trdoc['doc_id'] for trdoc in trieddocs]},
                                     fields={'doc_id': 1, 'title': 1}).to_list()
-    trieddocs = split_list(pdict, 6)
+    trieddocs = split_list(pdict, PROBLEM_TITLE_PER_ROW)
 
     # get user's ac problems
     acdocs = await problem.get_multi_status(domain_id=self.domain_id, uid=uid, status=1).to_list()
-    acdocs = split_list(acdocs)
+    acdocs = split_list(acdocs, PROBLEM_ID_PER_ROW)
 
     self.render('user_detail.html', is_self_profile=is_self_profile,
                 udoc=udoc, dudoc=dudoc, sdoc=sdoc,
@@ -286,6 +331,8 @@ class UserDetailHandler(base.Handler, UserSettingsMixin):
                 psdocs=psdocs, pscount=pscount, psdocs_hot=psdocs_hot,
                 pstardocs=pstardocs, pstarcount=pstarcount,
                 dstardocs=dstardocs, dstarcount=dstarcount,
+                tdict=tdict, tsdict=tsdict, tcount = tcount,
+                contestdocs=contestdocs, contestcount=contestcount,
                 trieddocs=trieddocs, triedcount = triedcount, acdocs = acdocs,
                 ddocs=ddocs, dcount=dcount, vndict=vndict)
 
