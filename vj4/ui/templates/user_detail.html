@@ -257,7 +257,7 @@
             <li class="section__tab-item">
               <h1 class="section__tab-title">{{ _('Enroll Activities') }} ({{ contestcount + tcount }})</h1>
               <div class="section__tab-main">
-              {% if not ddocs %}
+              {% if not contestdocs and not tsdict %}
                 {{ nothing.render('Oh, the user hasn\'t join in any matches or training plans!') }}
               {% else %}
                 <div class="section__header">

@@ -1,0 +1,74 @@
+{% import "components/record.html" as record with context %}
+{% import "components/problem.html" as problem with context %}
+{% extends "layout/basic.html" %}
+{% block content %}
+<div class="row">
+  <div class="medium-9 columns">
+    <div class="section">
+      <div class="section__header">
+        <h1 class="section__title">{{ _('Training Brief') }}</h1>
+      </div>
+      <div class="section__body typo">
+        {{ tdoc['content'] }}
+      </div>
+    </div>
+    <div class="section">
+      {% if tdoc['desc'] %}
+      <div class="section__header">
+        <h1 class="section__title">{{ _('Training Introduction') }}</h1>
+      </div>
+      <div class="section__body typo">
+        {{ tdoc['desc']|default('')|markdown }}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  <div class="medium-3 columns">
+    <div class="section side">
+      <div>
+        <ol class="menu">
+        {% if not tsdoc['enroll'] and handler.has_priv(vj4.model.builtin.PRIV_USER_PROFILE) %}
+          <li class="menu__item">
+            <form action="" method="POST">
+              <input type="hidden" name="operation" value="enroll">
+              <input type="hidden" name="csrf_token" value="{{ handler.csrf_token }}">
+              <button class="menu__link" type="submit">
+                <span class="icon icon-add"></span> {{ _('Enroll Training') }}
+              </button>
+            </form>
+          </li>
+        {% endif %}
+        <li class="menu__item"><a class="menu__link" href="{{ reverse_url('training_detail', tid=tdoc['doc_id']) }}">
+          <span class="icon icon-stack"></span> {{ _('View Details') }}
+        </a></li>
+        <li class="menu__item"><a class="menu__link" href="{{ reverse_url('training_rank', tid=tdoc['doc_id']) }}">
+          <span class="icon icon-statistics"></span> {{ _('View ranking') }}
+        </a></li>
+        {% if handler.own(tdoc, vj4.model.builtin.PERM_EDIT_TRAINING_SELF) or handler.has_perm(vj4.model.builtin.PERM_EDIT_TRAINING) %}
+          <li class="menu__item"><a class="menu__link" href="{{ reverse_url('training_edit', tid=tdoc['doc_id']) }}">
+            <span class="icon icon-edit"></span>  {{ _('Edit') }}
+          </a></li>
+        {% endif %}
+        <li class="menu__item"><a class="menu__link" href="{{ reverse_url('wiki_help') }}#training">
+          <span class="icon icon-help"></span> {{ _('Help') }}
+          </a></li>
+          <li class="menu__seperator"></li>
+        </ol>
+      </div>
+      <div class="section__body typo">
+        <dl class="large horizontal">
+        {% if handler.has_priv(vj4.model.builtin.PRIV_USER_PROFILE) %}
+          <dt>{{ _('Status') }}</dt><dd>{% if tsdoc['enroll'] %}{{ _('Completed' if tsdoc['done'] else 'In Progress') }}{% else %}{{ _('Not Enrolled') }}{% endif %}</dd>
+        {% endif %}
+          {% if tsdoc['enroll'] %}
+          <dt>{{ _('Progress') }}</dt><dd>{{ _('Completed') }} {{ (100 * tsdoc['done_pids']|length / pids|length)|round|int }}%</dd>
+          {% endif %}
+          <dt>{{ _('Enrollees') }}</dt><dd>{{ tdoc['enroll']|default(0) }}</dd>
+          <dt>{{ _('Created By') }}</dt>
+          <dd>{{ user.render_inline(owner_udoc, owner_dudoc, badge=false) }}</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

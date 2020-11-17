@@ -257,6 +257,10 @@ class TrainingRankHandler(base.Handler, TrainingMixin):
   @base.sanitize
   async def get(self, *, tid: objectid.ObjectId, page: int=1):
     tdoc = await training.get(self.domain_id, tid)
+    tsdoc = await training.get_status(self.domain_id, tdoc['doc_id'], self.user['_id'])
+    owner_udoc, owner_dudoc = await asyncio.gather(
+        user.get_by_uid(tdoc['owner_uid']),
+        domain.get_user(domain_id=self.domain_id, uid=tdoc['owner_uid']))
     pids = self.get_pids(tdoc)
     dudocs, dupcount, _ = await pagination.paginate(
         training.get_multi_status(domain_id=self.domain_id, doc_id=tdoc['doc_id'], enroll=1).sort([('num_done', -1)]),
@@ -278,5 +282,27 @@ class TrainingRankHandler(base.Handler, TrainingMixin):
       (tdoc['title'], self.reverse_url('training_detail', tid=tdoc['doc_id'])),
       (self.translate('Rank'), None))
     self.render('training_rank.html', tdoc=tdoc, uid=self.user['_id'], pids=pids, dudocs=dudocs,
-                page=page, dudict=dudict, dupcount=dupcount, badge=False,
+                page=page, dudict=dudict, dupcount=dupcount, badge=False, tsdoc=tsdoc,
+                owner_udoc=owner_udoc, owner_dudoc=owner_dudoc,
+                page_title=tdoc['title'], path_components=path_components)
+
+
+@app.route('/training/{tid}/introduction', 'training_introduction')
+class TrainingRankHandler(base.Handler, TrainingMixin):  
+  @base.require_priv(builtin.PRIV_USER_PROFILE)
+  @base.get_argument
+  @base.route_argument
+  @base.sanitize
+  async def get(self, *, tid: objectid.ObjectId):
+    tdoc = await training.get(self.domain_id, tid)
+    tsdoc = await training.get_status(self.domain_id, tdoc['doc_id'], self.user['_id'])
+    pids = self.get_pids(tdoc)
+    owner_udoc, owner_dudoc = await asyncio.gather(
+        user.get_by_uid(tdoc['owner_uid']),
+        domain.get_user(domain_id=self.domain_id, uid=tdoc['owner_uid']))
+    path_components = self.build_path(
+      (self.translate('training_main'), self.reverse_url('training_main')),
+      (tdoc['title'], self.reverse_url('training_introduction', tid=tdoc['doc_id'])))
+    self.render('training_introduction.html', tdoc=tdoc, uid=self.user['_id'], pids=pids,
+                owner_udoc=owner_udoc, owner_dudoc=owner_dudoc, tsdoc=tsdoc,
                 page_title=tdoc['title'], path_components=path_components)

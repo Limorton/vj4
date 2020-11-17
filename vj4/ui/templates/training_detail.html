@@ -5,12 +5,22 @@
 <div class="row">
   <div class="medium-9 columns">
     <div class="section">
+      <div class="section__header">
+        <h1 class="section__title">{{ _('Training Brief') }}</h1>
+      </div>
       <div class="section__body typo">
         {{ tdoc['content'] }}
       </div>
-      <div class="section__body typo">
-        {{ tdoc['desc']|default('')|markdown }}
+    </div>
+    <div class="section">
+      {% if tdoc['desc'] %}
+      <div class="section__header">
+        <h1 class="section__title">{{ _('Training Introduction') }}</h1>
       </div>
+      <div class="section__body typo">
+        {{ tdoc['desc']|default('')|markdown|truncate(500) }}
+      </div>
+      {% endif %}
     </div>
     <div class="section">
     {% if not tsdoc['enroll'] %}
@@ -47,15 +57,6 @@
               <a href="javascript:;" name="training__section__expand" class="expanded--hidden"><span class="icon icon-expand_more"></span> {{ _('expand') }}</a>
               <a href="javascript:;" name="training__section__collapse" class="collapsed--hidden"><span class="icon icon-expand_less"></span> {{ _('collapse') }}</a>
             </li>
-            <!--
-            TODO(twd2): twd2 todo
-            <li>
-              递交了 ? 次完成该章节 (TOP ?%)
-            </li>
-            <li>
-              第 ? 个完成该章节 (总计 ? 用户完成)
-            </li>
-            -->
           </ul>
         </div>
         <div class="training__section__detail">
@@ -175,16 +176,19 @@
             </form>
           </li>
         {% endif %}
+        <li class="menu__item"><a class="menu__link" href="{{ reverse_url('training_introduction', tid=tdoc['doc_id']) }}">
+          <span class="icon icon-info"></span> {{ _('Training Introduction(All)') }}
+        </a></li>
+        <li class="menu__item"><a class="menu__link" href="{{ reverse_url('training_rank', tid=tdoc['doc_id']) }}">
+          <span class="icon icon-statistics"></span> {{ _('View ranking') }}
+        </a></li>
         {% if handler.own(tdoc, vj4.model.builtin.PERM_EDIT_TRAINING_SELF) or handler.has_perm(vj4.model.builtin.PERM_EDIT_TRAINING) %}
           <li class="menu__item"><a class="menu__link" href="{{ reverse_url('training_edit', tid=tdoc['doc_id']) }}">
             <span class="icon icon-edit"></span>  {{ _('Edit') }}
           </a></li>
         {% endif %}
-        <li class="menu__item"><a class="menu__link" href="{{ reverse_url('training_rank', tid=tdoc['doc_id']) }}">
-          <span class="icon icon-statistics"></span> {{ _('View ranking') }}
-        </a></li>
-          <li class="menu__item"><a class="menu__link" href="{{ reverse_url('wiki_help') }}#training">
-            <span class="icon icon-help"></span> {{ _('Help') }}
+        <li class="menu__item"><a class="menu__link" href="{{ reverse_url('wiki_help') }}#training">
+          <span class="icon icon-help"></span> {{ _('Help') }}
           </a></li>
           <li class="menu__seperator"></li>
         </ol>
