@@ -81,13 +81,17 @@ class RecordMainHandler(RecordMixin, base.Handler):
     else:
       start = None
     query = await self.get_filter_query(uid_or_name, pid, tid, status)
-    # TODO(iceboy): projection, pagination.
+    # TODO(limorton): projection, pagination.
     if sort_by is '0':
       rdocs = await record.get_all_multi(**query, end_id=start,
         get_hidden=self.has_priv(builtin.PRIV_VIEW_HIDDEN_RECORD)).sort([('_id', -1)]).limit(50).to_list()
+    elif sort_by is '1':
+      rdocs = await record.get_all_multi(**query, end_id=start,
+        get_hidden=self.has_priv(builtin.PRIV_VIEW_HIDDEN_RECORD)).sort([('score', -1),('time_ms', 1)]).limit(50).to_list()
     else:
       rdocs = await record.get_all_multi(**query, end_id=start,
         get_hidden=self.has_priv(builtin.PRIV_VIEW_HIDDEN_RECORD)).sort([('score', -1),('time_ms', 1)]).limit(50).to_list()
+      rdocs = sorted(rdocs, key=lambda x:x['code'].count('\n'))
     # TODO(iceboy): projection.
     udict, dudict, pdict = await asyncio.gather(
         user.get_dict(rdoc['uid'] for rdoc in rdocs),
