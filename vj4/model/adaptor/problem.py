@@ -250,7 +250,9 @@ async def vote_solution(domain_id: str, psid: document.convert_doc_id, uid: int,
     pssdoc = await document.capped_inc_status(domain_id, document.TYPE_PROBLEM_SOLUTION, psid,
                                               uid, 'vote', value)
   except errors.DuplicateKeyError:
-    raise error.AlreadyVotedError(domain_id, psid, uid) from None
+    value = -value
+    pssdoc = await document.capped_inc_status(domain_id, document.TYPE_PROBLEM_SOLUTION, psid,
+                                              uid, 'vote', value)
   psdoc = await document.inc(domain_id, document.TYPE_PROBLEM_SOLUTION, psid, 'vote', value)
   await domain.inc_user(domain_id, psdoc['owner_uid'], num_liked=value)
   return psdoc, pssdoc
