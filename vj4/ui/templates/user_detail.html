@@ -9,7 +9,7 @@
         <div class="profile-header__content">
           <div class="media">
             <div class="media__left">
-              <img src="{{ udoc['gravatar']|gravatar_url }}" width="120" height="120" class="large user-profile-avatar">
+              <img src="{{ udoc['gravatar']|default('')|gravatar_url(udoc['qq']) }}" width="120" height="120" class="large user-profile-avatar">
             </div>
             <div class="media__body profile-header__main">
               <h1>
@@ -216,11 +216,12 @@
               </div>
             </li>
             <li class="section__tab-item">
-              <h1 class="section__tab-title">{{ _('Practice') }} ({{ dudoc['num_accept'] or 0 }})</h1>
-              {% if not trieddocs and not acdocs %}
-                {{ nothing.render('Oh, you can really AC!') }}
-              {% else %}
+              <h1 class="section__tab-title">{{ _('Practice') }} ({{ dudoc['num_accept']|default(0) }})</h1>
               <div class="section__tab-main">
+                {% if not trieddocs and not acdocs %}
+                  {{ nothing.render('Oh, the user really AC!') }}
+                {% else %}
+                {% if trieddocs %}
                 <div class="section__header">
                   <h1 class="section__title">{{ _('Tried Problems') }} ( {{ triedcount or 0 }} ) </h1>
                 </div>
@@ -237,6 +238,8 @@
                     </tbody>
                   </table>
                 </div>
+                {% endif %}
+                {% if acdocs %}
                 <div class="section__header">
                   <h1 class="section__title">{{ _('AC Problems') }} ( {{ dudoc['num_accept'] or 0 }} ) </h1>
                 </div>
@@ -253,22 +256,22 @@
                     </tbody>
                   </table>
                 </div>
+                {% endif %}
               </div>
               {% endif %}
             </li>
             <li class="section__tab-item">
               <h1 class="section__tab-title">{{ _('Enroll Activities') }} ({{ contestcount + tcount }})</h1>
               <div class="section__tab-main">
-              {% if not contestdocs and not tsdict %}
-                {{ nothing.render('Oh, the user hasn\'t join in any matches or training plans!') }}
-              {% else %}
+                {% if not contestcount and not tcount %}
+                  {{ nothing.render('Oh, the user hasn\'t join in any matches or training plans!') }}
+                {% else %}
+                {% if contestcount %}
                 <div class="section__header">
                   <h1 class="section__title">{{ _('Enroll Match') }} ({{ contestcount }})</h1>
                 </div>
                 <div class="section__body no-padding">
-                  {% if not contestdocs %}
-                  {{ nothing.render('There are no contests...') }}
-                {% else %}
+                  {% if contestdocs %}
                   <ol class="section__list contest__list">
                   {% for tdoc in contestdocs %}
                     <li class="section__list__item contest__item contest-type--{{ vj4.constant.contest.RULE_ID[tdoc['rule']] }}">
@@ -302,8 +305,10 @@
                     </li>
                   {% endfor %}
                   </ol>
-                {% endif %}
+                  {% endif %}
                 </div>
+                {% endif %}
+                {% if tcount %}
                 <div class="section__header">
                   <h1 class="section__title">{{ _('Enroll Training') }} ({{ tcount }})</h1>
                 </div>
@@ -323,55 +328,56 @@
                   {% endfor %}
                   </ol>
                 </div>
-              {% endif %}
+                {% endif %}
+                {% endif %}
               </div>
             </li>
             {% if is_self_profile %}
-              <li class="section__tab-item">
-                <h1 class="section__tab-title">{{ _('Star') }} ({{ pstarcount + dstarcount }})</h1>
-                <div class="section__tab-main">
-                {% if not pstardocs %}
-                  {{ nothing.render('Oh, the user doesn\'t have any stars!') }}
-                {% else %}
-                {% if pstarcount %}
-                  <div class="section__header">
-                    <h1 class="section__title">{{ _('Stared Problems') }}</h1>
-                  </div>
-                  <div class="section__body no-padding">
-                    <table class="data-table">
-                      <tbody>
-                      {% for pstardoc in pstardocs %}
-                        <tr>
-                          {% for problem in pstardoc %}
-                            <td><a href="{{ reverse_url('problem_detail', pid=problem['doc_id']) }}">P{{ problem['doc_id'] }} {{problem['title']}}</a></td>
-                          {% endfor %}
-                        </tr>
-                      {% endfor %}
-                      </tbody>
-                    </table>
-                  </div>
-                {% endif %}
-                {% if dstarcount %}
-                  <div class="section__header">
-                    <h1 class="section__title">{{ _('Stared Discussions') }}</h1>
-                  </div>
-                  <div class="section__body no-padding">
-                    <table class="data-table">
-                      <tbody>
-                      {% for dstardoc in dstardocs %}
-                        <tr>
-                          {% for discuss in dstardoc %}
-                            <td><a href="{{ reverse_url('discussion_detail', did=discuss['doc_id']) }}">{{ discuss['title'] }}</td>
-                          {% endfor %}
-                        </tr>
-                      {% endfor %}
-                      </tbody>
-                    </table>
-                  </div>
-                {% endif %}
-                {% endif %}
+            <li class="section__tab-item">
+              <h1 class="section__tab-title">{{ _('Star') }} ({{ pstarcount + dstarcount }})</h1>
+              <div class="section__tab-main">
+              {% if not pstardocs %}
+                {{ nothing.render('Oh, the user doesn\'t have any stars!') }}
+              {% else %}
+              {% if pstarcount %}
+                <div class="section__header">
+                  <h1 class="section__title">{{ _('Stared Problems') }}</h1>
                 </div>
-              </li>
+                <div class="section__body no-padding">
+                  <table class="data-table">
+                    <tbody>
+                    {% for pstardoc in pstardocs %}
+                      <tr>
+                        {% for problem in pstardoc %}
+                          <td><a href="{{ reverse_url('problem_detail', pid=problem['doc_id']) }}">P{{ problem['doc_id'] }} {{problem['title']}}</a></td>
+                        {% endfor %}
+                      </tr>
+                    {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              {% endif %}
+              {% if dstarcount %}
+                <div class="section__header">
+                  <h1 class="section__title">{{ _('Stared Discussions') }}</h1>
+                </div>
+                <div class="section__body no-padding">
+                  <table class="data-table">
+                    <tbody>
+                    {% for dstardoc in dstardocs %}
+                      <tr>
+                        {% for discuss in dstardoc %}
+                          <td><a href="{{ reverse_url('discussion_detail', did=discuss['doc_id']) }}">{{ discuss['title'] }}</td>
+                        {% endfor %}
+                      </tr>
+                    {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              {% endif %}
+              {% endif %}
+              </div>
+            </li>
             {% endif %}
           </ul>
         </div>

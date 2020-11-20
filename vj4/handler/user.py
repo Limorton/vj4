@@ -280,7 +280,7 @@ class UserDetailHandler(base.Handler, UserSettingsMixin):
       for doc_id in tsdict: 
         tsdict[doc_id]['title'] = tdict[doc_id]['title']
       tsdict = [v for v in tsdict.values()]
-      contestcount = len(tdocs)
+      contestcount = len(tsdict)
       contestdocs = tdocs
     else:
       contestcount = 0
@@ -292,20 +292,22 @@ class UserDetailHandler(base.Handler, UserSettingsMixin):
       tids = set(tdoc['doc_id'] for tdoc in tdocs)
       tsdict = dict()
       tdict = dict()
+      tcount = 0
       if self.has_priv(builtin.PRIV_USER_PROFILE):
         enrolled_tids = set()
         async for tsdoc in training.get_multi_status(domain_id=self.domain_id,
-                                                    uid=self.user['_id'],
+                                                    uid=uid,
                                                     **{'$or': [{'doc_id': {'$in': list(tids)}},
                                                                 {'enroll': 1}]}):
           tsdict[tsdoc['doc_id']] = tsdoc
+          if 'enroll' in tsdoc.keys():
+            tcount += 1
           enrolled_tids.add(tsdoc['doc_id'])
         enrolled_tids -= tids
         if enrolled_tids:
           tdict = await training.get_dict(self.domain_id, enrolled_tids)
       for tdoc in tdocs:
         tdict[tdoc['doc_id']] = tdoc
-      tcount = len(tsdict)
     else:
       tdict = {}
       tsdict = {}
@@ -320,10 +322,13 @@ class UserDetailHandler(base.Handler, UserSettingsMixin):
                                     doc_id={'$in': [trdoc['doc_id'] for trdoc in trieddocs]},
                                     fields={'doc_id': 1, 'title': 1}).to_list()
     trieddocs = split_list(pdict, PROBLEM_TITLE_PER_ROW)
-
+    if len(trieddocs) is 0:
+      trieddocs = []
     # get user's ac problems
     acdocs = await problem.get_multi_status(domain_id=self.domain_id, uid=uid, status=1).to_list()
     acdocs = split_list(acdocs, PROBLEM_ID_PER_ROW)
+    if len(acdocs) is 0:
+      acdocs = []
 
     self.render('user_detail.html', is_self_profile=is_self_profile,
                 udoc=udoc, dudoc=dudoc, sdoc=sdoc,

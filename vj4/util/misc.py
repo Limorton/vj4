@@ -40,10 +40,12 @@ def markdown(text):
       text, extensions=MARKDOWN_EXTENSIONS, render_flags=MARKDOWN_RENDER_FLAGS))
 
 
-def gravatar_url(gravatar, size=200):
+def gravatar_url(gravatar, qq='', size=200):
   # TODO: 'd' should be https://domain/img/avatar.png
   if gravatar:
     gravatar_hash = hashlib.md5(gravatar.lower().encode()).hexdigest()
+  elif qq:
+    return ('https://q1.qlogo.cn/g?b=qq&nk=' + qq + '&s=100&t=')
   else:
     gravatar_hash = ''
   return ('//cn.gravatar.com/avatar/' + gravatar_hash + "?" +

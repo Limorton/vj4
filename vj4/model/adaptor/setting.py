@@ -45,7 +45,7 @@ ACCOUNT_SETTINGS = [
     Setting('setting_info', 'teacher', str,
             name='Teacher',desc=''),
     Setting('setting_info', 'qq', str,
-            name='QQ'),
+            name='QQ', desc='如果您没有gravatar邮箱，本站将使用QQ头像作为您的头像'),
     Setting('setting_info', 'wechat', str,
             name='WeChat', desc='此联系方式将作为邮寄奖品时的联系电话，请如实填写'),
     Setting('setting_info', 'address', str,

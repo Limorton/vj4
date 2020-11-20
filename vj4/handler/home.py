@@ -1,6 +1,7 @@
 import asyncio
 import hmac
 import itertools
+# import sys
 
 from bson import objectid
 
@@ -171,7 +172,7 @@ class HomeMessagesHandler(base.OperationHandler):
     udoc = udict.get(key)
     if not udoc:
       return
-    gravatar_url = misc.gravatar_url(udoc.get('gravatar'))
+    gravatar_url = misc.gravatar_url(udoc.get('gravatar'), udoc.get('qq'))
     if 'gravatar' in udoc and udoc['gravatar']:
       udict[key] = {**udoc,
                     'gravatar_url': gravatar_url,
@@ -207,6 +208,7 @@ class HomeMessagesHandler(base.OperationHandler):
     self.modify_udoc(mdoc, 'sendee_udoc')
     if self.user['_id'] != uid:
       await bus.publish('message_received-' + str(uid), {'type': 'new', 'data': mdoc})
+    # print('post_send_message:', mdoc)
     self.json_or_redirect(self.url, mdoc=mdoc)
 
   @base.require_priv(builtin.PRIV_USER_PROFILE)
@@ -223,6 +225,7 @@ class HomeMessagesHandler(base.OperationHandler):
         other_uid = mdoc['sender_uid']
       mdoc['reply'] = [reply]
       await bus.publish('message_received-' + str(other_uid), {'type': 'reply', 'data': mdoc})
+    # print('post_reply_message:', mdoc)
     self.json_or_redirect(self.url, reply=reply)
 
   @base.require_priv(builtin.PRIV_USER_PROFILE)
@@ -238,12 +241,15 @@ class HomeMessagesConnection(base.Connection):
   @base.require_priv(builtin.PRIV_USER_PROFILE)
   async def on_open(self):
     await super(HomeMessagesConnection, self).on_open()
+    # print("chat opened")
     bus.subscribe(self.on_message_received, ['message_received-' + str(self.user['_id'])])
 
   async def on_message_received(self, e):
     self.send(**e['value'])
+    # print("message received:", e['value'])
 
   async def on_close(self):
+    # print("chat closed")
     bus.unsubscribe(self.on_message_received)
 
 
