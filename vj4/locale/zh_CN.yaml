@@ -5,6 +5,10 @@ Address: 邮寄地址
 API: API
 about: 关于
 About: 关于
+Good Morning!: 早上好，
+Good Noon!: 中午好，
+Good Afternoon!: 下午好，
+Good Evening!: 晚上好，
 About TopsCoding: 关于 TopsCoding
 Accepted: 已通过
 Accepted Ratio: 通过率
@@ -622,7 +626,7 @@ Evaluated difficulty: 估计的难度
 Difficulty displayed: 显示的难度
 Difficulty by algorithm: 算法计算的难度
 Difficulty by admin: 管理员设定的难度
-Hitokoto: 每日一言（ヒトコト）
+Hitokoto: 每日一言
 Recommended: 推荐
 Chinese: 中文
 English: 英文

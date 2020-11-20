@@ -92,9 +92,26 @@
           </li>
         </ol>
       </li>
+      <style scoped type="text/css">
+        .redpoint{
+          display:inline-block;
+          height:16px;
+          width:16px;
+          line-height:16px;
+          text-align:center;
+          font-size:0.1em;
+          border-radius:16px;
+          color:#fff;
+          background:red;
+            position: relative;
+            top: -8px;
+            right: 6px;
+        }
+      </style>
       <li class="nav__list-item">
-        <a href="{{ reverse_url('home_messages') }}" class="nav__item--round">
+        <a href="{{ reverse_url('home_messages') }}" class="nav__item">
           <span class="icon icon-comment--multiple"></span>
+          <span class="redpoint">9</span>
         </a>
       </li>
     {% endif %}

@@ -166,30 +166,24 @@
   </div>
   
   <div class="large-3 columns">
-  
-  <!-- TODO(Limorton): add it after https is done -->
-  <!-- <div class="section side">
-    <div class="section__header">
-      <h1 class="section__title">{{_('Hitokoto')}}</h1>
-    </div>
-    <div>一言功能开发中</div> 
-    <script>
-      var xhr = new XMLHttpRequest();
-      xhr.open('get', 'https://v1.hitokoto.cn');
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-          var data = JSON.parse(xhr.responseText);
-          var hitokoto = document.getElementById('hitokoto_text');
-          hitokoto.href = 'https://hitokoto.cn/?uuid=' + data.uuid
-          hitokoto.innerText = data.hitokoto;
-        }
-      }
-      xhr.send();
-      document.write(hitokoto);
-    </script>
-    <div id="hitokoto-innerText"></div>
-    <div id="hitokoto-from"></div>
-  </div> -->
+    <div class="section side">
+      <div id="hitokoto_title">{{_('Hitokoto')}}</div>
+      <div>
+        <!-- <p><span id="greeting"></span>{{ handler.domain_user['display_name']|default(handler.user['uname'], true) }}~</p> -->
+        <p id="hitokoto_text"></p>
+        <p id="hitokoto_from"></p>
+      </div>
+      <div>
+        <!-- <div align="center"><img id="hitokoto_img" src="https://api.ixiaowai.cn/api/api.php" alt="每日图片<右键另存为可保存到本地>" /></div> -->
+        <div align="center"><img id="hitokoto_img" src="https://api.dujin.org/bing/1366.php" alt="每日一图<右键另存为可保存到本地>" /></div>
+        <div id="myModal" class="modal">
+          <span class="close" onclick="document.getElementById(&#039;myModal&#039;).style.display=&#039;none&#039;">&times;</span>
+          <img class="modal-content" id="showimg">
+          <div id="caption"></div>
+        </div>
+      </div>
+      
+  </div>
 
   {% if handler.has_perm(vj4.model.builtin.PERM_VIEW_DISCUSSION) %}
     {% include 'discussion_nodes_widget.html' %}
@@ -230,4 +224,49 @@
   {% endif %}
   </div>
 </div>
+<script type="text/javascript">
+  // var time = new Date().getHours();
+  // if (time<11)
+  //   document.getElementById("greeting").innerHTML="{{ _('Good Morning!') }}";
+  // else if (time>=11 && time<=14)
+  //   document.getElementById("greeting").innerHTML="{{ _('Good Noon!') }}";
+  // else if(time>14 && time<=17)
+  //   document.getElementById("greeting").innerHTML="{{ _('Good Afternoon!') }}";
+  // else
+  // document.getElementById("greeting").innerHTML="{{ _('Good Evening!') }}";
+  
+  // hitokoto  
+  fetch('https://v1.hitokoto.cn/?c=a&c=c&c=d&c=h&c=i&c=k')
+    .then(response => response.json())
+    .then(data => {
+      const hitokoto = document.getElementById('hitokoto_text');
+      const author = document.getElementById('hitokoto_from');
+      hitokoto.href = 'https://hitokoto.cn/?uuid=' + data.uuid;
+      data.hitokoto = "  " + data.hitokoto;
+      hitokoto.innerText = data.hitokoto;
+      if (data.from)
+        author.innerText = "——" + data.from;
+      else if (data.from_who)
+        author.innerText = "——" + data.from_who;
+    })
+    .catch(console.error)
+
+  // 获取图片弹窗
+  var modal = document.getElementById('myModal');
+  // 获取图片插入到弹窗 - 使用 "alt" 属性作为文本部分的内容
+  var img = document.getElementById('hitokoto_img');
+  var modalImg = document.getElementById("showimg");
+  var captionText = document.getElementById("caption");
+  img.onclick = function(){
+      modal.style.display = "block";
+      modalImg.src = this.src;
+      captionText.innerHTML = this.alt;
+  }
+  // 获取 <span> 元素，设置关闭按钮
+  var span = document.getElementsByClassName("close")[0];
+  // 当点击 (x), 关闭弹窗
+  span.onclick = function() { 
+    modal.style.display = "none";
+  }
+</script>
 {% endblock %}
