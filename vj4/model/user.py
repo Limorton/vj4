@@ -13,7 +13,8 @@ from vj4.util import validator
 PROJECTION_PUBLIC = {'_id': 1,
                      'uname': 1,
                      'uname_lower': 1,
-                     'gravatar': 1}
+                     'gravatar': 1,
+                     'qq':1}
 PROJECTION_VIEW = {'salt': 0, 'hash': 0}
 PROJECTION_ALL = None
 
