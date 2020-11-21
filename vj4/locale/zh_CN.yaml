@@ -723,6 +723,7 @@ Copy WeChat Account: 复制微信/电话
 'Copy "{data}" failed :(': '复制“{data}”失败 :('
 Introduce: 简介
 Introduce must not exceed 500 characters and it will be shown in the list view.: 简介不能超过 500 个字符，将显示在列表页面中。
+Support dash to add continuous problems, but the segment must be included in double quotes: 支持使用‘-’添加连续题目，但是必须用双引号包含该段连续题目
 Hint: 提示
 An example of dataset: 测试数据集的一个例子
 Open in Problem Set: 在题库中打开

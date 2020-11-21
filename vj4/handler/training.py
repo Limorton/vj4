@@ -17,6 +17,18 @@ from vj4.util import pagination
 from vj4.util import misc
 
 
+def _parse_pids(pids_list):
+  all_pids = []
+  for pids in pids_list:
+    if isinstance(pids, str) and '-' in pids:
+      p_start = int(pids.split('-')[0])
+      p_end = int(pids.split('-')[1])
+      for pid in range(p_start, p_end+1):
+        all_pids.append(pid)
+    else:
+      all_pids.append(int(pids))
+  return all_pids
+
 def _parse_dag_json(dag):
   try:
     dag = json.decode(dag)
@@ -32,7 +44,7 @@ def _parse_dag_json(dag):
       new_node = {'_id': int(node['_id']),
                   'title': str(node.get('title', '')),
                   'require_nids': misc.dedupe(map(int, node['require_nids'])),
-                  'pids': misc.dedupe(map(document.convert_doc_id, node['pids']))}
+                  'pids': misc.dedupe(map(document.convert_doc_id, _parse_pids(node['pids'])))}
       new_dag.append(new_node)
   except ValueError:
     raise error.ValidationError('dag') from None
