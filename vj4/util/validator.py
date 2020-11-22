@@ -101,7 +101,7 @@ def check_name(s):
 
 
 def is_content(s):
-  return isinstance(s, str) and 0 < len(s.strip()) < 65536
+  return isinstance(s, str) and 0 < len(s.strip()) < 8192
 
 
 def check_content(s):
