@@ -50,7 +50,7 @@ async def dec_pid_counter():
   await coll.update_one(filter={'_id': 'pid_counter'},
                         update={'$setOnInsert': {'value': 1000}}, upsert=True)
   doc = await coll.find_one_and_update(filter={'_id': 'pid_counter'},
-                                       update={'$dec': {'value': 1}})
+                                       update={'$inc': {'value': -1}})
   return doc['value']
 
 async def acquire_lock(lock_name: str):
