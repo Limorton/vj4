@@ -3,12 +3,22 @@
 {% block body %}
 
 {% include "partials/nav.html" %}
-
+<style>
+  #main{
+    background:url("{{ handler.domain_user['bg_pic'] or handler.user['bg_pic']|default('') }}");
+    background-color: #edf0f2;
+    background-repeat: repeat-x repeat-y; 
+    background-attachment: fixed;
+  }
+  #main::after {
+    opacity: 0.3;
+  }
+</style>
 <div class="slideout-panel" id="panel">
   <div class="slideout-overlay"></div>
   {% include "partials/header_mobile.html" %}
   {% include "partials/header.html" %}
-  <div class="main">
+  <div class="main" id="main">
     {% block content %}{% endblock %}
   </div>
   {% include "partials/footer.html" %}
