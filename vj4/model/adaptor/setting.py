@@ -73,8 +73,10 @@ ACCOUNT_SETTINGS = [
             ui='image_radio', name='Profile Background Image',
             desc='Choose the background image in your profile page.',
             image_class='user-profile-bg--thumbnail-{0}'),
+    Setting('setting_customize', 'ubg_pic', str,
+            name='MyProfile Background Image', desc='输入图片链接，留空则使用系统内置图片'),
     Setting('setting_customize', 'bg_pic', str,
-            name='Website Background Image', desc='输入图片链接，该图片将作为你的网站背景图片，可上传图片到个人文件中，上传完成后，复制“URL”链接至此即可'),]
+            name='Website Background Image', desc='输入图片URL链接，该图片将作为你的网站背景图片'),]
 
 
 DOMAIN_ACCOUNT_SETTINGS = [

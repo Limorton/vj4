@@ -5,7 +5,23 @@
 <div class="row">
   <div class="medium-9 columns">
     <div class="section">
+      {% if udoc['ubg_pic'] %}
+      <style>
+        #ubg{
+          background:url("{{ udoc['ubg_pic'] }}");
+          /* background: linear-gradient(to bottom, #E55D87, #5FC3E4); */
+          background-color:#2c80c5;
+          position: relative;
+          background-position: center center;
+          background-repeat: repeat-x repeat-y;
+          min-height: rem(270px);
+          padding-bottom: rem(20px);
+        }
+      </style>
+      <div class="profile-header" id="ubg">
+      {% else %}
       <div class="profile-header user-profile-bg--{{ vj4.model.adaptor.setting.UserSetting(udoc, dudoc).get_setting('background_img') }}">
+      {% endif %}
         <div class="profile-header__content">
           <div class="media">
             <div class="media__left">
