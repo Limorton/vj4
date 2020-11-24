@@ -222,7 +222,7 @@ View or create discussion: 查看与发表讨论
 View or submit solution: 查看与发表题解
 Visible to registered users: 对注册用户可见
 Vote: 投票
-'We use <a href="https://en.gravatar.com/" target="_blank">Gravatar</a> to present your avatar icon.': '我们使用 <a href="https://cn.gravatar.com/" target="_blank">Gravatar</a> 服务来呈现您的头像。'
+'We use <a href="https://en.gravatar.com/" target="_blank">Gravatar</a> to present your avatar icon.': '我们使用 <a href="https://cn.gravatar.com/" target="_blank">Gravatar</a> 服务来呈现您的头像。如留空，则使用QQ头像。'
 Scan to follow on wechat: 微信公众号
 Whether to show tags in the problem list.: 是否在题目列表中显示题目的标签。
 Write Your Comment: 发表您的评论
@@ -699,6 +699,7 @@ Pick a problem randomly based on current filter: 根据当前过滤条件随机�
 No problem.: 没有题目。
 Initialize: 初始化
 Profile Background Image: 主页背景图片
+MyProfile Background Image: 自定义主页背景图片
 Website Background Image: 网站背景图片
 Choose the background image in your profile page.: 选择您资料页面的背景图片
 '{} is a moderator of this domain.': '{}是这个班级的管理者之一'
