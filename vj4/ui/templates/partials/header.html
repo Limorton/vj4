@@ -1,4 +1,28 @@
+{% if handler.domain_user['header_pic'] or handler.user['header_pic'] %}
+<style type="text/css">
+  .header{
+    position: relative;
+    height: rem(320px);
+    background: #1bb5e6 url("{{ handler.domain_user['header_pic'] or handler.user['header_pic'] | default('./header-background@2x.png') }}") no-repeat center top;
+    background-size: cover;
+    transition: height .5s;
+    transition-timing-function: ease-out-cubic;
+    overflow: hidden;
+    
+    /* &.mini
+      height: rem($header-bg-height-mini); */
+
+    /* +mobile()
+      background: #FFF;
+      height: auto !important;
+      .header__content;
+        display: none; */
+  }
+</style>
+<div  class="header{% if no_path_section %} mini{% endif %}">
+{% else %}
 <div class="header{% if no_path_section %} mini{% endif %}">
+{% endif%}
   <div class="header__content"><div class="row"><div class="columns">
   {% if domain_id == vj4.model.builtin.DOMAIN_ID_SYSTEM %}
     <a class="header__logo" href="{{ reverse_url('domain_main', domain_id=vj4.model.builtin.DOMAIN_ID_SYSTEM) }}" target="_self"></a>

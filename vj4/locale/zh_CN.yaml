@@ -699,7 +699,8 @@ Pick a problem randomly based on current filter: 根据当前过滤条件随机�
 No problem.: 没有题目。
 Initialize: 初始化
 Profile Background Image: 主页背景图片
-MyProfile Background Image: 自定义主页背景图片
+MyProfile Background Image: 我的主页背景图片
+Header Background Image: 导航栏背景图片
 Website Background Image: 网站背景图片
 Choose the background image in your profile page.: 选择您资料页面的背景图片
 '{} is a moderator of this domain.': '{}是这个班级的管理者之一'

@@ -75,8 +75,10 @@ ACCOUNT_SETTINGS = [
             image_class='user-profile-bg--thumbnail-{0}'),
     Setting('setting_customize', 'ubg_pic', str,
             name='MyProfile Background Image', desc='输入图片链接，留空则使用系统内置图片'),
+    Setting('setting_customize', 'header_pic', str,
+            name='Header Background Image', desc='输入图片URL链接，该图片将作为导航栏的背景图片'),
     Setting('setting_customize', 'bg_pic', str,
-            name='Website Background Image', desc='输入图片URL链接，该图片将作为你的网站背景图片'),]
+            name='Website Background Image', desc='输入图片URL链接，该图片将作为你的网站内容背景图片'),]
 
 
 DOMAIN_ACCOUNT_SETTINGS = [
