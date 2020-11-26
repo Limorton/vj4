@@ -326,10 +326,12 @@ class UserDetailHandler(base.Handler, UserSettingsMixin):
       trieddocs = []
     # get user's ac problems
     acdocs = await problem.get_multi_status(domain_id=self.domain_id, uid=uid, status=1).to_list()
-    acdocs = split_list(acdocs, PROBLEM_ID_PER_ROW)
+    pdict = await problem.get_multi(domain_id=self.domain_id, 
+                                    doc_id={'$in': [acdoc['doc_id'] for acdoc in acdocs]},
+                                    fields={'doc_id': 1, 'title': 1}).to_list()
+    acdocs = split_list(pdict, PROBLEM_ID_PER_ROW)
     if len(acdocs) is 0:
       acdocs = []
-
     self.render('user_detail.html', is_self_profile=is_self_profile,
                 udoc=udoc, dudoc=dudoc, sdoc=sdoc,
                 rdocs=rdocs, pdict=pdict, pdocs=pdocs, pcount=pcount,
