@@ -40,9 +40,10 @@
   }|json|safe }};
 </script>
 <div class="row">
-  <div class="medium-9 columns">
+  <div class="medium-9 columns"  oncontextmenu="return false;" oncopy="return false;" oncut="return false;">
     <div class="section">
-      <div class="problem-content-container"><div class="problem-content" data-marker-enabled>
+      <div class="problem-content-container">
+        <div class="problem-content" data-marker-enabled>
         <div class="section__header non-scratchpad--hide">
           <h1>{{ pdoc['title'] }}</h1>
         </div>
@@ -78,7 +79,8 @@
         {% endif %}{# tdoc #}
           {{ pdoc['content']|markdown }}
         </div>
-      </div></div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="medium-3 columns">
