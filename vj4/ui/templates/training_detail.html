@@ -18,7 +18,7 @@
         <h1 class="section__title">{{ _('Training Introduction') }}</h1>
       </div>
       <div class="section__body typo">
-        {{ tdoc['desc']|default('')|markdown|truncate(500) }}
+        {{ tdoc['desc']|default('')|truncate(200) }}
       </div>
       {% endif %}
     </div>
