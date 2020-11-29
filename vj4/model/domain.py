@@ -62,10 +62,13 @@ async def add_continue(domain_id: str, ensure_owner_uid: int=None):
 
 @argmethod.wrap
 async def get(domain_id: str, fields=None):
+  coll = db.coll('domain')
   for domain in builtin.DOMAINS:
     if domain['_id'] == domain_id:
-      return domain
-  coll = db.coll('domain')
+      ddoc = await coll.find_one(domain['_id'], fields)
+      if not ddoc:
+        await add(domain['_id'],domain['owner_uid'],domain['roles'],domain['name'])
+      # return domain
   ddoc = await coll.find_one(domain_id, fields)
   if not ddoc:
     raise error.DomainNotFoundError(domain_id)
@@ -197,10 +200,9 @@ async def delete_roles(domain_id: str, roles):
 
 @argmethod.wrap
 async def transfer(domain_id: str, old_owner_uid: int, new_owner_uid: int):
-  # for domain in builtin.DOMAINS:
-  #   if domain['_id'] == domain_id:
-  #     # raise error.BuiltinDomainError(domain_id)
-  #     pass
+  for domain in builtin.DOMAINS:
+    if domain['_id'] == domain_id:
+      raise error.BuiltinDomainError(domain_id)
   coll = db.coll('domain')
   return await coll.find_one_and_update(filter={'_id': domain_id, 'owner_uid': old_owner_uid},
                                         update={'$set': {'owner_uid': new_owner_uid}},

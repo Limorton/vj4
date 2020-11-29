@@ -14,6 +14,7 @@ PERM_VIEW = 1 << 0
 PERM_EDIT_PERM = 1 << 1
 PERM_MOD_BADGE = 1 << 2
 PERM_EDIT_DESCRIPTION = 1 << 3
+PERM_CREATE_DOMAIN = 1 << 60         # 60
 
 # Problem and Record.
 PERM_CREATE_PROBLEM = 1 << 4
@@ -95,6 +96,7 @@ PERMS = [
     Permission('perm_general', PERM_EDIT_PERM, 'Edit permissions of a role'),
     Permission('perm_general', PERM_MOD_BADGE, 'Show MOD badge'),
     Permission('perm_general', PERM_EDIT_DESCRIPTION, 'Edit description of this domain'),
+    # Permission('perm_general', PERM_CREATE_DOMAIN, 'Create Domain'),     # still require priv to create domain
     Permission('perm_problem', PERM_CREATE_PROBLEM, 'Create problems'),
     Permission('perm_problem', PERM_EDIT_PROBLEM, 'Edit problems'),
     Permission('perm_problem', PERM_EDIT_PROBLEM_SELF, 'Edit own problems'),
@@ -188,9 +190,6 @@ JUDGE_PRIV = (PRIV_USER_PROFILE
               | PRIV_READ_PRETEST_DATA
               | PRIV_READ_RECORD_CODE
               | PRIV_WRITE_RECORD)
-
-# Domains.
-DOMAIN_ID_SYSTEM = 'system'
 
 # guest user : should can never view problem solutions
 BASIC_PERMISSIONS = (
@@ -363,6 +362,8 @@ BUILTIN_ROLE_DESCRIPTORS = {
     ROLE_DEFAULT: BuiltinRoleDescriptor(True, DEFAULT_PERMISSIONS, 'Valid for registered users who are not members of the domain'),
 }
 
+# Domains.
+DOMAIN_ID_SYSTEM = 'system'
 DOMAIN_SYSTEM = {
     '_id': DOMAIN_ID_SYSTEM,
     'owner_uid': 0,

@@ -26,7 +26,7 @@ class DomainMainHandler(contest.ContestStatusMixin, base.Handler):
   CONTESTS_ON_MAIN = 5
   HOMEWORK_ON_MAIN = 5
   TRAININGS_ON_MAIN = 5
-  DISCUSSIONS_ON_MAIN = 20
+  DISCUSSIONS_ON_MAIN = 15
 
   async def prepare_contest(self):
     if self.has_perm(builtin.PERM_VIEW_CONTEST):
@@ -57,7 +57,7 @@ class DomainMainHandler(contest.ContestStatusMixin, base.Handler):
   async def prepare_training(self):
     if self.has_perm(builtin.PERM_VIEW_TRAINING):
       tdocs = await training.get_multi(self.domain_id) \
-                            .sort('doc_id', 1) \
+                            .sort('enroll', -1) \
                             .limit(self.TRAININGS_ON_MAIN) \
                             .to_list()
       tsdict = await training.get_dict_status(self.domain_id, self.user['_id'],

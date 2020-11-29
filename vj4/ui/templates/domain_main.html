@@ -21,7 +21,7 @@
   {% else %}
     <div class="section page--contest_main">
       <div class="section__header">
-        <h1 class="section__title">{{ _('Contest') }}</h1>
+        <h1 class="section__title">{{ _('Recent Contest') }}</h1>
       </div>
       <ol class="section__list contest__list">
       {% for tdoc in tdocs %}
@@ -109,7 +109,7 @@
   {% else %}
     <div class="section page--training_main">
       <div class="section__header">
-        <h1 class="section__title">{{ _('Training') }}</h1>
+        <h1 class="section__title">{{ _('Hot Training') }}</h1>
       </div>
       {% with tdocs=trdocs, tsdict=trsdict %}
       <ol class="section__list all primary training__list">
@@ -158,7 +158,7 @@
   {% else %}
     <div class="section page--discussion_main">
       <div class="section__header">
-        <h1 class="section__title">{{ _('Discussion') }}</h1>
+        <h1 class="section__title">{{ _('Recent Discussion') }}</h1>
       </div>
       {% include "partials/discussion_list.html" %}
     </div>
@@ -183,12 +183,22 @@
           <div id="caption"></div>
         </div>
       </div>
-      
-  </div>
+    </div>
+    <div class="section side">
+      <div class="section__header">
+        <h1 class="section__title">{{ _('Search Problem') }}</h1>
+      </div>
+      <form method="get" action="{{ reverse_url('problem_search') }}">
+        <div class="section__body">
+          <!-- TODO: replace with form_builder -->
+          <label>
+            <input name="q" type="text" class="textbox" value="" placeholder="1001">
+          </label>
+          <button type="submit" class="primary button">{{ _('Search') }}</button>
+        </div>
+      </form>
+    </div>
 
-  {% if handler.has_perm(vj4.model.builtin.PERM_VIEW_DISCUSSION) %}
-    {% include 'discussion_nodes_widget.html' %}
-  {% endif %}
   {% if domain_id == vj4.model.builtin.DOMAIN_ID_SYSTEM %}
     <div class="section side">
       <div class="section__header">
@@ -198,6 +208,7 @@
         <li class="group-list__item">
           <h2 class="section__title">{{ _('Chinese') }}</h2>
           <ol class="chip-list">
+            <li class="chip-list__item"><a class="typo-a" href="https://oi-wiki.org/" target="_blank">OI Wiki</a></li>
             <li class="chip-list__item"><a class="typo-a" href="https://www.xuetangx.com/courses/course-v1:TsinghuaX+30240184+sp/about" target="_blank">清华数据结构 MOOC 上</a><a class="typo-a" href="https://www.xuetangx.com/courses/course-v1:TsinghuaX+30240184_2X+sp/about" target="_blank">/下</a></li>
             <li class="chip-list__item"><a class="typo-a" href="https://www.luogu.org/" target="_blank">洛谷</a></li>
             <li class="chip-list__item"><a class="typo-a" href="http://acm.zju.edu.cn/onlinejudge/" target="_blank">ZOJ</a></li>
