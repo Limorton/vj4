@@ -25,9 +25,9 @@ async def add(domain_id: str, owner_uid: int,
   validator.check_domain_id(domain_id)
   validator.check_name(name)
   validator.check_bulletin(bulletin)
-  for domain in builtin.DOMAINS:
-    if domain['_id'] == domain_id:
-      raise error.DomainAlreadyExistError(domain_id)
+  # for domain in builtin.DOMAINS:
+  #   if domain['_id'] == domain_id:
+  #     raise error.DomainAlreadyExistError(domain_id)
   coll = db.coll('domain')
   try:
     result = await coll.insert_one({'_id': domain_id,
@@ -68,7 +68,8 @@ async def get(domain_id: str, fields=None):
       ddoc = await coll.find_one(domain['_id'], fields)
       if not ddoc:
         await add(domain['_id'],domain['owner_uid'],domain['roles'],domain['name'])
-      # return domain
+        return domain
+      return ddoc
   ddoc = await coll.find_one(domain_id, fields)
   if not ddoc:
     raise error.DomainNotFoundError(domain_id)

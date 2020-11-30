@@ -4,7 +4,7 @@
   <div class="section__header">
     <h1 class="section__title">{{ _('My Domains') }}</h1>
     <div class="section__tools">
-    {% if handler.has_priv(vj4.model.builtin.PRIV_CREATE_DOMAIN) %}
+    {% if handler.has_priv(vj4.model.builtin.PRIV_CREATE_DOMAIN) or handler.has_perm(vj4.model.builtin.PERM_CREATE_DOMAIN) %}
       <a class="primary rounded button" href="{{ reverse_url('home_domain_create') }}"><span class="icon icon-add"></span> {{ _('Create Domain') }}</a>
     {% endif %}
       <a class="tool-button" href="{{ reverse_url('wiki_help') }}#domain"><span class="icon icon-help"></span> {{ _('What\'s domain?') }}</a>
@@ -72,7 +72,7 @@
         </tr>
       {% endfor %}
       {% for ddoc in ddocs %}
-      {% if not ddoc['pending'] %}
+      {% if not ddoc['pending'] and not ddoc['_id'] == vj4.model.builtin.DOMAIN_ID_SYSTEM%}
         <tr>
           <td class="col--icon">
             <img src="{{ ddoc['gravatar']|gravatar_url }}" width="32" height="32">
