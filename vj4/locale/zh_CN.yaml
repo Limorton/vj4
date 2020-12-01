@@ -440,7 +440,6 @@ View this domain: 查看此班级
 Edit permissions of a role: 修改角色权限
 Show MOD badge: 展示 MOD 徽章
 Edit description of this domain: 修改此班级描述
-Edit description of this domain: 修改此班级描述
 Create problems: 创建题目
 Edit problems: 修改题目
 Edit own problems: 修改自己的题目
@@ -655,6 +654,8 @@ Reset: 重置
 Data of problem {1} not found.: 题目 {1} 的数据未找到。
 Data of record {0} not found.: 记录 {0} 的数据未找到。
 All Submissions: 所有递交
+Time limitations: 时间限制
+Space limitations: 空间限制
 Waiting: 等待评测
 Wrong Answer: 答案错误
 Runtime Error: 运行时错误
@@ -694,6 +695,14 @@ Insert Code: 插入代码
 Create Link: 创建链接
 Insert Image: 插入图像
 Toggle Preview: 切换预览
+Problem type: 题目类型
+Normal Problem: 普通题目
+Interactive Problem: 交互题
+Submission Problem: 提交答案
+Special Judge: Special Judge
+default 1000 ms: 单位:ms，默认 1000 ms.
+default 256 MB : 单位:MB，默认 256 MB.
+When not set to normal problem, you should put a config file in data.zip: 当题目被设置为非普通题目时，意味着这道题的数据需要额外的配置文件 
 (All Problems): (所有题目)
 Confirm deleting this comment? Its replies will be deleted as well.: 确认删除这个评论吗？回复会被同时删除。
 Confirm deleting this reply?: 确认删除这个回复吗？

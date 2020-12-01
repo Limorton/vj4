@@ -27,6 +27,17 @@ SETTING_DIFFICULTY_RANGE = collections.OrderedDict([
   (SETTING_DIFFICULTY_AVERAGE, 'Use average of above')
 ])
 
+SETTING_PROBLEM_NORMAL = 0
+SETTING_PROBLEM_INTERATIVE = 1
+SETTING_PROBLEM_SUBMIT = 2
+SETTING_PROBLEM_SPECIAL_JUDGE = 3
+
+SETTING_PROBLEM_TYPE_RANGE = collections.OrderedDict([
+  (SETTING_PROBLEM_NORMAL, 'Normal Problem'),
+  (SETTING_PROBLEM_INTERATIVE, 'Interactive Problem'),
+  (SETTING_PROBLEM_SUBMIT, 'Submission Problem'),
+  (SETTING_PROBLEM_SPECIAL_JUDGE, 'Special Judge')
+])
 
 @argmethod.wrap
 def get_categories():
