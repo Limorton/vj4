@@ -52,6 +52,17 @@ async def render_or_json_problem_list(self, page, ppcount, pcount, pdocs,
                 **kwargs)
 
 
+@base.require_priv(builtin.PRIV_USER_PROFILE)
+@base.require_perm(builtin.PERM_VIEW_PROBLEM)
+@base.require_csrf_token
+@base.route_argument
+@base.sanitize
+async def star_unstar(self, *, pid: document.convert_doc_id, star: bool):
+  pdoc = await problem.get(self.domain_id, pid)
+  psdoc = await problem.set_star(self.domain_id, pdoc['doc_id'], self.user['_id'], star)
+  self.json_or_redirect(self.referer_or_main, star=psdoc['star'])
+
+
 @app.route('/p', 'problem_main')
 class ProblemMainHandler(base.OperationHandler):
   PROBLEMS_PER_PAGE = 100
@@ -78,14 +89,6 @@ class ProblemMainHandler(base.OperationHandler):
       psdict = None
     await render_or_json_problem_list(self, page=page, ppcount=ppcount, pcount=pcount,
                                       pdocs=pdocs, category='', psdict=psdict)
-
-  @base.require_priv(builtin.PRIV_USER_PROFILE)
-  @base.require_csrf_token
-  @base.sanitize
-  async def star_unstar(self, *, pid: document.convert_doc_id, star: bool):
-    pdoc = await problem.get(self.domain_id, pid)
-    psdoc = await problem.set_star(self.domain_id, pdoc['doc_id'], self.user['_id'], star)
-    self.json_or_redirect(self.referer_or_main, star=psdoc['star'])
 
   post_star = functools.partialmethod(star_unstar, star=True)
   post_unstar = functools.partialmethod(star_unstar, star=False)
@@ -251,6 +254,9 @@ class ProblemDetailHandler(base.OperationHandler):
 
     new_url = self.reverse_url('problem_settings', pid=pid, domain_id=dest_domain_id)
     self.json_or_redirect(new_url, new_problem_url=new_url)
+
+  post_star = functools.partialmethod(star_unstar, star=True)
+  post_unstar = functools.partialmethod(star_unstar, star=False)
 
 
 @app.route('/p/{pid}/submit', 'problem_submit')
