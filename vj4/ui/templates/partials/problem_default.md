@@ -1,5 +1,3 @@
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 时间限制:1000ms &emsp;空间限制:256MB
-
 # **题目描述**
 
 &emsp;&emsp;前面是两个空格。
@@ -8,9 +6,9 @@
 
 # **输入格式** 
 
-&emsp;&emsp;第一行，两个整数 $N$ 和 $M$。
+&emsp;&emsp;一行一个整数 $n$。
 
-&emsp;&emsp;接下来 $N$ 行，每行......。
+&emsp;&emsp;接下来 $n$ 行，每行......。
 
 # **输出格式**
 
@@ -36,4 +34,4 @@
 
 # **数据范围/约定**
 
-&emsp;&emsp;对于 100% 的测试数据满足：$1≤N≤1000，1≤M≤10^6$。
+&emsp;&emsp;对于 100% 的测试数据满足：$1≤n≤1000，1≤m≤10^6$。
