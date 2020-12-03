@@ -43,7 +43,9 @@ async def add(domain_id: str, owner_uid: int,
                         {'$unset': {'pending': ''}})
   return domain_id
 
-
+"""
+complete creating domain operation
+"""
 async def add_continue(domain_id: str, ensure_owner_uid: int=None):
   ddoc = await get(domain_id)
   if 'pending' not in ddoc:
@@ -75,6 +77,12 @@ async def get(domain_id: str, fields=None):
     raise error.DomainNotFoundError(domain_id)
   return ddoc
 
+
+@argmethod.wrap
+async def highlight_unhighlight(domain_id: str, uid: int, highlight: bool):
+    coll = db.coll('domain.user')
+    return await coll.find_one_and_update(filter={'domain_id': domain_id, 'uid': uid,},
+                                        update={'$set': {'highlight': highlight}})
 
 def get_multi(*, fields=None, **kwargs):
   coll = db.coll('domain')

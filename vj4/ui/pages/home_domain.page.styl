@@ -11,8 +11,30 @@
     border-left: 1px solid $table-border-color
 
   .col--action
-    width: rem(135px)
+    width: rem(160px)
+    border-left: 1px solid $table-border-color
 
   +mobile()
     .col--icon, .col--role
       display: none
+
+.pin
+  border: 0
+  background: none
+  outline: 0
+  padding: 0
+  margin: 0
+  // color: gray
+
+  .pined--show
+    display: none
+  .pined--hide
+    display: block
+
+  &.activated
+    // color: orange
+    .pined--show
+      display: block
+    .pined--hide
+      display: none
+

@@ -139,6 +139,7 @@ Problems: 题目
 Problems Sets: 题库
 Public: 公开
 Published at: 发表于
+Drop out the domain: 退出班级
 QQ Group: QQ 群
 QQ Visibility: QQ 可见性
 WeChat: 联系电话/微信
@@ -312,7 +313,8 @@ Code language: 代码语言
 Comment: 评论
 Share: 分享
 Delete: 删除
-Highlight: 置顶讨论
+Unhighlight: 取消置顶
+Highlight: 置顶
 Begin at: 开始于
 End at: 结束于
 Action: 动作
@@ -537,6 +539,8 @@ Their account will not be deleted and they will be with the default role when vi
 Selected users have been removed from the domain.: 所选用户已从此班级中移除。
 Role has been updated to {0} for selected users.: 所选用户角色已更新为 {0}。
 Role has been updated to {0}.: 角色已更新为 {0}。
+Domain {0} has been pinned.: 班级 {0} 已置顶。
+Domain {0} has been unpinned.: 班级 {0} 已取消置顶。
 Confirm deleting the selected roles?: 您确定删除所选角色吗？
 Users with those roles will be removed from the domain.: 拥有这些角色的用户将从此班级中移除。
 Selected roles have been deleted.: 所选角色已删除。

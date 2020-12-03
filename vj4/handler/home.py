@@ -1,7 +1,7 @@
 import asyncio
 import hmac
 import itertools
-# import sys
+import sys
 
 from bson import objectid
 
@@ -208,7 +208,8 @@ class HomeMessagesHandler(base.OperationHandler):
     self.modify_udoc(mdoc, 'sendee_udoc')
     if self.user['_id'] != uid:
       await bus.publish('message_received-' + str(uid), {'type': 'new', 'data': mdoc})
-    # print('post_send_message:', mdoc)
+    print('sendee_udoc', udoc)
+    print('sender_udoc', sender_udoc)
     self.json_or_redirect(self.url, mdoc=mdoc)
 
   @base.require_priv(builtin.PRIV_USER_PROFILE)
@@ -225,7 +226,6 @@ class HomeMessagesHandler(base.OperationHandler):
         other_uid = mdoc['sender_uid']
       mdoc['reply'] = [reply]
       await bus.publish('message_received-' + str(other_uid), {'type': 'reply', 'data': mdoc})
-    # print('post_reply_message:', mdoc)
     self.json_or_redirect(self.url, reply=reply)
 
   @base.require_priv(builtin.PRIV_USER_PROFILE)
@@ -261,8 +261,13 @@ class HomeDomainHandler(base.Handler):
                                 .to_list()
     dudict = await domain.get_dict_user_by_domain_id(self.user['_id'])
     dids = list(dudict.keys())
-    ddocs = await domain.get_multi(_id={'$in': dids}) \
-                        .to_list()
+    ddocs = await domain.get_multi(_id={'$in': dids}).to_list()
+    for ddoc in ddocs:
+      if 'highlight' in dudict[ddoc['_id']].keys():
+        ddoc['highlight'] = dudict[ddoc['_id']]['highlight']
+      else:
+        ddoc['highlight'] = False
+    ddocs = sorted( ddocs, key = lambda e:e['highlight'], reverse = True)
     can_manage = {}
     for ddoc in builtin.DOMAINS + ddocs:
       role = dudict.get(ddoc['_id'], {}).get('role', builtin.ROLE_DEFAULT)
@@ -270,13 +275,23 @@ class HomeDomainHandler(base.Handler):
       can_manage[ddoc['_id']] = (
           ((builtin.PERM_EDIT_DESCRIPTION | builtin.PERM_EDIT_PERM) & mask) != 0
           or self.has_priv(builtin.PRIV_MANAGE_ALL_DOMAIN))
-    self.render('home_domain.html', pending_ddocs=pending_ddocs, ddocs=ddocs, dudict=dudict, can_manage=can_manage)
+    self.render('home_domain.html', uid=self.user['_id'], pending_ddocs=pending_ddocs, ddocs=ddocs, dudict=dudict, can_manage=can_manage)
 
+  @base.require_priv(builtin.PRIV_USER_PROFILE)
   @base.post_argument
   @base.require_csrf_token
   @base.sanitize
-  async def post(self, *, domain_id: str):
+  async def post_add_continue(self, *, domain_id: str):
     await domain.add_continue(domain_id, self.user['_id'])
+    self.json_or_redirect(self.url)
+
+  @base.require_priv(builtin.PRIV_USER_PROFILE)
+  @base.post_argument
+  @base.require_csrf_token
+  @base.sanitize
+  async def post(self, *, operation: str, domain_id: str, uid: int, highlight: int):
+    highlight = True if highlight==1 else False
+    await domain.highlight_unhighlight(domain_id, uid, highlight)
     self.json_or_redirect(self.url)
 
 

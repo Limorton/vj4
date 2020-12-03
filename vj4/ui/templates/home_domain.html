@@ -59,6 +59,7 @@
           </td>
           <td class="col--name">
             <span data-tooltip="{{ _('This is a built-in domain that every user is in.') }}">{{ ddoc['name'] }} ({{ ddoc['_id'] }})</span>
+            <span style="background-color:#f03e3e;color:white;"> &nbsp;TOPS&nbsp; </span>
           </td>
           <td class="col--role">
             {{ dudict.get(ddoc['_id'], {})['role']|default(vj4.model.builtin.ROLE_DEFAULT) }}
@@ -72,25 +73,40 @@
         </tr>
       {% endfor %}
       {% for ddoc in ddocs %}
-      {% if not ddoc['pending'] and not ddoc['_id'] == vj4.model.builtin.DOMAIN_ID_SYSTEM%}
-        <tr>
+      {% with urole=dudict.get(ddoc['_id'], {})['role'] %}
+      <!-- Exclude the 'default' role class -->
+      {% if not ddoc['pending'] and not ddoc['_id'] == vj4.model.builtin.DOMAIN_ID_SYSTEM and urole and not urole==vj4.model.builtin.ROLE_DEFAULT %}
+        <tr data-uid="{{ uid }}" data-domain-id= "{{ ddoc['_id'] }}" data-highlight="{% if not ddoc['highlight'] %}highlight{% else %}unhighlight{% endif %}">
           <td class="col--icon">
             <img src="{{ ddoc['gravatar']|gravatar_url }}" width="32" height="32">
           </td>
           <td class="col--name">
             {{ ddoc['name'] }} ({{ ddoc['_id'] }})
+            {% if ddoc['highlight']  %}
+              <span style="background-color:#f03e3e;color:white;"> &nbsp;TOPS&nbsp; </span>
+            {% endif %}
           </td>
           <td class="col--role">
-            {{ dudict.get(ddoc['_id'], {})['role']|default(vj4.model.builtin.ROLE_DEFAULT) }}
+            {{ urole|default(vj4.model.builtin.ROLE_DEFAULT) }}
           </td>
           <td class="col--action">
             <a class="typo-a" href="{{ reverse_url('domain_main', domain_id=ddoc['_id']) }}">{{ _('Visit') }}</a>
+            · <a class="typo-a">
+                <button class="pin{% if ddoc['highlight'] %} activated{% endif %}" name="highlight" type="button">
+                  <span class="pined--hide"><span>{{ _('Highlight')}}</span></span>
+                  <span class="pined--show"><span>{{ _('Unhighlight')}}</span></span>
+                </button>
+            </a>
           {% if can_manage[ddoc['_id']] %}
-            · <a class="typo-a" href="{{ reverse_url('domain_manage', domain_id=ddoc['_id']) }}">{{ _('Manage') }}</a>
+            . <a class="typo-a" href="{{ reverse_url('domain_manage', domain_id=ddoc['_id']) }}">{{ _('Manage') }}</a>
           {% endif %}
+          <!-- {% if can_manage[ddoc['_id']] %}
+          · <a class="typo-a" href="{{ reverse_url('domain_manage', domain_id=ddoc['_id']) }}">{{ _('Drop out the class') }}</a>
+          {% endif %} -->
           </td>
         </tr>
       {% endif %}
+      {% endwith %}
       {% endfor %}
       </tbody>
     </table>
