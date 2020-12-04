@@ -47,10 +47,10 @@
         <div class="section__header non-scratchpad--hide">
           <h1>{{ pdoc['title'] }}</h1>
         </div>
-        <div class="section_right_hint"> 
+        <!-- <div class="section_right_hint"> 
           {{ _('Time limitations')}}: <span > {{ pdoc['limit_time'] | default('1000') }} </span>ms &ensp;
           {{ _('Space limitations')}}: <span> {{ pdoc['limit_space'] | default('256') }} </span> MB
-         </div>
+         </div> -->
         <div class="section__body typo">
         {% if not pdoc['data'] %}
           <blockquote class="warn">
