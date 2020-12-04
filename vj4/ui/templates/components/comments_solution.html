@@ -74,9 +74,14 @@
       </div>
       <div class="commentbox-edit-target"></div>
       <ul class="dczcomments__replies commentbox-reply-target">
-      {% for rdoc in doc['reply'] %}
-        {{ reply(mode_create, udict[rdoc['owner_uid']], doc, rdoc) }}
-      {% endfor %}
+      {% if doc['reply'] %}
+      <details>
+        <summary>{{ _('expand or collapse') }}: {{ doc['reply']|length }} {{ _('..discussions') }}</summary>
+        {% for rdoc in doc['reply'] %}
+          {{ reply(mode_create, udict[rdoc['owner_uid']], doc, rdoc) }}
+        {% endfor %}
+      </details>
+      {% endif %}
       </ul>
     {% else %}
       <div class="clearfix">
@@ -93,4 +98,5 @@
     </div>
   </div>
 </li>
+
 {% endmacro %}

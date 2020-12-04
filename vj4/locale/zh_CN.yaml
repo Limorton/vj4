@@ -570,6 +570,7 @@ Open: 开放
 Invalid: 无效
 expand: 展开
 collapse: 收缩
+expand or collapse: 展开/收起
 'Note: Problem title may not be hidden.': 注意：题目标题可能不会被隐藏。
 Partic.: 参赛人数
 Create training plans: 创建训练计划
@@ -602,6 +603,7 @@ Dataset Format: 测试数据集格式
 Forgot Password and/or Username: 忘记密码和/或用户名
 Reset Password or Find Username: 重置密码或找回用户名
 '{0} discussions': '{0} 条讨论'
+..discussions: 条讨论
 In following contests: 在下列比赛中
 View Owned Problems: 查看自己的题目
 Completed: 已完成

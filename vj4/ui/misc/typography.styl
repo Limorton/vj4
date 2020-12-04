@@ -219,6 +219,7 @@ pre
   display: block
   white-space: pre-wrap
   overflow: auto
+  max-height: 800px
   word-wrap()
 
 hr
@@ -230,6 +231,29 @@ hr
 small, figcaption
   font-size: 0.9em
   color: $text-3-color
+
+summary
+  background-color: $input-background-color
+  background-image: url('~vj/misc/icons/' + $icon-expand_more-file)
+  background-size: 20px 20px
+  background-position-y: rem(7px)
+  background-repeat: no-repeat
+  cursor: pointer
+  display: inline-block
+  line-height: 20px
+  text-align: center
+  outline: none
+  margin-right: 3px
+  padding: rem(7px)
+
+summary::-webkit-details-marker
+  display:none
+
+summary:before
+  content:""
+  color:#696f7c
+  margin-right:3px
+  padding:10px
 
 .typo
   word-wrap()
