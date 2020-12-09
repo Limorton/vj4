@@ -44,8 +44,8 @@ dd
       box-sizing: border-box
       padding-right: rem(10px)
     dd
-      float: left
       width: 62%
+      float: left
 
     dt, dd
       line-height: 1.2rem
@@ -78,8 +78,9 @@ fieldset, img
 blockquote
   position: relative
   color: $blockquote-color
+  background-color: #fff9f9
   font-weight: 400
-  border-left: 3px solid #DDD
+  border-left: 3px solid #ef7060
   padding: 1rem
   margin: 0.5rem 0 1rem 0
   font-size: ($font-size-secondary)
@@ -222,6 +223,14 @@ pre
   max-height: 800px
   word-wrap()
 
+p > code, li > code, span > code
+  border: 1px solid blue
+  border-radius: 3px
+
+.code-toolbar
+  border: 1px solid #dfdfdf
+  border-radius: 3px
+
 hr
   border: none
   border-bottom: 1px solid #cfcfcf
@@ -255,6 +264,7 @@ summary:before
   margin-right:3px
   padding:10px
 
+// paper documents: problems
 .typo
   word-wrap()
 
@@ -299,17 +309,115 @@ h1, h2, h3, h4, h5, h6
 
 .typo ul
   margin-left: 1.3em
-  list-style: square
+  list-style: disc
 
+// color 
+$typo-color-gray = #adb5bd
+$typo-color-red = #ff6b6b
+$typo-color-pink = #f06595
+$typo-color-grape = #cc5de8
+$typo-color-violet = #845ef7
+$typo-color-indigo = #5c7cfa
+$typo-color-blue = #339af0
+$typo-color-cyan = #22b8cf
+$typo-color-teal = #20c997
+$typo-color-green = #51cf66
+$typo-color-lime = #94d82d
+$typo-color-lime = #94d82d
+$typo-color-yellow = #fcc419
+$typo-color-orange = #ff922b
+// problem solutions or discussion comments
 .no-heading
   h1, h2, h3, h4, h5, h6
-    padding-top: 0.3em
-    padding-bottom: 0.3em
-    margin: 0
-    font-size: inherit
+    display: inline-block
     font-weight: 400
     line-height: 1
     margin-top: 0.6em
+
+.no-heading h1
+  font-size: 1.7em
+
+.no-heading h2
+  font-size: 1.6em
+
+.no-heading h3
+  font-size: 1.5em
+
+.no-heading h4
+  font-size: 1.3em
+
+.no-heading h5
+  font-size: 1em
+  color: white
+  padding: 3px 5px
+  border-radius: 3px
+  background: $typo-color-blue
+
+.no-heading h6
+  font-size: 1em
+  color: white
+  padding: 3px 5px
+  border-radius: 3px
+  background: $typo-color-orange
+
+// discussions
+.topic__content
+  h1, h2, h3, h4, h5, h6
+    display: block
+    font-weight: 400
+    line-height: 1
+
+.topic__content h1
+  text-align: center
+  background: none
+  font-size: 1.7em
+  padding-bottom: 0.3em
+  font-size: 2.2em
+  line-height: 1.2
+  margin: 2.4em auto 1.2em
+
+.topic__content h1:after
+  content: ''
+  display: block
+  margin: 0.2em auto 0
+  width: 100px
+  height: 2px
+  border-bottom: 2px solid $typo-color-red
+
+.topic__content h2
+  margin: 1.2em 0em 0.5em
+  padding-left: 10px
+  line-height: 1.2
+  font-size: 1.8em
+  border-left: 9px solid $typo-color-red
+  border-bottom: 2px solid $typo-color-red
+
+.topic__content h3
+  font-size: 1.5em
+  margin: 1.2em auto 0.5em
+
+.topic__content h4
+  font-size: 1.3em
+  margin: 1.2em auto 0.5em
+
+.topic__content h5
+  font-size: 1em
+  display: inline-block
+  background: $typo-color-blue
+  color: white
+  padding: 3px 10px 1px
+  border-radius: 3px
+  margin-right: 3px
+
+.topic__content h6
+  font-size: 1em
+  display: inline-block
+  background: $typo-color-lime
+  color: white
+  padding: 3px 10px 1px
+  border-radius: 3px
+  margin-right: 3px
+
 
 .typo ol
   list-style: decimal
@@ -321,7 +429,7 @@ h1, h2, h3, h4, h5, h6
   margin-left: 2em
 
 .typo li ul
-  list-style: circle
+  list-style: disc
 
 .typo table th, .typo table td, .typo table caption
   border: 1px solid #ddd
