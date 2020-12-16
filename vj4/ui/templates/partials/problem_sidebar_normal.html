@@ -172,6 +172,14 @@
       <dt>{{ _('Uploaded By') }}</dt>
       <dd>{{ user.render_inline(owner_udoc, owner_dudoc, badge=false) }}</dd>
     {% endif %}
+    {% if pdoc['source'] %}
+      <dt>{{ _('Sources') }}</dt>
+      <dd>{{ _(vj4.model.adaptor.problem.SETTING_SOURCE_RANGE[pdoc['source']]) }}</dd>
+    {% endif %}
+    {% if pdoc['src_link'] and pdoc['src_link'].startswith('http')%}
+      <dt>{{ _('Source Link') }}</dt>
+      <dd><a target="_blank" href="{{ pdoc['src_link'] }}">{{ _('click to origin website') }}</a></dd>
+    {% endif %}
     </dl>
   </div>
 </div>

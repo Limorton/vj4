@@ -38,6 +38,15 @@
               <p class="help-text">{{ _('Difficulty by admin') }}: {{ pdoc['difficulty_admin'] or _('(None)') }}</p>
             </div>
           </div>
+          <div class="row">
+            {{ form.form_select(columns=4, label='Sources', help_text='Sources: from which book, website or author .etc', name='source', options=vj4.model.adaptor.problem.SETTING_SOURCE_RANGE.items(), value=pdoc['source']|default(0), row=false) }}
+            {{ form.form_text(columns=8, label='Source Link', help_text='If this problem comes from other website, please fill in the links.', name='src_link', value=(pdoc['src_link'] or '' ), row=false) }}
+          </div>
+          <div class="row">
+            {{ form.form_text(columns=4, label='Time', help_text='Year', name='year', value=pdoc['year']|default(''), row=false) }}
+            {{ form.form_text(columns=4, label='Region', help_text='Provience', name='region', value=pdoc['region']|default(''), row=false) }}
+            {{ form.form_select(columns=4, label='Problem Quality', help_text='vote for problems', name='quality', options=vj4.model.adaptor.problem.SETTING_PROBLEM_QUALITY_RANGE.items(), value=pdoc['quality']|default(0), row=false) }}
+          </div>
           <div class="row"><div class="columns">
             <input type="hidden" name="csrf_token" value="{{ handler.csrf_token }}">
             <button type="submit" class="rounded primary button">
