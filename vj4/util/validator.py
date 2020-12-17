@@ -100,8 +100,9 @@ def check_name(s):
     raise error.ValidationError('name')
 
 
+# TODO limits in messages should be differece from contest, problems and discussion, homework should be limitted
 def is_content(s):
-  return isinstance(s, str) and 0 < len(s.strip()) < 8192
+  return isinstance(s, str) and 0 < len(s.strip()) < 16384
 
 
 def check_content(s):
