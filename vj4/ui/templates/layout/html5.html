@@ -31,10 +31,11 @@
     var UiContext = {{ handler.ui_context|json|safe }};
     var UserContext = {{ handler.user_context|json|safe }};
   </script>
+  <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
   {% block body %}{% endblock %}
-  <!-- TODO: includes jQuery, JSON3, ES5-shim in the shim -->
+  <!-- TODO: includes JSON3, ES5-shim in the shim -->
   <!--[if lte IE 8]>
   <script type="text/javascript" src="{{ static_url('shim.js') }}"></script>
   <![endif]-->

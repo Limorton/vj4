@@ -37,6 +37,9 @@
               <td class="col--{{ rows[0][loop.index0]['type'] }}">
               {% if column['type'] == 'user' %}
                 {{ user.render_inline(column['raw'], badge=false) }}
+                {% if column['value'] %}
+                  ({{ column['value'] }})
+                {% endif %}
               {% elif column['type'] == 'record' %}
               {% if column['raw'] %}
                 <a href="{{ reverse_url('record_detail', rid=column['raw']) }}">{{ column['value']|nl2br }}</a>
@@ -54,5 +57,31 @@
       </table>
     </div>
   </div>
+  <script>
+  $(function (){
+      $("td.col--total_score").each(function () {
+        $(this).css("font-weight","bold");
+      });
+      $("td.col--problem_detail").each(function () {
+        $(this).css("font-weight","bold");
+        if ($(this).text().indexOf(":") == -1) {
+          var score = parseInt($(this).text());
+        } else {
+          var score = parseInt($(this).text().trim().substr(0,$(this).html().indexOf("<br>") - $(this).html().indexOf(">")-1));
+        }
+        if (score >= 100) {
+          $(this).children('a').css('color','#3fc469');
+        } else if (score >= 80) {
+          $(this).children('a').css('color','#b197fc');
+        } else if (score >= 50) {
+          $(this).children('a').css('color','#66d9e8');
+        } else if (score >= 10) {
+          $(this).children('a').css('color','#ffc078');
+        } else if (score >= 0) {
+          $(this).children('a').css('color','#fa5252');
+        }
+      })
+    })();
+  </script>
 </div></div>
 {% endblock %}
