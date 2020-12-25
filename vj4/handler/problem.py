@@ -729,7 +729,7 @@ class ProblemSettingsHandler(base.Handler):
                  limit_time: int=1000, limit_space: int=256, problem_type: int=0,
                  source: int=0, src_link: str='',
                  year: str='', region: str='', quality: int=0,
-                 ac_msg: str=''):
+                 ac_msg: str='', file_name: str=''):
     pdoc = await problem.get(self.domain_id, pid)
     if not self.own(pdoc, builtin.PERM_EDIT_PROBLEM_SELF):
       self.check_perm(builtin.PERM_EDIT_PROBLEM)
@@ -754,7 +754,7 @@ class ProblemSettingsHandler(base.Handler):
                        limit_time=limit_time, limit_space=limit_space, problem_type=problem_type,
                        source=source, src_link=src_link,
                        year=year, region=region, quality=quality,
-                       ac_msg=ac_msg)
+                       ac_msg=ac_msg,file_name=file_name)
     await job.difficulty.update_problem(self.domain_id, pdoc['doc_id'])
     self.json_or_redirect(self.reverse_url('problem_detail', pid=pid))
 
