@@ -2,7 +2,7 @@ import Notification from 'vj/components/notification';
 
 export default function reducer(state = {
   main: {
-    size: '50%',
+    size: '65%',
   },
   pretest: {
     visible: false,

@@ -272,11 +272,11 @@ const page = new NamedPage(['problem_detail', 'contest_detail_problem', 'homewor
     await loadReact();
     renderReact();
     await scratchpadFadeIn();
-    await createSidebar();
+    // await createSidebar();
   }
 
   async function leaveScratchpadMode() {
-    await removeSidebar();
+    // await removeSidebar();
     await scratchpadFadeOut();
     $('.problem-content-container').append($('.problem-content'));
     await extender.collapse();
@@ -284,6 +284,7 @@ const page = new NamedPage(['problem_detail', 'contest_detail_problem', 'homewor
   }
 
   $(document).on('vjScratchpadRelayout', updateFloatingSidebar);
+  $(document).on('quitScratchpad', leaveScratchpadMode);
   $(document).on('click', '[name="problem-sidebar__open-scratchpad"]', ev => {
     enterScratchpadMode();
     ev.preventDefault();

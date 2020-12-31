@@ -63,7 +63,7 @@ const mapDispatchToProps = dispatch => ({
 export default class ScratchpadContainer extends React.PureComponent {
   handleChangeSize(uiElement, size) {
     this.props.changeUiSize(uiElement, size);
-    $('#scratchpad').trigger('vjScratchpadRelayout');
+    // $('#scratchpad').trigger('vjScratchpadRelayout');
   }
 
   render() {

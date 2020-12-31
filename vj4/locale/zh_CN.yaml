@@ -145,6 +145,8 @@ QQ Visibility: QQ 可见性
 WeChat: 联系电话/微信
 WeChat Visibility: 微信/电话可见性
 Quit Scratchpad: 退出在线编程模式
+Enter Full Screen: 最大化编辑器
+Quit Full Screen: 显示问题
 Recent Activities: 最近活动
 Registered at: 注册于
 Related: 相关
@@ -638,11 +640,13 @@ CCF-TiGao: 《CCF-提高篇》
 Source Link: 原题链接
 click to origin website: 点击前往
 Problem Quality: 题目质量
+Problem Stars: 难度星级
 bad: 差
 average: 一般
 good: 好
 very good: 较好
 excellent: 优秀
+"1 to 4 stars, 4 is extremly hard": 一至三星：入门基础、提高、困难，四星：超难题
 "Sources: from which book, website or author .etc": 题目来源：TOPS原创、书籍、比赛......
 "If this problem comes from other website, please fill in the links.": 鼓励开源开放，如果这道题目来自其他网站，请务必完善题目链接(以'http'或'https'开头)
 "vote for problems": 填写题目质量，从1星到5星
@@ -732,7 +736,7 @@ Submission Problem: 提交答案
 Special Judge: Special Judge
 default 1000 ms: 单位:ms，默认 1000 ms.
 default 256 MB : 单位:MB，默认 256 MB.
-When not set to normal problem, you should put a config file in data.zip: 当题目被设置为非普通题目时，意味着这道题的数据需要额外的配置文件 
+When not set to normal problem, you should put a config file in data.zip: 当题目被设置为非普通题目时，则需要额外的配置文件 
 (All Problems): (所有题目)
 Confirm deleting this comment? Its replies will be deleted as well.: 确认删除这个评论吗？回复会被同时删除。
 Confirm deleting this reply?: 确认删除这个回复吗？

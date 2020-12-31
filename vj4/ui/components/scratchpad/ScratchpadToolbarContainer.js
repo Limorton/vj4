@@ -80,6 +80,15 @@ const mapDispatchToProps = dispatch => ({
   handleClickRefresh() {
     this.loadSubmissions();
   },
+  changeUiSize: _.debounce((uiElement, size) => {
+    dispatch({
+      type: 'SCRATCHPAD_UI_CHANGE_SIZE',
+      payload: {
+        uiElement,
+        size,
+      },
+    });
+  }, 500),
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -92,9 +101,44 @@ export default class ScratchpadToolbarContainer extends React.PureComponent {
     this.props.loadSubmissions();
   }
 
+  handleChangeSize(uiElement, size) {
+    this.props.changeUiSize(uiElement, size);
+    // $('#scratchpad').trigger('vjScratchpadRelayout');
+  }
+
+  handleQuitScratchpad(ev) {
+    $('.scratchpad__toolbar__quitscratchpad').trigger('quitScratchpad');
+    // ev.preventDefault();
+  }
+
   render() {
     return (
       <Toolbar>
+        <ToolbarButton
+          className="scratchpad__toolbar__halfscreen"
+          onClick={() => this.handleChangeSize('main', '65%')}
+          data-global-hotkey="esc"
+          data-tooltip={`${i18n('Quit Full Screen')} (ESC)`}
+        >
+          <Icon name="zminus" />
+        </ToolbarButton>
+        <ToolbarButton
+          className="scratchpad__toolbar__fullscreen"
+          onClick={() => this.handleChangeSize('main', '100%')}
+          data-global-hotkey="f11"
+          data-tooltip={`${i18n('Enter Full Screen')} (F11)`}
+        >
+          <Icon name="zsquare" />
+        </ToolbarButton>
+        <ToolbarButton
+          className="scratchpad__toolbar__quitscratchpad"
+          onClick={(ev) => this.handleQuitScratchpad(ev)}
+          data-global-hotkey="alt+q"
+          data-tooltip={`${i18n('Quit Scratchpad')} (ALT+Q)`}
+        >
+          <Icon name="close" />
+        </ToolbarButton>
+        <ToolbarSplit />
         <ToolbarButton
           disabled={this.props.isPosting || !this.props.pretestValid}
           className="scratchpad__toolbar__pretest"
