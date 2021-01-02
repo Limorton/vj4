@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 import i18n from 'vj/utils/i18n';
 import request from 'vj/utils/request';
+import Notification from 'vj/components/notification';
 import * as languageEnum from 'vj/constant/language';
 import Icon from 'vj/components/react/IconComponent';
 import Toolbar, {
@@ -56,6 +57,14 @@ const mapDispatchToProps = dispatch => ({
     // const titles = testCases.map(tabId => pretest.meta[tabId].title);
     const inputs = testCases.map(tabId => props.pretest.data[tabId].input);
     const outputs = testCases.map(tabId => props.pretest.data[tabId].output);
+    if (props.editorCode.length > 10000) {
+      Notification.error(i18n('Code is longer than 10000, submit failed.'));
+      return;
+    }
+    if (Object.keys(inputs).length === 0 || Object.keys(outputs).length === 0) {
+      Notification.error(i18n('Test data is invalid, please check.'));
+      return;
+    }
     const req = request.post(Context.postPretestUrl, {
       lang: props.editorLang,
       code: props.editorCode,
@@ -66,8 +75,13 @@ const mapDispatchToProps = dispatch => ({
       type: 'SCRATCHPAD_POST_PRETEST',
       payload: req,
     });
+    $('.scratchpad__toolbar__pretest').trigger('reSubmitCountDown');
   },
   postSubmit(props) {
+    if (props.editorCode.length > 10000) {
+      Notification.error(i18n('Code is longer than 10000, submit failed.'));
+      return;
+    }
     const req = request.post(Context.postSubmitUrl, {
       lang: props.editorLang,
       code: props.editorCode,
@@ -76,6 +90,7 @@ const mapDispatchToProps = dispatch => ({
       type: 'SCRATCHPAD_POST_SUBMIT',
       payload: req,
     });
+    $('.scratchpad__toolbar__submit').trigger('reSubmitCountDown');
   },
   handleClickRefresh() {
     this.loadSubmissions();
@@ -140,7 +155,7 @@ export default class ScratchpadToolbarContainer extends React.PureComponent {
         </ToolbarButton>
         <ToolbarSplit />
         <ToolbarButton
-          disabled={this.props.isPosting || !this.props.pretestValid}
+          // disabled={this.props.isPosting || !this.props.pretestValid}
           className="scratchpad__toolbar__pretest"
           onClick={() => this.props.postPretest(this.props)}
           data-global-hotkey="f9"
@@ -153,7 +168,7 @@ export default class ScratchpadToolbarContainer extends React.PureComponent {
           (F9)
         </ToolbarButton>
         <ToolbarButton
-          disabled={this.props.isPosting}
+          // disabled={this.props.isPosting}
           className="scratchpad__toolbar__submit"
           onClick={() => this.props.postSubmit(this.props)}
           data-global-hotkey="f10"
@@ -200,7 +215,7 @@ export default class ScratchpadToolbarContainer extends React.PureComponent {
         </ToolbarButton>
         <ToolbarButton
           disabled={this.props.isPosting}
-          className="scratchpad__toolbar__submit"
+          className="scratchpad__toolbar__refresh"
           onClick={() => this.props.handleClickRefresh()}
           data-global-hotkey="f8"
           data-tooltip={`${i18n('Refresh Records')} (F8)`}

@@ -122,6 +122,7 @@ const page = new NamedPage(['problem_detail', 'contest_detail_problem', 'homewor
   let $floatingSidebar = null;
   let renderReact = null;
   let unmountReact = null;
+  let previousSubmit = null;
   const extender = new ProblemPageExtender();
 
   async function scratchpadFadeIn() {
@@ -145,6 +146,23 @@ const page = new NamedPage(['problem_detail', 'contest_detail_problem', 'homewor
       })
       .promise();
   }
+
+  function throttle() {
+    var now = +new Date();
+    if (!previousSubmit || (now - previousSubmit > 10000)) {
+      Notification.success(i18n('Code is successfully submitted.'));
+      $('.scratchpad__toolbar__submit').addClass("disabled");
+      $('.scratchpad__toolbar__pretest').addClass("disabled");
+      previousSubmit = now;
+      setTimeout(function() {
+        $('.scratchpad__toolbar__submit').removeClass("disabled");
+        $('.scratchpad__toolbar__pretest').removeClass("disabled");
+        previousSubmit = null;
+      }, 10000);
+    } else {
+      ;
+    }
+  };
 
   function updateFloatingSidebar() {
     $floatingSidebar.tether.position();
@@ -283,6 +301,7 @@ const page = new NamedPage(['problem_detail', 'contest_detail_problem', 'homewor
     unmountReact();
   }
 
+  $(document).on('reSubmitCountDown', throttle);
   $(document).on('vjScratchpadRelayout', updateFloatingSidebar);
   $(document).on('quitScratchpad', leaveScratchpadMode);
   $(document).on('click', '[name="problem-sidebar__open-scratchpad"]', ev => {

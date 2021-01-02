@@ -297,7 +297,7 @@ class ProblemSubmitHandler(base.Handler):
   @base.post_argument
   @base.require_csrf_token
   @base.sanitize
-  @base.limit_rate('add_record', 60, 45)
+  @base.limit_rate('add_record', 120, 120)
   async def post(self, *, pid: document.convert_doc_id, lang: str, code: str):
     # TODO(twd2): check status, eg. test, hidden problem, ...
     pdoc = await problem.get(self.domain_id, pid)
@@ -315,7 +315,7 @@ class ProblemPretestHandler(base.Handler):
   @base.post_argument
   @base.require_csrf_token
   @base.sanitize
-  @base.limit_rate('add_record', 60, 20)
+  @base.limit_rate('add_record', 60, 60)
   async def post(self, *, pid: document.convert_doc_id, lang: str, code: str,
                  data_input: str, data_output: str):
     pdoc = await problem.get(self.domain_id, pid)
@@ -728,7 +728,7 @@ class ProblemSettingsHandler(base.Handler):
                  difficulty_setting: int, difficulty_admin: str='',
                  limit_time: int=1000, limit_space: int=256, problem_type: int=0,
                  source: int=0, src_link: str='',
-                 year: str='', region: str='', quality: int=0,
+                 year: str='', region: str='', quality: int=0, pb_stars: int=0,
                  ac_msg: str='', file_name: str=''):
     pdoc = await problem.get(self.domain_id, pid)
     if not self.own(pdoc, builtin.PERM_EDIT_PROBLEM_SELF):
@@ -753,7 +753,7 @@ class ProblemSettingsHandler(base.Handler):
                        difficulty_setting=difficulty_setting, difficulty_admin=difficulty_admin,
                        limit_time=limit_time, limit_space=limit_space, problem_type=problem_type,
                        source=source, src_link=src_link,
-                       year=year, region=region, quality=quality,
+                       year=year, region=region, quality=quality, pb_stars=pb_stars,
                        ac_msg=ac_msg,file_name=file_name)
     await job.difficulty.update_problem(self.domain_id, pdoc['doc_id'])
     self.json_or_redirect(self.reverse_url('problem_detail', pid=pid))
