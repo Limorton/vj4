@@ -173,7 +173,7 @@ class HomeMessagesHandler(base.OperationHandler):
     if not udoc:
       return
     gravatar_url = misc.gravatar_url(udoc.get('gravatar'), udoc.get('qq'))
-    if 'gravatar' in udoc and udoc['gravatar']:
+    if ('gravatar' in udoc and udoc['gravatar']) or ('qq' in udoc and udoc['qq']):
       udict[key] = {**udoc,
                     'gravatar_url': gravatar_url,
                     'gravatar': ''}
