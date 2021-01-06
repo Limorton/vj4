@@ -81,6 +81,20 @@ SETTING_PROBLEM_QUALITY_RANGE = collections.OrderedDict([
   (SETTING_QUALITY_EXCELLENT, 'excellent')
 ])
 
+SETTING_STARS_0 = 0
+SETTING_STARS_1 = 1
+SETTING_STARS_2 = 2
+SETTING_STARS_3 = 3
+SETTING_STARS_4 = 4
+
+SETTING_PROBLEM_STARS_RANGE = collections.OrderedDict([
+  (SETTING_STARS_0, 'Unknown'),
+  (SETTING_STARS_1, '⭐'),
+  (SETTING_STARS_2, '⭐⭐'),
+  (SETTING_STARS_3, '⭐⭐⭐'),
+  (SETTING_STARS_4, '⭐⭐⭐⭐')
+])
+
 @argmethod.wrap
 def get_categories():
   return builtin.PROBLEM_CATEGORIES

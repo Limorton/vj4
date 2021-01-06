@@ -33,6 +33,7 @@ CLOSE: 关闭
 Cancel: 取消
 Ok: 确定
 Category: 分类
+Challange Mode: 挑战模式
 Change Email: 修改电子邮件
 Change Password: 修改密码
 Code: 代码
@@ -116,6 +117,8 @@ Lost Password: 忘记密码
 Memory: 内存
 Memory Cost: 内存占用
 Code Length: 代码长度
+Max Coding Time: 挑战完成时间
+suggest coding time(in second).: 挑战模式下的本题完成时间(秒)
 Messages: 站内消息
 My Profile: 我的主页
 New Email: 新电子邮件
@@ -198,6 +201,7 @@ Status is hidden: 状态已隐藏
 Submission Statistics: 递交统计
 Submission: 递交
 Submissions: 递交
+Submission Mode: 递交模式
 Submit: 递交
 '# Submissions': '递交数'
 '# My Submissions': '我的递交数'
@@ -293,6 +297,7 @@ user_register: 注册
 '{0} views': '{0} 次查看'
 New: 创建
 Pretest: 自测
+Pretest Mode: 自测模式
 Add: 添加
 Remove: 移除
 Add new data: 添加新数据

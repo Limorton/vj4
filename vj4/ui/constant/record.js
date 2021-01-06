@@ -19,6 +19,7 @@ export const STATUS_IGNORED = 30;
 
 export const TYPE_SUBMISSION = 0;
 export const TYPE_PRETEST = 1;
+export const TYPE_CHALLANGE = 2;
 
 export const STATUS_TEXTS = {
   [STATUS_WAITING]: 'Waiting',
@@ -59,7 +60,7 @@ export const STATUS_CODES = {
 attachObjectMeta(STATUS_CODES, 'intKey', true);
 
 /**
- * Whether to show detail about each test case for a submission status
+ * Whether to show detail about each test case for a submission status in scratchpad
  */
 export const STATUS_SCRATCHPAD_SHOW_DETAIL_FLAGS = {
   [STATUS_WAITING]: false,
@@ -92,7 +93,8 @@ export const STATUS_SCRATCHPAD_SHORT_TEXTS = {
 attachObjectMeta(STATUS_SCRATCHPAD_SHORT_TEXTS, 'exportToPython', false);
 
 export const TYPE_TEXTS = {
-  [TYPE_SUBMISSION]: 'Submission',
-  [TYPE_PRETEST]: 'Pretest',
+  [TYPE_SUBMISSION]: 'Submission Mode',
+  [TYPE_PRETEST]: 'Pretest Mode',
+  [TYPE_CHALLANGE]: 'Challange Mode',
 };
 attachObjectMeta(TYPE_TEXTS, 'intKey', true);

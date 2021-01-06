@@ -430,8 +430,8 @@ class ProblemSolutionHandler(base.OperationHandler):
     psdoc = await problem.get_solution(self.domain_id, psid, pdoc['doc_id'])
     if not self.own(psdoc, builtin.PERM_EDIT_PROBLEM_SOLUTION_SELF):
       self.check_perm(builtin.PERM_EDIT_PROBLEM_SOLUTION)
-    psdoc = await problem.set_solution(self.domain_id, psdoc['doc_id'],
-                                       content=content)
+    await problem.set_solution(self.domain_id, psdoc['doc_id'],
+                               content=content)
     self.json_or_redirect(self.url)
 
   @base.require_priv(builtin.PRIV_USER_PROFILE)
@@ -727,7 +727,7 @@ class ProblemSettingsHandler(base.Handler):
                  category: str, tag: str,
                  difficulty_setting: int, difficulty_admin: str='',
                  limit_time: int=1000, limit_space: int=256, problem_type: int=0,
-                 source: int=0, src_link: str='',
+                 source: int=0, src_link: str='', coding_time: int=120,
                  year: str='', region: str='', quality: int=0, pb_stars: int=0,
                  ac_msg: str='', file_name: str=''):
     pdoc = await problem.get(self.domain_id, pid)
@@ -752,7 +752,7 @@ class ProblemSettingsHandler(base.Handler):
                        category=category, tag=tag,
                        difficulty_setting=difficulty_setting, difficulty_admin=difficulty_admin,
                        limit_time=limit_time, limit_space=limit_space, problem_type=problem_type,
-                       source=source, src_link=src_link,
+                       source=source, src_link=src_link, coding_time=coding_time,
                        year=year, region=region, quality=quality, pb_stars=pb_stars,
                        ac_msg=ac_msg,file_name=file_name)
     await job.difficulty.update_problem(self.domain_id, pdoc['doc_id'])
