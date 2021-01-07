@@ -4,6 +4,7 @@
 {% block content %}
 <script>
   var Context = {{ {
+    'getProblemUrlWithSearch': reverse_url('problem_search'),
     'getProblemUrlWithCategory': reverse_url('problem_category', category='{category}'),
     'getProblemUrlWithoutCategory': reverse_url('problem_main'),
     'currentCategory': category,
@@ -20,15 +21,15 @@
   <div class="medium-3 columns">
     <div class="section side">
       <div class="section__header">
-        <h1 class="section__title">{{ _('Search') }}</h1>
+        <h1 class="section__title">{{ _('Advanced Search') }}</h1>
       </div>
       <form method="get" action="{{ reverse_url('problem_search') }}">
         <div class="section__body">
           <!-- TODO: replace with form_builder -->
           <label>
-            <input name="q" type="text" class="textbox" value="" placeholder="1001">
+            <input name="query" type="text" class="textbox search_query" value="" placeholder="{{ _('pid, title, category or tag') }}">
           </label>
-          <button type="submit" class="primary button">{{ _('Search') }}</button>
+          <button name="search" type="submit" class="search_btn primary button">{{ _('Search') }}</button>
         </div>
       </form>
     </div>

@@ -3,7 +3,6 @@
 {% import "components/contest.html" as contest with context %}
 {% block content %}
 {% if handler.domain['bulletin'] %}
-<!-- TODO(Limorton): add domain description -->
 <div class="row">
   <div class="large-12 columns">
     <div class="section">
@@ -192,9 +191,9 @@
         <div class="section__body">
           <!-- TODO: replace with form_builder -->
           <label>
-            <input name="q" type="text" class="textbox" value="" placeholder="1001">
+            <input name="query" type="text" class="textbox" value="" placeholder="{{ _('pid, title, category or tag') }}">
           </label>
-          <button type="submit" class="primary button">{{ _('Search') }}</button>
+          <button name="search" type="submit" class="primary button">{{ _('Search') }}</button>
         </div>
       </form>
     </div>

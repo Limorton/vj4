@@ -1,6 +1,4 @@
-// import { NamedPage } from 'vj/misc/PageLoader';
 import _ from 'lodash';
-
 import { NamedPage } from 'vj/misc/PageLoader';
 import Dropdown from 'vj/components/dropdown/Dropdown';
 
@@ -19,7 +17,7 @@ function setDomSelected($dom, selected) {
 async function updateSelection() {
   dirtyCategories.forEach(({ type, category, subcategory }) => {
     let item = categories[category];
-    const isSelected = item.select || _.some(item.children, c => c.select);
+    const isSelected = item.select || _.some(item.children, (c) => c.select);
     setDomSelected(item.$tag, isSelected);
     if (isSelected) {
       selections.push(category);
@@ -29,7 +27,7 @@ async function updateSelection() {
     if (type === 'subcategory') {
       item = categories[category].children[subcategory];
       setDomSelected(item.$tag, item.select);
-      const selectionName = `${category},${subcategory}`;
+      const selectionName = subcategory;
       if (item.select) {
         selections.push(selectionName);
       } else {
@@ -37,16 +35,21 @@ async function updateSelection() {
       }
     }
   });
+  const requestCategoryTags = _.uniq(selections
+    .filter((s) => s.indexOf(',') !== -1)
+    .map((s) => s.split(',')[0]));
+  // drop the category if its subcategory is selected
+  const requestTags = _.uniq(_.pullAll(selections, requestCategoryTags));
   dirtyCategories.length = 0;
+  const $txt = $('[name="category"]');
+  $txt.val(requestTags.join(', '));
 }
 
 function buildCategoryFilter() {
   const $container = $('[data-widget-cf-container]');
-  if (!$container) {
-    return;
-  }
+  if (!$container) return;
   $container.attr('class', 'widget--category-filter row small-up-3 medium-up-2');
-  $container.children('li').get().forEach(category => {
+  $container.children('li').get().forEach((category) => {
     const $category = $(category)
       .attr('class', 'widget--category-filter__category column');
     const $categoryTag = $category
@@ -66,14 +69,13 @@ function buildCategoryFilter() {
     categories[categoryText] = treeItem;
     $category.empty().append($categoryTag);
     if ($drop.length > 0) {
-      $categoryTag.text(`${$categoryTag.text()}`);
       const $subCategoryTags = $drop
         .children('li')
         .attr('class', 'widget--category-filter__subcategory')
         .find('a')
         .attr('class', 'widget--category-filter__subcategory-tag')
         .attr('data-category', categoryText);
-      $subCategoryTags.get().forEach(subCategoryTag => {
+      $subCategoryTags.get().forEach((subCategoryTag) => {
         const $tag = $(subCategoryTag);
         treeItem.children[$tag.text()] = {
           select: false,
@@ -86,13 +88,9 @@ function buildCategoryFilter() {
       });
     }
   });
-  $(document).on('click', '.widget--category-filter__category-tag', ev => {
-    if (ev.shiftKey || ev.metaKey || ev.ctrlKey) {
-      return;
-    }
+  $(document).on('click', '.widget--category-filter__category-tag', (ev) => {
+    if (ev.shiftKey || ev.metaKey || ev.ctrlKey) return;
     const category = $(ev.currentTarget).text();
-    const $target = $(ev.currentTarget);
-
     const treeItem = categories[category];
     // the effect should be cancelSelect if it is shown as selected when clicking
     const shouldSelect = treeItem.$tag.hasClass('selected') ? false : !treeItem.select;
@@ -108,41 +106,51 @@ function buildCategoryFilter() {
       });
     }
     updateSelection();
-    const selc = selections.join();
-    const $txt = $('[name="category"]');
-    console.log($target);
-    console.log($txt);
-    $txt.val(selc);
     ev.preventDefault();
   });
-  $(document).on('click', '.widget--category-filter__subcategory-tag', ev => {
-    if (ev.shiftKey || ev.metaKey || ev.ctrlKey) {
-      return;
-    }
+  $(document).on('click', '.widget--category-filter__subcategory-tag', (ev) => {
+    if (ev.shiftKey || ev.metaKey || ev.ctrlKey) return;
     const subcategory = $(ev.currentTarget).text();
     const category = $(ev.currentTarget).attr('data-category');
-
     const treeItem = categories[category].children[subcategory];
     treeItem.select = !treeItem.select;
     dirtyCategories.push({ type: 'subcategory', subcategory, category });
     updateSelection();
-    const selc = selections.join();
-    const $target = $(ev.currentTarget);
-    const $txt = $('[name="category"]');
-    console.log($target);
-    console.log($txt);
-    // $txt.val(`${$txt.val()}, ${selc}`);
-    $txt.val(selc);
     ev.preventDefault();
   });
 }
 
-const page = new NamedPage('problem_settings', async () => {
-  buildCategoryFilter();
-  $(document).on('click', '[name="problem-sidebar__show-category"]', ev => {
-    $(ev.currentTarget).hide();
-    $('[name="problem-sidebar__categories"]').show();
+function findCategory(name) {
+  const keys = Object.keys(categories);
+  console.log(keys);
+  if (keys.includes(name)) return [name, null];
+  for (const category of keys) {
+    console.log(categories[category]);
+    const subkeys = Object.keys(categories[category].children);
+    if (subkeys.includes(name)) return [category, name];
+  }
+  return [null, null];
+}
+
+function parseCategorySelection() {
+  const $txt = $('[name="category"]');
+  $txt.val().split(',').map((name) => name.trim()).forEach((name) => {
+    if (!name) return;
+    const [category, subcategory] = findCategory(name);
+    if (!subcategory) {
+      categories[category].select = true;
+      dirtyCategories.push({ type: 'category', category });
+    } else if (category) {
+      categories[category].children[subcategory].select = true;
+      dirtyCategories.push({ type: 'subcategory', subcategory, category });
+    }
   });
+  updateSelection();
+}
+
+const page = new NamedPage('problem_settings', () => {
+  buildCategoryFilter();
+  parseCategorySelection();
 });
 
 export default page;

@@ -1,6 +1,7 @@
 import asyncio
 import functools
 import io
+import sys
 import os.path
 import zipfile
 from bson import objectid
@@ -36,6 +37,7 @@ async def render_or_json_problem_list(self, page, ppcount, pcount, pdocs,
   if 'path_components' not in kwargs:
     kwargs['path_components'] = self.build_path((self.translate(self.NAME), None))
   if self.prefer_json:
+    # print('prefer_json', category)
     list_html = self.render_html('partials/problem_list.html', page=page, ppcount=ppcount,
                                  pcount=pcount, pdocs=pdocs, psdict=psdict)
     stat_html = self.render_html('partials/problem_stat.html', pcount=pcount)
@@ -120,6 +122,7 @@ class ProblemCategoryHandler(base.OperationHandler):
 
   @staticmethod
   def build_query(query_string):
+    query_string = query_string.replace('，',',') # Chinese ', '
     category_groups = ProblemCategoryHandler.my_split(query_string, ' ')
     if not category_groups:
       return {}
@@ -802,7 +805,7 @@ class ProblemStatisticsHandler(base.Handler):
   @base.route_argument
   @base.sanitize
   async def get(self, *, pid: document.convert_doc_id):
-    # TODO(twd2)
+    # TODO(Limorton)
     uid = self.user['_id'] if self.has_priv(builtin.PRIV_USER_PROFILE) else None
     pdoc = await problem.get(self.domain_id, pid, uid)
     if pdoc.get('hidden', False):
@@ -818,22 +821,49 @@ class ProblemStatisticsHandler(base.Handler):
 
 
 @app.route('/p/search', 'problem_search')
-class ProblemSearchHandler(base.Handler):
+class ProblemSearchHandler(base.OperationHandler):
+  PROBLEMS_PER_PAGE = 100
+
+  @staticmethod
+  def build_query(query_string):
+    query_string = query_string.lower().strip()
+    regex = r'\Q{0}\E'.format(query_string.replace(r'\E', r'\E\\E\Q'))
+    query = {'$or': []}
+    if query_string.isdigit():
+      query['$or'].append({'doc_id': int(query_string)})
+    query['$or'].append({'title': {'$regex': regex, '$options' : '$i'}})
+    query['$or'].append({'tag': {'$regex': regex, '$options' : '$i'}})
+    query['$or'].append({'category': {'$regex': regex, '$options' : '$i'}})
+    return query
+
+  @base.require_priv(builtin.PRIV_USER_PROFILE)
+  @base.require_perm(builtin.PERM_VIEW_PROBLEM)
   @base.get_argument
   @base.route_argument
   @base.sanitize
-  async def get(self, *, q: str):
-    q = q.strip()
-    if not q:
-      self.json_or_redirect(self.referer_or_main)
-      return
-    try:
-      pdoc = await problem.get(self.domain_id, document.convert_doc_id(q))
-    except error.ProblemNotFoundError:
-      pdoc = None
-    # TODO(limorton) : add title search function
-    if pdoc:
-      self.redirect(self.reverse_url('problem_detail', pid=pdoc['doc_id']))
-      return
-    self.redirect('http://cn.bing.com/search?q={0}+site%3A{1}' \
-                  .format(parse.quote(q), parse.quote(options.url_prefix)))
+  async def get(self, *, query: str, page: int=1):
+    # TODO(iceboy): projection.
+    if not self.has_perm(builtin.PERM_VIEW_PROBLEM_HIDDEN):
+      f = {'hidden': False}
+    else:
+      f = {}
+    querystring = ProblemSearchHandler.build_query(query)
+    pdocs, ppcount, pcount = await pagination.paginate(problem.get_multi(domain_id=self.domain_id, \
+                                                                        **querystring, \
+                                                                        **f) \
+                                                              .sort([('doc_id', 1)]),
+                                                       page, self.PROBLEMS_PER_PAGE)
+    if self.has_priv(builtin.PRIV_USER_PROFILE):
+      # TODO(iceboy): projection.
+      psdict = await problem.get_dict_status(self.domain_id,
+                                             self.user['_id'],
+                                             (pdoc['doc_id'] for pdoc in pdocs))
+    else:
+      psdict = None
+    page_title = query or self.translate('(All Problems)')
+    path_components = self.build_path(
+        (self.translate('problem_main'), self.reverse_url('problem_main')),
+        (page_title, None))
+    await render_or_json_problem_list(self, page=page, ppcount=ppcount, pcount=pcount,
+                                      pdocs=pdocs, category='', psdict=psdict,
+                                      page_title=page_title, path_components=path_components)

@@ -722,6 +722,8 @@ The uploaded file is too long.: 上传的文件太长。
 Congratulations! Your submission is accepted.: 恭喜！您的递交已评测通过。
 Search: 搜索
 Search Problem: 搜索题目
+Advanced Search: 高级搜索
+'pid, title, category or tag': 题号、标题、分类或标签
 Mark Red: 标红
 Mark Yellow: 标黄
 Mark Blue: 标蓝

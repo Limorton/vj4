@@ -27,6 +27,7 @@ SETTING_DIFFICULTY_RANGE = collections.OrderedDict([
   (SETTING_DIFFICULTY_AVERAGE, 'Use average of above')
 ])
 
+
 SETTING_SOURCE_UNKNOWN = 0
 SETTING_SOURCE_ORIGIN = 1
 SETTING_SOURCE_OTHER = 2
@@ -50,7 +51,6 @@ SETTING_SOURCE_RANGE = collections.OrderedDict([
   (SETTING_SOURCE_BOOK6, 'CCF-JiChu'),
   (SETTING_SOURCE_BOOK7, 'CCF-TiGao')
 ])
-
 
 
 SETTING_PROBLEM_NORMAL = 0
@@ -81,6 +81,7 @@ SETTING_PROBLEM_QUALITY_RANGE = collections.OrderedDict([
   (SETTING_QUALITY_EXCELLENT, 'excellent')
 ])
 
+
 SETTING_STARS_0 = 0
 SETTING_STARS_1 = 1
 SETTING_STARS_2 = 2
@@ -94,6 +95,12 @@ SETTING_PROBLEM_STARS_RANGE = collections.OrderedDict([
   (SETTING_STARS_3, '⭐⭐⭐'),
   (SETTING_STARS_4, '⭐⭐⭐⭐')
 ])
+
+
+PROJECTION_PROBLEMS_SEARCH = {'_id': 1,
+                     'doc_id': 1,
+                     'title': 1}
+
 
 @argmethod.wrap
 def get_categories():

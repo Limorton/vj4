@@ -8,6 +8,7 @@ import substitute from 'vj/utils/substitute';
 const categories = {};
 const dirtyCategories = [];
 const selections = [];
+const query = "";
 
 function setDomSelected($dom, selected) {
   if (selected) {
@@ -20,7 +21,7 @@ function setDomSelected($dom, selected) {
 async function updateSelection(sendRequest = true) {
   dirtyCategories.forEach(({ type, category, subcategory }) => {
     let item = categories[category];
-    const isSelected = item.select || _.some(item.children, c => c.select);
+    const isSelected = item.select || _.some(item.children, (c) => c.select);
     setDomSelected(item.$tag, isSelected);
     if (isSelected) {
       selections.push(category);
@@ -30,7 +31,7 @@ async function updateSelection(sendRequest = true) {
     if (type === 'subcategory') {
       item = categories[category].children[subcategory];
       setDomSelected(item.$tag, item.select);
-      const selectionName = `${category},${subcategory}`;
+      const selectionName = subcategory;
       if (item.select) {
         selections.push(selectionName);
       } else {
@@ -39,12 +40,11 @@ async function updateSelection(sendRequest = true) {
     }
   });
   dirtyCategories.length = 0;
-
   if (sendRequest) {
     // a list of categories which subcategory is selected
     const requestCategoryTags = _.uniq(selections
-      .filter(s => s.indexOf(',') !== -1)
-      .map(s => s.split(',')[0]));
+      .filter((s) => s.indexOf(',') !== -1)
+      .map((s) => s.split(',')[0]));
     // drop the category if its subcategory is selected
     const requestTags = _.uniq(_.pullAll(selections, requestCategoryTags));
     let url;
@@ -53,8 +53,8 @@ async function updateSelection(sendRequest = true) {
     } else {
       url = substitute(decodeURIComponent(Context.getProblemUrlWithCategory), {
         category: requestTags
-          .map(tag => tag.split(',').map(encodeURIComponent).join(','))
-          .join('+'), // build a beautiful URL
+          .map((tag) => tag.split(',').map(encodeURIComponent).join(','))
+          .join(','), // build a beautiful URL
       });
     }
     pjax.request({ url });
@@ -67,7 +67,7 @@ function buildCategoryFilter() {
     return;
   }
   $container.attr('class', 'widget--category-filter row small-up-3 medium-up-2');
-  $container.children('li').get().forEach(category => {
+  $container.children('li').get().forEach((category) => {
     const $category = $(category)
       .attr('class', 'widget--category-filter__category column');
     const $categoryTag = $category
@@ -94,7 +94,7 @@ function buildCategoryFilter() {
         .find('a')
         .attr('class', 'widget--category-filter__subcategory-tag')
         .attr('data-category', categoryText);
-      $subCategoryTags.get().forEach(subCategoryTag => {
+      $subCategoryTags.get().forEach((subCategoryTag) => {
         const $tag = $(subCategoryTag);
         treeItem.children[$tag.text()] = {
           select: false,
@@ -107,7 +107,7 @@ function buildCategoryFilter() {
       });
     }
   });
-  $(document).on('click', '.widget--category-filter__category-tag', ev => {
+  $(document).on('click', '.widget--category-filter__category-tag', (ev) => {
     if (ev.shiftKey || ev.metaKey || ev.ctrlKey) {
       return;
     }
@@ -129,7 +129,7 @@ function buildCategoryFilter() {
     updateSelection();
     ev.preventDefault();
   });
-  $(document).on('click', '.widget--category-filter__subcategory-tag', ev => {
+  $(document).on('click', '.widget--category-filter__subcategory-tag', (ev) => {
     if (ev.shiftKey || ev.metaKey || ev.ctrlKey) {
       return;
     }
@@ -144,7 +144,7 @@ function buildCategoryFilter() {
 }
 
 function parseCategorySelection() {
-  Context.currentCategory.split(' ').forEach(cline => {
+  Context.currentCategory.split(' ').forEach((cline) => {
     const [category, subcategory] = cline.split(',');
     if (!categories[category]) {
       return;
@@ -163,9 +163,27 @@ function parseCategorySelection() {
   updateSelection(false);
 }
 
-const page = new NamedPage(['problem_main', 'problem_category'], () => {
+function paerseSearch() {
+  $(document).on('click', '.search_btn', (ev) => {
+    querystring = $('search_query"]').val().trim();
+    alert("quer--",querystring);
+    let url;
+    if (querystring.length === 0) {
+      url = Context.getProblemUrlWithoutCategory;
+    } else {
+      url = substitute(decodeURIComponent(Context.getProblemUrlWithSearch), {
+        query: querystring,
+      });
+    }
+    pjax.request({ url });
+    ev.preventDefault();
+  });
+}
+
+const page = new NamedPage(['problem_main', 'problem_category', 'problem_search'], () => {
   buildCategoryFilter();
   parseCategorySelection();
+  // paerseSearch();
 });
 
 export default page;
