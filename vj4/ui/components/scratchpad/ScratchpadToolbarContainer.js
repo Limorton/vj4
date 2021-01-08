@@ -52,13 +52,17 @@ const mapDispatchToProps = dispatch => ({
     });
   },
   postPretest(props) {
+    if ($('.scratchpad__toolbar__pretest').hasClass('disabled') === true) {
+      Notification.error(i18n('Code submition failed, please retry after 10s.'));
+      return;
+    }
     const testCases = props.pretest.tabs
       .filter(tabId => isTestCaseDataValid(props.pretest.data[tabId]));
     // const titles = testCases.map(tabId => pretest.meta[tabId].title);
     const inputs = testCases.map(tabId => props.pretest.data[tabId].input);
     const outputs = testCases.map(tabId => props.pretest.data[tabId].output);
     if (props.editorCode.length > 10000) {
-      Notification.error(i18n('Code is longer than 10000, submit failed.'));
+      Notification.error(i18n('Code submition failed, please retry after 10s.'));
       return;
     }
     if (Object.keys(inputs).length === 0 || Object.keys(outputs).length === 0) {
@@ -78,6 +82,10 @@ const mapDispatchToProps = dispatch => ({
     $('.scratchpad__toolbar__pretest').trigger('reSubmitCountDown');
   },
   postSubmit(props) {
+    if ($('.scratchpad__toolbar__submit').hasClass('disabled') === true) {
+      Notification.error(i18n('Code submition failed, please retry after 10s.'));
+      return;
+    }
     if (props.editorCode.length > 10000) {
       Notification.error(i18n('Code is longer than 10000, submit failed.'));
       return;

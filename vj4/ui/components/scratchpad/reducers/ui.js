@@ -6,11 +6,11 @@ export default function reducer(state = {
   },
   pretest: {
     visible: false,
-    size: 200,
+    size: 130,
   },
   records: {
     visible: true,
-    size: 200,
+    size: 150,
     isLoading: false,
   },
   isPosting: false,

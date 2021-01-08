@@ -37,7 +37,8 @@ Challange Mode: 挑战模式
 Change Email: 修改电子邮件
 Change Password: 修改密码
 Code: 代码
-Code is successfully submitted.: 代码提交成功，10s 后才可再次提交
+Code is successfully submitted, please wait for 10s to resubmit.: 代码提交成功，10s 后才可再次提交
+Code submition failed, please retry after 10s.: 代码提交失败，10s 后才可再次提交
 Code is longer than 10000, submit failed.: 代码长度超过 10000，提交失败！
 Test data is invalid, please check.: 测试数据为空，请完善测试数据后再提交测试！
 Created: 创建于

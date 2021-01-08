@@ -32,7 +32,7 @@ options.define('lostpass_token_expire_seconds', default=3600,
                help='Expire time for lostpass token, in seconds.')
 options.define('changemail_token_expire_seconds', default=3600,
                help='Expire time for changemail token, in seconds.')
-options.define('url_prefix', default='https://vijos.org', help='URL prefix.')
+options.define('url_prefix', default='http://topscoding.com', help='URL prefix.')
 options.define('cdn_prefix', default='/', help='CDN prefix.')
 options.define('sentry_dsn', default='', help='Sentry integration DSN.')
 
