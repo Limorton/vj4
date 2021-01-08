@@ -7,7 +7,7 @@ import Icon from 'vj/components/react/IconComponent';
 import Panel from './PanelComponent';
 import ScratchpadRecordsRow from './ScratchpadRecordsRowContainer';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   rows: state.records.rows,
   isLoading: state.ui.records.isLoading,
 });
@@ -36,7 +36,7 @@ export default class ScratchpadRecordsContainer extends React.PureComponent {
             <col className="col--at" />
           </colgroup>
           <tbody>
-            {this.props.rows.map((rowId) => (
+            {this.props.rows.map(rowId => (
               <ScratchpadRecordsRow key={rowId} id={rowId} />
             ))}
           </tbody>

@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 import { NamedPage } from 'vj/misc/PageLoader';
 import Notification from 'vj/components/notification';
 
@@ -9,27 +7,29 @@ import i18n from 'vj/utils/i18n';
 
 const page = new NamedPage('home_domain', () => {
   async function handleHighlight(ev) {
-    var cur = event.srcElement;
-    const uid = $(cur).closest("tr").attr("data-uid");
-    const domain = $(cur).closest("tr").attr("data-domain-id");
-    const highlight = $(cur).closest("tr").attr("data-highlight");
-    const change = (highlight=='highlight' ? 1 : 0);
+    const cur = window.event.target;
+    const userId = $(cur).closest('tr').attr('data-uid');
+    const domain = $(cur).closest('tr').attr('data-domain-id');
+    const highlight = $(cur).closest('tr').attr('data-highlight');
+    const change = (highlight === 'highlight' ? 1 : 0);
     try {
       await request.post('', {
         operation: 'highlight_unhighlight',
         domain_id: domain,
-        uid:uid,
+        uid: userId,
         highlight: change,
       });
-      if (change)
+      if (change) {
         Notification.success(i18n('Domain {0} has been pinned.', domain));
-      else
+      } else {
         Notification.success(i18n('Domain {0} has been unpinned.', domain));
+      }
       await delay(1000);
       window.location.reload();
     } catch (error) {
       Notification.error(error.message);
     }
+    ev.preventDefault();
   }
   $(document).on('click', '[name="highlight"]', ev => {
     handleHighlight(ev);

@@ -148,25 +148,23 @@ const page = new NamedPage(['problem_detail', 'contest_detail_problem', 'homewor
   }
 
   function throttle() {
-    var now = +new Date();
+    const now = +new Date();
     if (!previousSubmit || (now - previousSubmit > 10000)) {
       Notification.success(i18n('Code is successfully submitted, please wait for 10s to resubmit.'));
-      $('.scratchpad__toolbar__submit').removeClass("enabled");
-      $('.scratchpad__toolbar__submit').addClass("disabled");
-      $('.scratchpad__toolbar__pretest').removeClass("enabled");
-      $('.scratchpad__toolbar__pretest').addClass("disabled");
+      $('.scratchpad__toolbar__submit').removeClass('enabled');
+      $('.scratchpad__toolbar__submit').addClass('disabled');
+      $('.scratchpad__toolbar__pretest').removeClass('enabled');
+      $('.scratchpad__toolbar__pretest').addClass('disabled');
       previousSubmit = now;
-      setTimeout(function() {
-        $('.scratchpad__toolbar__submit').removeClass("disabled");
-        $('.scratchpad__toolbar__submit').addClass("enabled");
-        $('.scratchpad__toolbar__pretest').removeClass("disabled");
-        $('.scratchpad__toolbar__pretest').addClass("enabled");
+      setTimeout(() => {
+        $('.scratchpad__toolbar__submit').removeClass('disabled');
+        $('.scratchpad__toolbar__submit').addClass('enabled');
+        $('.scratchpad__toolbar__pretest').removeClass('disabled');
+        $('.scratchpad__toolbar__pretest').addClass('enabled');
         previousSubmit = null;
       }, 10000);
-    } else {
-      ;
     }
-  };
+  }
 
   function updateFloatingSidebar() {
     $floatingSidebar.tether.position();

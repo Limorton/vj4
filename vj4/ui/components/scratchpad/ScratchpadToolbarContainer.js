@@ -129,9 +129,8 @@ export default class ScratchpadToolbarContainer extends React.PureComponent {
     // $('#scratchpad').trigger('vjScratchpadRelayout');
   }
 
-  handleQuitScratchpad(ev) {
+  handleQuitScratchpad() {
     $('.scratchpad__toolbar__quitscratchpad').trigger('quitScratchpad');
-    // ev.preventDefault();
   }
 
   render() {
@@ -155,7 +154,7 @@ export default class ScratchpadToolbarContainer extends React.PureComponent {
         </ToolbarButton>
         <ToolbarButton
           className="scratchpad__toolbar__quitscratchpad"
-          onClick={(ev) => this.handleQuitScratchpad(ev)}
+          onClick={() => this.handleQuitScratchpad()}
           data-global-hotkey="alt+q"
           data-tooltip={`${i18n('Quit Scratchpad')} (ALT+Q)`}
         >
