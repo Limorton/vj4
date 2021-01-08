@@ -8,7 +8,7 @@ import substitute from 'vj/utils/substitute';
 const categories = {};
 const dirtyCategories = [];
 const selections = [];
-const query = '';
+let queryString = '';
 
 function setDomSelected($dom, selected) {
   if (selected) {
@@ -165,13 +165,13 @@ function parseCategorySelection() {
 
 function paerseSearch() {
   $(document).on('click', '[name="search"]', ev => {
-    const querystring = $('[name="query"]').val().trim();
+    queryString = $('[name="query"]').val().trim();
     let url;
-    if (querystring.length === 0) {
+    if (queryString.length === 0) {
       url = Context.getProblemUrlWithoutCategory;
     } else {
       url = substitute(decodeURIComponent(Context.getProblemUrlWithSearch), {
-        query: querystring,
+        query: queryString,
       });
     }
     pjax.request({ url });

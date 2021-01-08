@@ -4,13 +4,28 @@
 {% block content %}
 <script>
   var Context = {{ {
-    'getProblemUrlWithSearch': reverse_url('problem_search'),
+    'getProblemUrlWithSearch': reverse_url('problem_search', query='{query}'),
     'getProblemUrlWithCategory': reverse_url('problem_category', category='{category}'),
     'getProblemUrlWithoutCategory': reverse_url('problem_main'),
     'currentCategory': category,
   }|json|safe }};
 </script>
 <div class="row">
+  <div class="medium-12 columns">
+    <div class="section">
+      <form>
+        <div class="section__body">
+          <div class="row"><div class="columns">
+            <h2 style="float:left;position:relative;top:5px;width:3%;"><span class="icon icon-search"></span></h2>
+            <label style="float:right; width:97%;">
+              <input name="query" type="text" class="textbox" value="" placeholder="{{ _('pid, title, category or tag') }}">
+            </label>
+            <button name="search" type="submit" class="primary rounded button" style="display:none;">{{ _('Search') }}</button>
+          </div></div>
+        </div>
+      </form>
+    </div>
+  </div>
   <div class="medium-9 columns">
     <div class="section">
       <div class="section__body no-padding">
@@ -21,39 +36,30 @@
   <div class="medium-3 columns">
     <div class="section side">
       <div class="section__header">
-        <h1 class="section__title">{{ _('Advanced Search') }}</h1>
+        <h1 class="section__title">{{ _('Statistics') }}</h1>
       </div>
-      <form method="get" action="{{ reverse_url('problem_search') }}">
-        <div class="section__body">
-          <!-- TODO: replace with form_builder -->
-          <label>
-            <input name="query" type="text" class="textbox search_query" value="" placeholder="{{ _('pid, title, category or tag') }}">
-          </label>
-          <button name="search" type="submit" class="search_btn primary button">{{ _('Search') }}</button>
-        </div>
-      </form>
+      {% include "partials/problem_stat.html" %}
     </div>
     {% if handler.has_perm(vj4.model.builtin.PERM_CREATE_PROBLEM) %}
-    <div class="section side">
-      <div class="section__header">
-        <h1 class="section__title">{{ _('Create Problem') }}</h1>
-      </div>
-      <ol class="menu">
-        <li class="menu__item">
-          <a href="{{ reverse_url('problem_create') }}" class="menu__link"><span class="icon icon-add"></span> {{ _('Create Problem') }}</a>
-        </li>
-        <li class="menu__item">
-          <a href="{{ reverse_url('problem_copy') }}" class="menu__link"><span class="icon icon-copy"></span> {{ _('Copy Problem') }}</a>
-        </li>
-      </ol>
-      <div class="section__body">
-        <div class="typo supplementary">
-          <p>{{ _('You have permissions to create problems for this domain.') }}</p>
+      <div class="section side">
+        <div class="section__header">
+          <h1 class="section__title">{{ _('Create Problem') }}</h1>
+        </div>
+        <ol class="menu">
+          <li class="menu__item">
+            <a href="{{ reverse_url('problem_create') }}" class="menu__link"><span class="icon icon-add"></span> {{ _('Create Problem') }}</a>
+          </li>
+          <li class="menu__item">
+            <a href="{{ reverse_url('problem_copy') }}" class="menu__link"><span class="icon icon-copy"></span> {{ _('Copy Problem') }}</a>
+          </li>
+        </ol>
+        <div class="section__body">
+          <div class="typo supplementary">
+            <p>{{ _('You have permissions to create problems for this domain.') }}</p>
+          </div>
         </div>
       </div>
-    </div>
-  {% endif %}
-
+    {% endif %}
     <div class="section side">
       <div class="section__header">
         <h1 class="section__title">{{ _('Categories') }}</h1>
@@ -75,12 +81,6 @@
       <div class="section__body">
         {% include "partials/problem_lucky.html" %}
       </div>
-    </div>
-      <div class="section side">
-      <div class="section__header">
-        <h1 class="section__title">{{ _('Statistics') }}</h1>
-      </div>
-      {% include "partials/problem_stat.html" %}
     </div>
   </div>
 </div>

@@ -1,7 +1,6 @@
 import asyncio
 import functools
 import io
-import sys
 import os.path
 import zipfile
 from bson import objectid
@@ -37,7 +36,6 @@ async def render_or_json_problem_list(self, page, ppcount, pcount, pdocs,
   if 'path_components' not in kwargs:
     kwargs['path_components'] = self.build_path((self.translate(self.NAME), None))
   if self.prefer_json:
-    # print('prefer_json', category)
     list_html = self.render_html('partials/problem_list.html', page=page, ppcount=ppcount,
                                  pcount=pcount, pdocs=pdocs, psdict=psdict)
     stat_html = self.render_html('partials/problem_stat.html', pcount=pcount)
@@ -820,7 +818,7 @@ class ProblemStatisticsHandler(base.Handler):
                 page_title=pdoc['title'], path_components=path_components)
 
 
-@app.route('/p/search', 'problem_search')
+@app.route('/p/search/{query:[^/]*}', 'problem_search')
 class ProblemSearchHandler(base.OperationHandler):
   PROBLEMS_PER_PAGE = 100
 
@@ -867,3 +865,23 @@ class ProblemSearchHandler(base.OperationHandler):
     await render_or_json_problem_list(self, page=page, ppcount=ppcount, pcount=pcount,
                                       pdocs=pdocs, category='', psdict=psdict,
                                       page_title=page_title, path_components=path_components)
+
+
+@app.route('/p/jump', 'problem_jump')
+class ProblemJumpHandler(base.Handler):
+  @base.get_argument
+  @base.route_argument
+  @base.sanitize
+  async def get(self, *, query: str):
+    query = query.strip()
+    if not query:
+      self.json_or_redirect(self.referer_or_main)
+      return
+    try:
+      pdoc = await problem.get(self.domain_id, document.convert_doc_id(query))
+    except error.ProblemNotFoundError:
+      pdoc = None
+    if pdoc:
+      self.redirect(self.reverse_url('problem_detail', pid=pdoc['doc_id']))
+      return
+    self.redirect(f'/p/search/{query}')
