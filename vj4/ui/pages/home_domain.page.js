@@ -25,7 +25,7 @@ const page = new NamedPage('home_domain', () => {
         Notification.success(i18n('Domain {0} has been pinned.', domain));
       else
         Notification.success(i18n('Domain {0} has been unpinned.', domain));
-      await delay(2000);
+      await delay(1000);
       window.location.reload();
     } catch (error) {
       Notification.error(error.message);

@@ -24,7 +24,6 @@
   outline: 0
   padding: 0
   margin: 0
-  // color: gray
 
   .pined--show
     display: none
@@ -32,9 +31,25 @@
     display: block
 
   &.activated
-    // color: orange
     .pined--show
       display: block
     .pined--hide
       display: none
+
+.pinlogo
+  border: 0
+  background: none
+  padding: 0
+  margin: 0
+  display: none
+
+  &.show
+    display: inline
+    -webkit-border-radius: 6px
+    border-radius: 6px
+    background-color:#f03e3e
+    padding: 0px 3px
+    margin-right: 3px
+    color:white
+      
 

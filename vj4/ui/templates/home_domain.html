@@ -59,7 +59,7 @@
           </td>
           <td class="col--name">
             <span data-tooltip="{{ _('This is a built-in domain that every user is in.') }}">{{ ddoc['name'] }} ({{ ddoc['_id'] }})</span>
-            <span style="background-color:#f03e3e;color:white;"> &nbsp;TOPS&nbsp; </span>
+            <span class="pinlogo show">TOPS</span>
           </td>
           <td class="col--role">
             {{ dudict.get(ddoc['_id'], {})['role']|default(vj4.model.builtin.ROLE_DEFAULT) }}
@@ -82,9 +82,7 @@
           </td>
           <td class="col--name">
             {{ ddoc['name'] }} ({{ ddoc['_id'] }})
-            {% if ddoc['highlight']  %}
-              <span style="background-color:#f03e3e;color:white;"> &nbsp;TOPS&nbsp; </span>
-            {% endif %}
+            <span class="pinlogo{% if ddoc['highlight'] %} show {% endif %}">TOPS</span>
           </td>
           <td class="col--role">
             {{ urole|default(vj4.model.builtin.ROLE_DEFAULT) }}
