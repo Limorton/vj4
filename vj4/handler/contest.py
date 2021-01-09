@@ -199,7 +199,7 @@ class ContestDetailProblemSubmitHandler(contest.ContestMixin, base.Handler):
     else:
       self.json({'rdocs': rdocs})
 
-  @base.limit_rate('add_record', 60, 6)
+  @base.limit_rate('add_record', 120, 120)
   @base.route_argument
   @base.require_priv(builtin.PRIV_USER_PROFILE)
   @base.require_perm(builtin.PERM_VIEW_CONTEST)
