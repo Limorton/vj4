@@ -64,11 +64,7 @@
       });
       $("td.col--problem_detail").each(function () {
         $(this).css("font-weight","bold");
-        if ($(this).text().indexOf(":") == -1) {
-          var score = parseInt($(this).text());
-        } else {
-          var score = parseInt($(this).text().trim().substr(0,$(this).html().indexOf("<br>") - $(this).html().indexOf(">")-1));
-        }
+        var score = parseInt($(this).text());
         if (score >= 100) {
           $(this).children('a').css('color','#3fc469');
         } else if (score >= 80) {
@@ -81,7 +77,7 @@
           $(this).children('a').css('color','#fa5252');
         }
       })
-    })();
+    });
   </script>
 </div></div>
 {% endblock %}
