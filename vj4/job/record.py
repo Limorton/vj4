@@ -83,8 +83,10 @@ async def run(domain_id: str):
         psdocs[rdoc['uid']]['status'] = rdoc['status']
         psdocs[rdoc['uid']]['rid'] = rdoc['_id']
         if accept:
-          pdoc_update['num_accept'] += 1
           dudoc_updates[rdoc['uid']]['num_accept'] += 1
+      # TODO(limorton):check in online condition--repair num_accept: should be accept records number rather than accept persons
+      if accept:
+        pdoc_update['num_accept'] += 1
     status_bulk = status_coll.initialize_unordered_bulk_op()
     execute = False
     for uid, psdoc in psdocs.items():
