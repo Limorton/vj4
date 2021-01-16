@@ -50,7 +50,7 @@ $downvote-color = red
     color: $primary-color
     text-decoration: none
 
-.view--solution .dczcomments__replies
+.view--solution
   margin-left: rem(50px)
 
 .dczcomments__item
@@ -100,7 +100,6 @@ $downvote-color = red
       &.active
         color: $upvote-color
 
-
     &.downvote
       border-radius: rem(0 13px 13px 0)
       padding-right: rem(7px)
@@ -118,6 +117,28 @@ $downvote-color = red
       box-shadow: none !important
       cursor: default
 
+  .solution
+    max-height: 400px
+    overflow: hidden
+  
+  .folded_solution
+    max-height: 20000px !important
+
+  .get_ct_more
+    position: relative
+    width: 100%
+    margin: 5px 0px 10px
+    color: $primary-color
+    > span
+      display: block
+      text-align: center
+
+.dczcomments__item summary
+  width: 100%
+  color: $text-3-color
+
+  &:hover
+    color: $text-1-color
 
 +mobile()
   .dczcomments__item

@@ -193,7 +193,31 @@ function onCommentClickDeleteReply(ev) {
   onCommentClickDelete('reply', ev);
 }
 
+function onExpandOrFoldUp() {
+  const maxSolutionHeight = 400;
+  const sols = document.getElementsByClassName('solution');
+  for (let i = 0; i < sols.length; i++) {
+    const totalHeight = sols[i].scrollHeight;
+    if (totalHeight > maxSolutionHeight) {
+      sols[i].nextElementSibling.firstElementChild.onclick = (() => {
+        if (sols[i].classList.contains('folded_solution')) {
+          sols[i].classList.remove('folded_solution');
+          sols[i].nextElementSibling.firstElementChild.className = 'icon icon-expand_more';
+          sols[i].nextElementSibling.firstElementChild.textContent = tpl`${i18n('Read More')}`;
+        } else {
+          sols[i].classList.add('folded_solution');
+          sols[i].nextElementSibling.firstElementChild.className = 'icon icon-expand_less';
+          sols[i].nextElementSibling.firstElementChild.textContent = tpl`${i18n('Fold')}`;
+        }
+      });
+    } else {
+      sols[i].nextElementSibling.style.display = 'none';
+    }
+  }
+}
+
 const commentsPage = new AutoloadPage('commentsPage', () => {
+  window.onload = onExpandOrFoldUp();
   $(document).on('click', '[name="dczcomments__dummy-box"]', onClickDummyBox);
   $(document).on('click', '[name="dczcomments__op-reply-comment"]', onCommentClickReplyComment);
   $(document).on('click', '[name="dczcomments__op-reply-reply"]', onCommentClickReplyReply);

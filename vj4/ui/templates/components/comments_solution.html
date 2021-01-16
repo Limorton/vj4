@@ -69,14 +69,17 @@
         </div>
         {{ comment_base.comment_operations(doc) }}
       </div>
-      <div class="typo" data-emoji-enabled data-raw-url="{{ reverse_url('problem_solution_raw', pid=doc['parent_doc_id'], psid=doc['doc_id']) }}">
+      <div class="typo solution" data-emoji-enabled data-raw-url="{{ reverse_url('problem_solution_raw', pid=doc['parent_doc_id'], psid=doc['doc_id']) }}">
         {{ doc['content']|markdown }}
+      </div>
+      <div class="get_ct_more">
+        <span class="icon icon-expand_more">{{ _('Read More') }}</span>
       </div>
       <div class="commentbox-edit-target"></div>
       <ul class="dczcomments__replies commentbox-reply-target">
       {% if doc['reply'] %}
       <details>
-        <summary>{{ _('expand or collapse') }}: {{ doc['reply']|length }} {{ _('..discussions') }}</summary>
+        <summary><span class="icon icon-comment--multiple"></span> {{ doc['reply']|length }} {{ _('..discussions') }}</summary>
         {% for rdoc in doc['reply'] %}
           {{ reply(mode_create, udict[rdoc['owner_uid']], doc, rdoc) }}
         {% endfor %}

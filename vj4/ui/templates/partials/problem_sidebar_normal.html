@@ -185,28 +185,32 @@
 </div>
 {% if page_name == 'problem_detail' and (tdocs or ctdocs) %}
 <div class="section side">
-  <div class="section__header">
-    <h1 class="section__title">{{ _('Related') }}</h1>
-  </div>
-  <div class="section__body typo">
-  {% if tdocs %}
-    <p>{{ _('In following training plans') }}: </p>
-    {% for tdoc in tdocs %}
-    <p><a href="{{ reverse_url('training_detail', tid=tdoc['doc_id']) }}">{{ tdoc['title'] }}</a></p>
-    {% endfor %}
-  {% endif %}
-  {% if ctdocs %}
-    <p>{{ _('In following contests') }}: </p>
-    {% for tdoc in ctdocs %}
-    <p><a href="{{ reverse_url('contest_detail', tid=tdoc['doc_id']) }}">{{ tdoc['title'] }}</a></p>
-    {% endfor %}
-  {% endif %}
-  {% if htdocs %}
-    <p>{{ _('In following homework') }}: </p>
-    {% for tdoc in htdocs %}
-    <p><a href="{{ reverse_url('homework_detail', tid=tdoc['doc_id']) }}">{{ tdoc['title'] }}</a></p>
-    {% endfor %}
-  {% endif %}
-  </div>
+  <details>
+    <summary>
+      <div class="section__header">
+        <h1 class="section__title">{{ _('Related') }}<span class="icon icon-expand_more"</span></span></h1>
+      </div>
+    </summary>
+    <div class="section__body typo" id="more_related_info">
+      {% if tdocs %}
+        <p>{{ _('In following training plans') }}: </p>
+        {% for tdoc in tdocs %}
+        <p><a href="{{ reverse_url('training_detail', tid=tdoc['doc_id']) }}">{{ tdoc['title'] }}</a></p>
+        {% endfor %}
+      {% endif %}
+      {% if ctdocs %}
+        <p>{{ _('In following contests') }}: </p>
+        {% for tdoc in ctdocs %}
+        <p><a href="{{ reverse_url('contest_detail', tid=tdoc['doc_id']) }}">{{ tdoc['title'] }}</a></p>
+        {% endfor %}
+      {% endif %}
+      {% if htdocs %}
+        <p>{{ _('In following homework') }}: </p>
+        {% for tdoc in htdocs %}
+        <p><a href="{{ reverse_url('homework_detail', tid=tdoc['doc_id']) }}">{{ tdoc['title'] }}</a></p>
+        {% endfor %}
+      {% endif %}
+      </div>
+  </details>
 </div>
 {% endif %}
