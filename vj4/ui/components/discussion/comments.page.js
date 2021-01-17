@@ -200,12 +200,12 @@ function onExpandOrFoldUp() {
     const totalHeight = sols[i].scrollHeight;
     if (totalHeight > maxSolutionHeight) {
       sols[i].nextElementSibling.firstElementChild.onclick = (() => {
-        if (sols[i].classList.contains('folded_solution')) {
-          sols[i].classList.remove('folded_solution');
+        if (sols[i].classList.contains('expanded_solution')) {
+          sols[i].classList.remove('expanded_solution');
           sols[i].nextElementSibling.firstElementChild.className = 'icon icon-expand_more';
           sols[i].nextElementSibling.firstElementChild.textContent = tpl`${i18n('Read More')}`;
         } else {
-          sols[i].classList.add('folded_solution');
+          sols[i].classList.add('expanded_solution');
           sols[i].nextElementSibling.firstElementChild.className = 'icon icon-expand_less';
           sols[i].nextElementSibling.firstElementChild.textContent = tpl`${i18n('Fold')}`;
         }
@@ -213,6 +213,11 @@ function onExpandOrFoldUp() {
     } else {
       sols[i].nextElementSibling.style.display = 'none';
     }
+  }
+  if (!sols[0].classList.contains('expanded_solution')) {
+    sols[0].classList.add('expanded_solution');
+    sols[0].nextElementSibling.firstElementChild.className = 'icon icon-expand_less';
+    sols[0].nextElementSibling.firstElementChild.textContent = tpl`${i18n('Fold')}`;
   }
 }
 
