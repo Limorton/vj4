@@ -214,7 +214,7 @@ function onExpandOrFoldUp() {
       sols[i].nextElementSibling.style.display = 'none';
     }
   }
-  if (!sols[0].classList.contains('expanded_solution')) {
+  if (sols.length > 0 && !sols[0].classList.contains('expanded_solution')) {
     sols[0].classList.add('expanded_solution');
     sols[0].nextElementSibling.firstElementChild.className = 'icon icon-expand_less';
     sols[0].nextElementSibling.firstElementChild.textContent = tpl`${i18n('Fold')}`;

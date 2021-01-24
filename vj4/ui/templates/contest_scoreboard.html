@@ -59,22 +59,28 @@
   </div>
   <script>
   $(function (){
-      $("td.col--total_score").each(function () {
+      $("td.col--problem_detail").find('a').each(function () {
         $(this).css("font-weight","bold");
-      });
-      $("td.col--problem_detail").each(function () {
-        $(this).css("font-weight","bold");
-        var score = parseInt($(this).text());
+        if ($(this).text().indexOf(":") == -1) {
+          var score = parseInt($(this).text());
+        } else {
+          var score = parseInt($(this).text().trim().slice(0,$(this).html().indexOf("<br>")));
+          var info = $(this).text().trim().slice($(this).html().indexOf("<br>"));
+          console.log(info);
+          $(this).text(score);
+          $(this).after($('<div></div>').text(info));
+        }
+        
         if (score >= 100) {
-          $(this).children('a').css('color','#3fc469');
+          $(this).css('color','#3fc469');
         } else if (score >= 80) {
-          $(this).children('a').css('color','#b197fc');
+          $(this).css('color','#b197fc');
         } else if (score >= 50) {
-          $(this).children('a').css('color','#66d9e8');
+          $(this).css('color','#66d9e8');
         } else if (score >= 10) {
-          $(this).children('a').css('color','#ffc078');
+          $(this).css('color','#ffc078');
         } else if (score >= 0) {
-          $(this).children('a').css('color','#fa5252');
+          $(this).css('color','#fa5252');
         }
       })
     });

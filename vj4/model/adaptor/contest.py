@@ -232,9 +232,9 @@ def _assignment_scoreboard(is_export, _, tdoc, ranked_tsdocs, udict, dudict, pdi
         row.append({'type': 'string', 'value': col_time_str})
       else:
         # TODO(limorton) add record's 'time_ms' property to show
-        val_format = '{0}'.format(col_score) if \
+        val_format = '{0}\n{1}'.format(col_score, col_time_str) if \
                       col_score == col_original_score else \
-                      '{0} / {1}'.format(col_score, col_original_score)
+                      '{0} / {1}\n{2}'.format(col_score, col_original_score, col_time_str)
         row.append({'type': 'record',
                     'value': val_format,
                     'raw': rdoc})
