@@ -27,7 +27,7 @@
       {% if not tdocs %}
         {{ nothing.render('There is no homework so far ╰(*°▽°*)╯') }}
       {% else %}
-        <div name="calendar_entry"></div>
+        <div name="calendar_entry" style="display:none;"></div>
         <ol class="section__list homework__list hasjs--display">
         {% for tdoc in tdocs %}
           <li class="section__list__item homework__item">
