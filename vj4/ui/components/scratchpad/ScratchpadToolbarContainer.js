@@ -62,7 +62,7 @@ const mapDispatchToProps = dispatch => ({
     const inputs = testCases.map(tabId => props.pretest.data[tabId].input);
     const outputs = testCases.map(tabId => props.pretest.data[tabId].output);
     if (props.editorCode.length > 10000) {
-      Notification.error(i18n('Code is longer than 10000, submit failed.'));
+      Notification.error(i18n('Code is longer than 10000 or shorter than 10, submit failed.'));
       return;
     }
     if (Object.keys(inputs).length === 0 || Object.keys(outputs).length === 0) {
@@ -87,7 +87,7 @@ const mapDispatchToProps = dispatch => ({
       return;
     }
     if (props.editorCode.length > 10000) {
-      Notification.error(i18n('Code is longer than 10000, submit failed.'));
+      Notification.error(i18n('Code is longer than 10000 or shorter than 10, submit failed.'));
       return;
     }
     const req = request.post(Context.postSubmitUrl, {
