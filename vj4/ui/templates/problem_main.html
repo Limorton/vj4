@@ -11,21 +11,6 @@
   }|json|safe }};
 </script>
 <div class="row">
-  <div class="medium-12 columns">
-    <div class="section">
-      <form>
-        <div class="section__body">
-          <div class="row"><div class="columns">
-            <h2 style="float:left;position:relative;top:5px;width:3%;"><span class="icon icon-search"></span></h2>
-            <label style="float:right; width:97%;">
-              <input name="query" type="text" class="textbox" value="" placeholder="{{ _('pid, title, category or tag') }}">
-            </label>
-            <button name="search" type="submit" class="primary rounded button" style="display:none;">{{ _('Search') }}</button>
-          </div></div>
-        </div>
-      </form>
-    </div>
-  </div>
   <div class="medium-9 columns">
     <div class="section">
       <div class="section__body no-padding">
@@ -36,8 +21,19 @@
   <div class="medium-3 columns">
     <div class="section side">
       <div class="section__header">
-        <h1 class="section__title">{{ _('Statistics') }}</h1>
+        <h1 class="section__title">{{ _('Advanced Search') }}</h1>
       </div>
+      <form>
+        <div class="section__body">
+          <div class="row"><div class="columns">
+            <label style="float:left; width:90%;">
+              <input name="query" type="text" class="textbox" value="" placeholder="{{ _('pid, title, category or tag') }}">
+            </label>
+            <button name="search" type="submit" class="primary button" style="display:none;">{{ _('Search') }}</button>
+            <h2 style="float:right;position:relative;left:7px;top:7px;width:10%;"><span class="icon icon-search"></span></h2>
+          </div></div>
+        </div>
+      </form>
       {% include "partials/problem_stat.html" %}
     </div>
     {% if handler.has_perm(vj4.model.builtin.PERM_CREATE_PROBLEM) %}
