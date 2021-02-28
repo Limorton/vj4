@@ -176,9 +176,13 @@
       <dt>{{ _('Sources') }}</dt>
       <dd>{{ _(vj4.model.adaptor.problem.SETTING_SOURCE_RANGE[pdoc['source']]) }}</dd>
     {% endif %}
-    {% if pdoc['src_link'] and pdoc['src_link'].startswith('http')%}
+    {% if pdoc['src_link'] %}
       <dt>{{ _('Source Link') }}</dt>
+      {% if pdoc['src_link'].startswith('http') %}
       <dd><a target="_blank" href="{{ pdoc['src_link'] }}">{{ _('click to origin website') }}</a></dd>
+      {% else %}
+      <dd>{{ pdoc['src_link'] }}</dd>
+      {% endif %}
     {% endif %}
     </dl>
   </div>

@@ -640,7 +640,7 @@ Categories: 分类
 Tags: 标签
 Sources: 题目来源
 Origin: TOPS原创
-Other: 其他网站
+Other: 其他
 YBT: 《信息学奥赛一本通》
 KKT: 《信息学奥赛课课通》
 JinJieZhiNan-Li Yudong: 《算法竞赛进阶指南》
@@ -650,8 +650,8 @@ CCF-JiChu: 《CCF-基础篇》
 CCF-TiGao: 《CCF-提高篇》
 Lan Qiao Cup: 蓝桥杯
 KaoYanZhenTi: 考研真题
-Source Link: 来源备注
-click to origin website: 点击前往
+Source Link: 来源
+click to origin website: 原题链接
 Problem Quality: 题目质量
 Problem Stars: 难度星级
 bad: 差
@@ -661,7 +661,7 @@ very good: 较好
 excellent: 优秀
 "1 to 4 stars, 4 is extremly hard": 一至三星：入门基础、提高、困难，四星：超难题
 "Sources: from which book, website or author .etc": 题目来源：TOPS原创、书籍、比赛......
-"If this problem comes from other website, please fill in the links.": 鼓励开源开放，如果这道题目来自其他网站，请务必完善题目链接(以'http'或'https'开头)
+"If this problem comes from other website, please fill in the links.": 鼓励开源开放，如果这道题目来自其他网站，请完善题目链接(以'http'或'https'开头)
 "vote for problems": 填写题目质量，从1星到5星
 Provience: 省份：具体省份，全国性的则不填
 Region: 地区

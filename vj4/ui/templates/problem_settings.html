@@ -32,7 +32,7 @@
         <div class="row">
           {{ form.form_select(columns=3, label='Problem Quality', help_text='vote for problems', name='quality', options=vj4.model.adaptor.problem.SETTING_PROBLEM_QUALITY_RANGE.items(), value=pdoc['quality']|default(0), row=false) }}
           {{ form.form_select(columns=3, label='Problem Stars', help_text='1 to 4 stars, 4 is extremly hard', name='pb_stars', options=vj4.model.adaptor.problem.SETTING_PROBLEM_STARS_RANGE.items(), value=pdoc['pb_stars']|default(0), row=false) }}
-          {{ form.form_text(columns=3, label='Max Coding Time', name='coding_time', help_text='suggest coding time(in second).', value=pdoc['coding_time']|default('120'), row=false) }}
+          {{ form.form_text(columns=3, label='Max Coding Time', name='coding_time', help_text='suggest coding time(in second).', value=pdoc['coding_time']|default('360'), row=false) }}
         </div>
         <div class="row">
           {{ form.form_select(columns=4, label='Difficulty', name='difficulty_setting', options=vj4.model.adaptor.problem.SETTING_DIFFICULTY_RANGE.items(), value=pdoc['difficulty_setting']|default(0), row=false) }}

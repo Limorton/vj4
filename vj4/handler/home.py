@@ -207,8 +207,8 @@ class HomeMessagesHandler(base.OperationHandler):
     self.modify_udoc(mdoc, 'sendee_udoc')
     if self.user['_id'] != uid:
       await bus.publish('message_received-' + str(uid), {'type': 'new', 'data': mdoc})
-    print('sendee_udoc', udoc)
-    print('sender_udoc', sender_udoc)
+    # print('sendee_udoc', udoc)
+    # print('sender_udoc', sender_udoc)
     self.json_or_redirect(self.url, mdoc=mdoc)
 
   @base.require_priv(builtin.PRIV_USER_PROFILE)

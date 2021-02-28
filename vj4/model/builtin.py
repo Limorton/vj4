@@ -243,7 +243,7 @@ DEFAULT_PERMISSIONS = (
     PERM_VIEW_TRAINING |
     PERM_VIEW_RANKING
 )
-# role for student member : student
+# role for ordinary member : student
 STU_PERMISSIONS = (
     PERM_VIEW |
     PERM_VIEW_PROBLEM |
@@ -275,7 +275,7 @@ STU_PERMISSIONS = (
     PERM_VIEW_RANKING
 )
 # role for student admin
-MEMBER_PERMISSIONS = (
+STU_ADMIN_PERMISSIONS = (
     PERM_VIEW |
     PERM_MOD_BADGE |
     PERM_CREATE_PROBLEM |
@@ -347,7 +347,7 @@ ROLE_GUEST = 'guest'
 ROLE_DEFAULT = 'default'
 ROLE_SLIENT = 'slient'
 ROLE_OPEN = 'open'
-ROLE_MEMBER = 'stuadmin'
+ROLE_STU_ADMIN = 'stuadmin'
 ROLE_STU = 'student'
 ROLE_ADMIN = 'admin'
 
@@ -372,7 +372,8 @@ DOMAIN_SYSTEM = {
               ROLE_DEFAULT: DEFAULT_PERMISSIONS,
               ROLE_SLIENT: SLIENT_PERMISSIONS,
               ROLE_OPEN: OPEN_PERMISSIONS,
-              ROLE_MEMBER: MEMBER_PERMISSIONS,
+              ROLE_STU_ADMIN: STU_ADMIN_PERMISSIONS,
+              ROLE_STU: STU_PERMISSIONS,
               ROLE_ADMIN: ADMIN_PERMISSIONS
               },
     'gravatar': '',
@@ -447,7 +448,7 @@ LEVELS = collections.OrderedDict([(10, 1),
 # FOOTER_EXTRA_HTMLS = ['© 2005 - 2020 <a href="https://vijos.org/">Vijos.org</a>', version.get(),
 #                       '<a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow">' +
 #                       '沪ICP备14040537号</a>']
-FOOTER_EXTRA_HTMLS = ["版本号:", "build20201129"]
+FOOTER_EXTRA_HTMLS = ["版本号:", "build20210228"]
 
 PROBLEM_CATEGORIES = collections.OrderedDict([
     ('顺序结构', [
@@ -615,6 +616,7 @@ PROBLEM_CATEGORIES = collections.OrderedDict([
     ]),
     ('树结构', [
         '树的遍历',
+        'Huffman树'
         '最近公共祖先LCA',
         '树的直径',
         '树的重心',
