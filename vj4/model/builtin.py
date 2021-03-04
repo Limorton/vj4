@@ -616,7 +616,7 @@ PROBLEM_CATEGORIES = collections.OrderedDict([
     ]),
     ('树结构', [
         '树的遍历',
-        'Huffman树'
+        'Huffman树',
         '最近公共祖先LCA',
         '树的直径',
         '树的重心',
