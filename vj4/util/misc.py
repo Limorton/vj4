@@ -48,7 +48,7 @@ def gravatar_url(gravatar, qq='', size=200):
     return ('https://q1.qlogo.cn/g?b=qq&nk=' + qq + '&s=100&t=')
   else:
     gravatar_hash = ''
-  return ('//cn.gravatar.com/avatar/' + gravatar_hash + "?" +
+  return ('//gravatar.loli.net/avatar/' + gravatar_hash + "?" +
           parse.urlencode({'d': 'mm', 's': str(size)}))
 
 
