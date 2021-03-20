@@ -108,6 +108,19 @@
       <div class="profile-content">
         <div class="section__tab-container immersive">
           <ul class="section__tabs">
+            {% if handler.can_view(udoc, 'bio') %}
+            <li class="section__tab-item">
+              <h1 class="section__tab-title">{{ _('Bio') }}</h1>
+              <div class="section__tab-main">
+                <div class="section__body typo">
+                {% if udoc['bio'] and udoc['bio']|length > 0 %}
+                  {{ udoc['bio']|markdown }}
+                {% else %}
+                  {{ _('The user is too lazy to leave something here...') }}
+                {% endif %}
+                </div>
+              </div>
+            </li>
             <li class="section__tab-item">
               <h1 class="section__tab-title">{{ _('Discussions') }} ({{ dcount }})</h1>
               <div class="section__tab-main">
@@ -395,6 +408,7 @@
               </div>
             </li>
             {% endif %}
+          {% endif %}          
           </ul>
         </div>
       </div>
@@ -428,16 +442,16 @@
         </div>
       </div>
     </div>
-  {% if handler.can_view(udoc, 'bio') %}
+  {% if 0 and handler.can_view(udoc, 'bio') %}
     <div class="section side">
       <div class="section__header">
-        <h1 class="section__title">{{ _('Bio') }}{% if is_self_profile %} <small><a href="{{ reverse_url('home_account') }}#setting_info">[{{ _('Edit') }}]</a></small>{% endif %}</h1>
+        <h1 class="section__title">{{ _('Personal honor') }}</h1>
       </div>
       <div class="section__body typo">
       {% if udoc['bio'] and udoc['bio']|length > 0 %}
         {{ udoc['bio']|markdown }}
       {% else %}
-        {{ _('The user is too lazy to leave something here...') }}
+        {{ _('Orz...') }}
       {% endif %}
       </div>
     </div>
